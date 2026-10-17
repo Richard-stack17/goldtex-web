@@ -86,12 +86,37 @@ export default function Evidencia4() {
           style={{ maxWidth: "340px", width: "100%", margin: "0 auto 2rem", display: "block" }} />
         <p className="section-kicker">Concepto de Campaña</p>
         <h2 className="section-title-xl">Una buena tela es el inicio de un gran proyecto</h2>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "1.2rem", marginTop: "2rem" }}>
-          {pillars.map((p) => (
-            <div key={p.k} className="media-card reveal-card" style={{ padding: "1.6rem" }}>
-              <div className="experience-tag" style={{ marginBottom: "0.5rem" }}>{p.k}</div>
-              <p style={{ fontSize: "0.92rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.6 }}>{p.v}</p>
-            </div>
+        <div className="ev4-eco-grid">
+          {pillars.map((p, i) => (
+            <article key={p.k}
+              className={`ev4-eco-card ev4-eco-${i === 0 ? "somos" : i === 1 ? "problema" : "solucion"} reveal-card`}>
+              <span className="ev4-eco-idx">0{i + 1}</span>
+              {i === 2 && <span className="ev4-eco-ghost" aria-hidden="true">03</span>}
+              <div className="ev4-eco-head">
+                <span className="ev4-eco-icon" aria-hidden="true">
+                  {i === 0 ? (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
+                  ) : i === 1 ? (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></svg>
+                  ) : (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" /></svg>
+                  )}
+                </span>
+                <span className="experience-tag">{p.k}</span>
+              </div>
+              {i === 0 ? (
+                <div className="ev4-eco-body">
+                  <p>{p.v}</p>
+                  <figure className="ev4-eco-figure">
+                    {/* REGLA DE ORO: imagen completa, contain — nunca cover */}
+                    <img src="/chica.jpg" alt="Asesoría de telas en tienda Goldtex" loading="lazy" />
+                    <figcaption className="ev4-eco-figure-cap">Asesoría de telas en tienda · Gamarra</figcaption>
+                  </figure>
+                </div>
+              ) : (
+                <p>{p.v}</p>
+              )}
+            </article>
           ))}
         </div>
       </section>

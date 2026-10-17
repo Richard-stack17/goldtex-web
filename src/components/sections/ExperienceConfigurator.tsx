@@ -54,7 +54,7 @@ export default function ExperienceConfigurator() {
                     <div className="scanner-laser-line"></div>
                     <div className="scanner-header">
                         <div className="scanner-title">
-                            <span>◈</span> Ficha Técnica en Vivo
+                            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: "0.95em", height: "0.95em", verticalAlign: "-0.12em" }} aria-hidden="true"><path d="M3 6.5 12 3l9 3.5v11L12 21l-9-3.5z"/><path d="M3 6.5 12 10l9-3.5M12 10v11"/></svg></span> Ficha Técnica en Vivo
                         </div>
                         <div className="scanner-status" id="scanner-status-text">IDENTIFICANDO TELA...</div>
                     </div>

@@ -7,7 +7,7 @@
 import GoldtexExperience from "@/components/experience/GoldtexExperience";
 import Overlays from "@/components/sections/Overlays";
 import Navigation from "@/components/sections/Navigation";
-import SpatialHud from "@/components/experience/SpatialHud";
+import GoldenThreadCanvas from "@/components/experience/GoldenThreadCanvas";
 import Hero from "@/components/sections/Hero";
 import Evidencia1 from "@/components/sections/Evidencia1";
 import Evidencia2 from "@/components/sections/Evidencia2";
@@ -24,8 +24,8 @@ export default function Home() {
       {/* Capas cinemáticas: cortina de entrada, viñeta, aurora, lienzo WebGL */}
       <Overlays />
 
-      {/* HUD Espacial Fijo a la Izquierda — Active Theory Telemetría */}
-      <SpatialHud />
+      {/* Hilo de Oro Interactivo con física de seda y partículas */}
+      <GoldenThreadCanvas />
 
       <main>
         <Navigation />

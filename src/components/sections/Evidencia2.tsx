@@ -89,14 +89,17 @@ export default function Evidencia2() {
                 <p className="section-lead">Seguridad, Calidad y Comodidad: los tres pilares que erradican el quiebre de stock en talleres textiles y fidelizan al confeccionista.</p>
                                     <div className="axes-row spatial-tunnel-container">
                         <div className="axis-card reveal-card spatial-portal-card spatial-portal-left">
+                            <span className="axis-ghost" aria-hidden="true">01</span>
                             <h4>01 · Seguridad</h4>
                             <p>Cero incertidumbre: garantía total de metraje, stock reservado para clientes recurrentes y alertas prioritarias de nuevas partidas de fardos.</p>
                         </div>
                         <div className="axis-card reveal-card spatial-portal-card spatial-portal-right">
+                            <span className="axis-ghost" aria-hidden="true">02</span>
                             <h4>02 · Calidad</h4>
                             <p>Consistencia de producto: fichas técnicas de encogimiento, solidez de color y gramaje estandarizado, con asesoría especializada en tienda.</p>
                         </div>
                         <div className="axis-card reveal-card spatial-portal-card spatial-portal-left">
+                            <span className="axis-ghost" aria-hidden="true">03</span>
                             <h4>03 · Comodidad</h4>
                             <p>Valor agregado: salón VIP / showroom confortable para compras mayoristas ágiles y merchandising identitario del confeccionista.</p>
                         </div>
@@ -110,16 +113,22 @@ export default function Evidencia2() {
                 <p className="section-lead">Tres símbolos del oficio textil que traducen la promesa de marca en imágenes memorables para la campaña.</p>
                 <div className="reasons-grid">
                     <div className="reason-card reveal-card" data-tilt data-tilt-max="5">
+                        <span className="reason-quote-mark" aria-hidden="true">”</span>
+                        <span className="reason-ghost" aria-hidden="true">01</span>
                         <div className="reason-num">01</div>
                         <h3>El Rollo de Tela</h3>
                         <p>La continuidad garantizada: un rollo completo es la promesa de que el stock nunca se quiebra a mitad de producción. La base firme de cada creación.</p>
                     </div>
                     <div className="reason-card reveal-card" data-tilt data-tilt-max="5">
+                        <span className="reason-quote-mark" aria-hidden="true">”</span>
+                        <span className="reason-ghost" aria-hidden="true">02</span>
                         <div className="reason-num">02</div>
                         <h3>La Puntada</h3>
                         <p>La calidad que se ve y se siente: cada puntada une fibra y confianza. Consistencia de gramaje, solidez de color y encogimiento controlado.</p>
                     </div>
                     <div className="reason-card reveal-card" data-tilt data-tilt-max="5">
+                        <span className="reason-quote-mark" aria-hidden="true">”</span>
+                        <span className="reason-ghost" aria-hidden="true">03</span>
                         <div className="reason-num">03</div>
                         <h3>La Boina de Taller</h3>
                         <p>La "Boina del Confeccionista Goldtex": emblema de oficio y distinción para clientes frecuentes por compras de volumen. Pertenencia al club mayorista.</p>

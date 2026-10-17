@@ -18,6 +18,7 @@ import {
   type ShowroomHandle,
 } from "@/lib/experience/showroom";
 import { initCarousels } from "@/lib/experience/carousels";
+import { initPremiumExperience } from "@/lib/experience/premium";
 
 export default function GoldtexExperience() {
   const handlesRef = useRef<ShowroomHandle | null>(null);
@@ -26,6 +27,7 @@ export default function GoldtexExperience() {
     // Autoplay videos (Spots) ya asegurado dentro de initShowroomExperience.
     const showroom = initShowroomExperience();
     const carousels = initCarousels();
+    const premium = initPremiumExperience();
     handlesRef.current = showroom;
 
     // Delegación de acciones (equivalente fiel a los onclick inline originales)
@@ -64,6 +66,7 @@ export default function GoldtexExperience() {
     return () => {
       document.removeEventListener("click", dispatch);
       carousels.dispose();
+      premium.dispose();
       showroom.dispose();
       handlesRef.current = null;
     };

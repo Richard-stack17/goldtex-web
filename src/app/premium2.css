@@ -1,0 +1,930 @@
+/* ============================================================
+   PREMIUM 2 — Rediseño de regiones débiles (Evidencia 1/2/4 + Decoración)
+   Región(es):
+     A) #brief-estrategico  → Bento editorial + lámina sticky
+     B) #benchmarking       → Constelación cromática (rail snap) + cuadrante GOLDTEX
+     C) #ev4-contexto       → Eco editorial (spans 7/5/12 con imagen contain)
+     D) #decoracion-tend.   → Vidrio premium + tilt de marco
+     E) Evidencia 2         → Ghost numerals + rieles (micro-elevación)
+
+   Reglas del cliente respetadas:
+   - Imágenes de contenido SIEMPRE completas (contain / height:auto; sin cover, sin recortes).
+   - Hovers solo elevan la PIEZA ENTERA: uso la CSS property `translate` (no `transform`),
+     porque GSAP deja transform inline en `.reveal-card` y vanilla-tilt en cards tilt.
+   - Sin backdrop-filter en ancestros de imágenes de contenido: fondos casi sólidos
+     + translateZ(0) en el media hijo.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   A) #brief-estrategico — BENTO EDITORIAL
+   ------------------------------------------------------------ */
+
+/* Layout de dos columnas: bento + lámina documental sticky */
+.brief-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(300px, 28vw, 400px);
+    gap: 2.6rem;
+    align-items: start;
+    margin-top: 3rem;
+}
+
+.brief-bento {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.2rem;
+}
+
+/* Tarjeta base del bento: superficie con degradado interior sutil */
+.brief-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(241, 183, 52, 0.16);
+    border-radius: 18px;
+    padding: 1.5rem 1.6rem 1.4rem;
+    background:
+        linear-gradient(165deg, rgba(10, 82, 68, 0.42) 0%, rgba(4, 28, 22, 0.86) 58%, rgba(2, 16, 12, 0.92) 100%);
+    transition:
+        translate 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.45s ease,
+        box-shadow 0.45s ease;
+    translate: 0 0;
+}
+
+/* Riel dorado izquierdo 3px */
+.brief-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 14%;
+    bottom: 14%;
+    width: 3px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, rgba(241, 183, 52, 0.2), rgba(241, 183, 52, 0.55), rgba(241, 183, 52, 0.2));
+    opacity: 0.4;
+    transition: opacity 0.45s ease, box-shadow 0.45s ease;
+    pointer-events: none;
+}
+
+.brief-card:hover {
+    translate: 0 -3px;
+    border-color: rgba(241, 183, 52, 0.5);
+    box-shadow: 0 24px 55px -18px rgba(0, 0, 0, 0.8), 0 0 26px rgba(241, 183, 52, 0.1);
+}
+
+.brief-card:hover::before {
+    opacity: 1;
+    box-shadow: 0 0 14px rgba(241, 183, 52, 0.55);
+}
+
+/* Numeral de índice (01…05) — serif dorado en la esquina superior */
+.brief-num {
+    position: absolute;
+    top: 0.9rem;
+    right: 1.2rem;
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    color: var(--gold-caramel);
+    opacity: 0.55;
+    pointer-events: none;
+}
+
+.brief-label {
+    font-family: var(--font-display);
+    font-size: 1.12rem;
+    letter-spacing: 0.02em;
+    color: var(--gold-caramel);
+    margin: 0 0 0.55rem;
+}
+
+.brief-card p {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: rgba(244, 243, 243, 0.82);
+    font-weight: 300;
+}
+
+/* Spans del mosaico asimétrico */
+.brief-card--a { grid-column: span 5; }
+.brief-card--b { grid-column: span 7; }
+.brief-card--c { grid-column: span 4; }
+.brief-card--d { grid-column: span 8; }
+.brief-card--quote { grid-column: span 12; }
+
+/* Mensaje Clave — tratamiento HERO-QUOTE */
+.brief-card--quote {
+    border-top: 3px solid var(--gold-caramel);
+    padding: 2.6rem 3.4rem 2.4rem;
+}
+
+/* Comilla gigante dorada translúcida de fondo (solo decoración, sin escala) */
+.brief-card--quote::before {
+    content: "”";
+    position: absolute;
+    right: 1.6rem;
+    bottom: -7rem;
+    font-family: var(--font-display);
+    font-size: 16rem;
+    line-height: 1;
+    color: rgba(241, 183, 52, 0.16);
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Acento de comilla flotante junto al label */
+.brief-quote-mark {
+    position: absolute;
+    top: -0.9rem;
+    left: 1.1rem;
+    font-family: var(--font-display);
+    font-size: 4.5rem;
+    line-height: 1;
+    color: rgba(241, 183, 52, 0.22);
+    pointer-events: none;
+}
+
+.brief-quote-text {
+    font-family: var(--font-display) !important;
+    font-style: italic !important;
+    font-size: clamp(1.45rem, 2.6vw, 2.05rem) !important;
+    line-height: 1.35 !important;
+    color: var(--ivory) !important;
+    font-weight: 300 !important;
+    max-width: 92ch;
+}
+
+/* Statement block — Razón para Creer */
+.brief-belief {
+    position: relative;
+    margin-top: 2.8rem;
+    padding: 2.2rem 0 0.4rem;
+    border-top: 1px solid rgba(241, 183, 52, 0.18);
+}
+
+/* Riel dorado corto sobre la línea superior */
+.brief-belief::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 64px;
+    height: 3px;
+    border-radius: 3px;
+    background: var(--gold-caramel);
+    box-shadow: 0 0 12px rgba(241, 183, 52, 0.4);
+}
+
+.brief-belief-line {
+    margin: 0.8rem 0 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.9rem, 3.6vw, 2.9rem);
+    line-height: 1.2;
+    color: var(--ivory);
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
+}
+
+/* Lámina del informe — columna sticky + marco dorado con notches */
+.brief-doc-col {
+    position: sticky;
+    top: 6rem;
+    padding: 0.4rem 0 2.5rem;
+}
+
+.brief-doc-panel {
+    --notch: 15px;
+    margin: 0;
+    padding: 1px; /* la "hairline" dorada es el propio fondo del panel */
+    background: linear-gradient(150deg, rgba(241, 183, 52, 0.75) 0%, rgba(241, 183, 52, 0.28) 45%, rgba(241, 183, 52, 0.6) 100%);
+    clip-path: polygon(var(--notch) 0, 100% 0, 100% calc(100% - var(--notch)), calc(100% - var(--notch)) 100%, 0 100%, 0 var(--notch));
+    transform: rotate(-1.5deg);
+    transform-origin: 50% 42%;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+    box-shadow: 0 42px 90px -22px rgba(0, 0, 0, 0.9), 0 0 40px rgba(241, 183, 52, 0.1);
+    will-change: transform;
+}
+
+/* La rotación settlea a 0 en hover (rota el PANEL completo; imagen íntegra dentro) */
+.brief-doc-col:hover .brief-doc-panel {
+    transform: rotate(0deg);
+    box-shadow: 0 50px 110px -20px rgba(0, 0, 0, 0.95), 0 0 55px rgba(241, 183, 52, 0.16);
+}
+
+/* Capa interior recortada al mismo notch — fondo casi sólido tras la imagen */
+.brief-doc-shell {
+    clip-path: polygon(var(--notch) 0, 100% 0, 100% calc(100% - var(--notch)), calc(100% - var(--notch)) 100%, 0 100%, 0 var(--notch));
+    background: #062019;
+    padding: 0.85rem 0.85rem 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* REGLA DE ORO: lámina completa, contain + height auto — jamás cover */
+.brief-doc-shell img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    transform: translateZ(0);
+}
+
+.brief-doc-caption {
+    margin: 0;
+    padding: 0.85rem 2rem 0.9rem 1.1rem;
+    border-top: 1px solid rgba(241, 183, 52, 0.22);
+    font-size: 0.74rem;
+    letter-spacing: 0.07em;
+    color: rgba(244, 243, 243, 0.72);
+}
+
+/* ------------------------------------------------------------
+   B) #benchmarking — CONSTELACIÓN CROMÁTICA
+   ------------------------------------------------------------ */
+
+/* Rail horizontal scrolleable con snap y scrollbar oculta */
+.chrom-rail {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(215px, 232px);
+    gap: 0.85rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 4px;
+    padding: 0.6rem 0.3rem 1.1rem;
+    margin: 0.4rem 0 1.6rem;
+    scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 22px, #000 calc(100% - 22px), transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 22px, #000 calc(100% - 22px), transparent 100%);
+}
+
+.chrom-rail::-webkit-scrollbar {
+    display: none;
+}
+
+/* Chip vertical premium (reordena el badge sin tocar su markup base) */
+.chrom-rail .competitor-badge-card {
+    scroll-snap-align: start;
+    position: relative;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.65rem;
+    padding: 0.95rem 1rem 0.9rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    background: linear-gradient(170deg, rgba(8, 62, 53, 0.5) 0%, rgba(2, 22, 17, 0.92) 100%);
+    transition:
+        translate 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.35s ease,
+        background 0.35s ease,
+        box-shadow 0.35s ease;
+    translate: 0 0;
+}
+
+.chrom-rail .competitor-badge-card:hover {
+    transform: none; /* neutraliza el translateY heredado de globals; el lift manda aquí */
+    translate: 0 -4px;
+    border-color: rgba(198, 163, 74, 0.5);
+    background: rgba(2, 30, 22, 0.78);
+    box-shadow: 0 18px 40px -14px rgba(0, 0, 0, 0.85);
+}
+
+/* Fila de orbe + hairline cromática */
+.chrom-orb-row {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.chrom-orb-row::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(241, 183, 52, 0.35), rgba(241, 183, 52, 0.06));
+}
+
+.chrom-orb {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    transform: translateZ(0);
+}
+
+.chrom-rail .competitor-badge-card:hover .chrom-orb {
+    animation: chromPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes chromPulse {
+    0%, 100% { transform: translateZ(0) scale(1); }
+    50% { transform: translateZ(0) scale(1.14); }
+}
+
+.chrom-rail .comp-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.chrom-rail .comp-info h5 {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    color: var(--ivory);
+}
+
+/* El hex "se aclara" al hover sin tocar su inline color (filter, no reescritura) */
+.chrom-rail .comp-info span {
+    transition: filter 0.35s ease;
+}
+
+.chrom-rail .competitor-badge-card:hover .comp-info span {
+    filter: brightness(1.45);
+}
+
+/* Cuadrante propio GOLDTEX — orbes duales pulsantes */
+.goldtex-quadrant {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.4rem;
+    padding: 1.5rem 1.8rem;
+    border-radius: 20px;
+    border: 1.5px solid var(--gold-champagne);
+    background:
+        radial-gradient(90% 130% at 100% 0%, rgba(241, 183, 52, 0.16) 0%, rgba(241, 183, 52, 0) 55%),
+        linear-gradient(135deg, rgba(8, 62, 53, 0.85) 0%, rgba(241, 183, 52, 0.1) 100%);
+    box-shadow: 0 0 30px rgba(241, 183, 52, 0.22), 0 30px 70px -25px rgba(0, 0, 0, 0.9);
+}
+
+.gq-orbs {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-shrink: 0;
+}
+
+.gq-orb {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transform: translateZ(0);
+}
+
+/* Verde institucional RGB 8,62,53 */
+.gq-orb--verde {
+    background: rgb(8, 62, 53);
+    box-shadow: 0 0 0 1px rgba(244, 243, 243, 0.28), 0 0 16px rgba(8, 62, 53, 0.9), 0 0 34px rgba(8, 62, 53, 0.55);
+    animation: gqPulseVerde 3.2s ease-in-out infinite;
+}
+
+/* Dorado/caramelo RGB 228,195,58 */
+.gq-orb--oro {
+    background: rgb(228, 195, 58);
+    box-shadow: 0 0 0 1px rgba(228, 195, 58, 0.4), 0 0 14px rgba(228, 195, 58, 0.55), 0 0 36px rgba(228, 195, 58, 0.28);
+    animation: gqPulseOro 3.2s ease-in-out infinite;
+    animation-delay: 0.9s;
+}
+
+@keyframes gqPulseVerde {
+    0%, 100% {
+        box-shadow: 0 0 0 1px rgba(244, 243, 243, 0.28), 0 0 16px rgba(8, 62, 53, 0.9), 0 0 34px rgba(8, 62, 53, 0.55);
+        transform: translateZ(0) scale(1);
+    }
+    50% {
+        box-shadow: 0 0 0 1px rgba(74, 222, 128, 0.6), 0 0 24px rgba(74, 222, 128, 0.35), 0 0 48px rgba(8, 62, 53, 0.7);
+        transform: translateZ(0) scale(1.1);
+    }
+}
+
+@keyframes gqPulseOro {
+    0%, 100% {
+        box-shadow: 0 0 0 1px rgba(228, 195, 58, 0.4), 0 0 14px rgba(228, 195, 58, 0.55), 0 0 36px rgba(228, 195, 58, 0.28);
+        transform: translateZ(0) scale(1);
+    }
+    50% {
+        box-shadow: 0 0 0 1px rgba(241, 183, 52, 0.75), 0 0 22px rgba(228, 195, 58, 0.75), 0 0 52px rgba(228, 195, 58, 0.4);
+        transform: translateZ(0) scale(1.1);
+    }
+}
+
+.gq-logo {
+    flex-shrink: 0;
+}
+
+.gq-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex: 1 1 240px;
+}
+
+.gq-info h5 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.02rem;
+    color: var(--gold-champagne);
+}
+
+.gq-rgb {
+    color: #4ade80;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+}
+
+.gq-micro {
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(244, 243, 243, 0.62);
+}
+
+.gq-ribbon {
+    margin-left: auto;
+    background: rgba(228, 195, 58, 0.22);
+    border: 1px solid var(--gold-caramel);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--gold-caramel);
+    transition: background 0.35s ease, box-shadow 0.35s ease;
+}
+
+.goldtex-quadrant:hover .gq-ribbon {
+    background: rgba(228, 195, 58, 0.4);
+    box-shadow: 0 0 18px rgba(241, 183, 52, 0.35);
+}
+
+/* ------------------------------------------------------------
+   C) #ev4-contexto — ECO EDITORIAL (spans 7 / 5 / 12)
+   ------------------------------------------------------------ */
+
+.ev4-eco-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.2rem;
+    margin-top: 2.2rem;
+}
+
+.ev4-eco-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    border-radius: 20px;
+    border: 1px solid rgba(241, 183, 52, 0.18);
+    background: linear-gradient(170deg, rgba(8, 62, 53, 0.5) 0%, rgba(3, 24, 18, 0.94) 100%);
+    padding: 1.7rem 1.8rem;
+    transition:
+        translate 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.45s ease,
+        box-shadow 0.45s ease;
+    translate: 0 0;
+}
+
+/* Riel dorado izquierdo */
+.ev4-eco-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 12%;
+    bottom: 12%;
+    width: 3px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, rgba(241, 183, 52, 0.15), rgba(241, 183, 52, 0.55), rgba(241, 183, 52, 0.15));
+    opacity: 0.45;
+    transition: opacity 0.4s ease, box-shadow 0.4s ease;
+    pointer-events: none;
+}
+
+.ev4-eco-card:hover {
+    translate: 0 -4px;
+    border-color: rgba(241, 183, 52, 0.45);
+    box-shadow: 0 28px 60px -20px rgba(0, 0, 0, 0.85), 0 0 24px rgba(241, 183, 52, 0.08);
+}
+
+.ev4-eco-card:hover::before {
+    opacity: 1;
+    box-shadow: 0 0 12px rgba(241, 183, 52, 0.45);
+}
+
+.ev4-eco--somos { grid-column: span 7; }
+.ev4-eco--problema { grid-column: span 5; }
+.ev4-eco--solucion { grid-column: span 12; overflow: hidden; }
+
+.ev4-eco-idx {
+    position: absolute;
+    top: 1.1rem;
+    right: 1.4rem;
+    font-family: var(--font-display);
+    font-size: 2.1rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--gold-caramel);
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.ev4-eco-head {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+}
+
+.ev4-eco-icon {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    color: var(--gold-caramel);
+    border: 1px solid rgba(241, 183, 52, 0.35);
+    background: linear-gradient(150deg, rgba(241, 183, 52, 0.14), rgba(241, 183, 52, 0) 70%);
+    transition: filter 0.4s ease, border-color 0.4s ease;
+}
+
+.ev4-eco-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.ev4-eco-card:hover .ev4-eco-icon {
+    filter: brightness(1.2);
+    border-color: rgba(241, 183, 52, 0.6);
+}
+
+.ev4-eco-card > p,
+.ev4-eco-body p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.86);
+}
+
+/* Card 1: texto + marco lateral de imagen (imagen COMPLETA, contain) */
+.ev4-eco-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(200px, 40%, 250px);
+    gap: 1.4rem;
+    align-items: start;
+}
+
+.ev4-eco-figure {
+    margin: 0;
+    border: 1px solid rgba(241, 183, 52, 0.3);
+    border-radius: 14px;
+    background: #04150f; /* casi sólido, sin backdrop-filter cerca de la imagen */
+    padding: 0.55rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* REGLA DE ORO: contiene la imagen entera — contain + height auto */
+.ev4-eco-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    transform: translateZ(0);
+    border-radius: 9px;
+}
+
+.ev4-eco-figure-cap {
+    margin-top: 0.5rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(244, 243, 243, 0.6);
+    text-align: center;
+}
+
+/* Numeral gigante fantasma de la card Solución */
+.ev4-eco-ghost {
+    position: absolute;
+    right: 3%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-display);
+    font-size: clamp(7rem, 14vw, 11rem);
+    line-height: 1;
+    color: rgba(241, 183, 52, 0.07);
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Línea de flujo: card 1 → card 2 (horizontal, puentea el gap)
+   y card 2 → card 3 (vertical). CSS puro ::after; fuera en móvil. */
+.ev4-eco--somos::after,
+.ev4-eco--problema::after {
+    content: "";
+    position: absolute;
+    top: 52%;
+    right: -1.2rem;
+    width: 1.2rem;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(241, 183, 52, 0.7), rgba(241, 183, 52, 0.15));
+    pointer-events: none;
+}
+
+.ev4-eco--problema::after {
+    top: 100%;
+    left: 50%;
+    right: auto;
+    width: 1px;
+    height: 1.2rem;
+    background: linear-gradient(180deg, rgba(241, 183, 52, 0.7), rgba(241, 183, 52, 0.15));
+}
+
+/* ------------------------------------------------------------
+   D) #decoracion-tendencias — VIDRIO PREMIUM + TILT DE MARCO
+   ------------------------------------------------------------ */
+
+/* La tilt/pulso por JS no se toca aquí (data-tilt y clases van en el TSX) */
+
+.editorial-highlight-card {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.35rem 1.5rem;
+    background: linear-gradient(165deg, rgba(10, 82, 68, 0.35) 0%, rgba(1, 12, 9, 0.74) 100%);
+    transition:
+        translate 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.45s ease,
+        box-shadow 0.45s ease;
+    translate: 0 0;
+}
+
+/* Sheen diagonal que barre la superficie al hover */
+.editorial-highlight-card::before {
+    content: "";
+    position: absolute;
+    top: -60%;
+    left: -30%;
+    width: 45%;
+    height: 220%;
+    background: linear-gradient(115deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.07) 45%, rgba(241, 183, 52, 0.1) 55%, rgba(255, 255, 255, 0) 100%);
+    transform: rotate(8deg);
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease;
+    opacity: 0.55;
+    pointer-events: none;
+}
+
+.editorial-highlight-card:hover::before {
+    transform: rotate(8deg) translateX(320%);
+    opacity: 1;
+}
+
+/* Riel dorado lateral (::after) */
+.editorial-highlight-card::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 12%;
+    bottom: 12%;
+    width: 3px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, rgba(241, 183, 52, 0.25), rgba(241, 183, 52, 0.75));
+    opacity: 0.5;
+    transition: opacity 0.4s ease, box-shadow 0.4s ease;
+    pointer-events: none;
+}
+
+.editorial-highlight-card:hover {
+    translate: 0 -3px;
+    border-color: rgba(241, 183, 52, 0.55);
+    box-shadow: 0 18px 45px -12px rgba(0, 0, 0, 0.8), 0 0 22px rgba(241, 183, 52, 0.12);
+}
+
+.editorial-highlight-card:hover::after {
+    opacity: 1;
+    box-shadow: 0 0 12px rgba(241, 183, 52, 0.5);
+}
+
+.editorial-highlight-icon {
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 13px;
+    color: var(--gold-caramel);
+    border: 1px solid rgba(241, 183, 52, 0.38);
+    background: linear-gradient(150deg, rgba(241, 183, 52, 0.16), rgba(241, 183, 52, 0) 70%);
+}
+
+.editorial-highlight-icon svg {
+    width: 23px;
+    height: 23px;
+}
+
+.editorial-highlight-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    min-width: 0;
+}
+
+/* El tilt real del marco lo aplica vanilla-tilt; aquí solo el asiento visual */
+.editorial-image-frame {
+    transform: translateZ(0);
+}
+
+/* ------------------------------------------------------------
+   E) Evidencia 2 — MICRO-ELEVACIÓN (ghost numerals + rieles)
+   ------------------------------------------------------------
+   Scopes por sección para NO filtrar a otras usos de .axis-card/.reason-card */
+
+#ejes-creativos .axis-card {
+    position: relative;
+    overflow: hidden;
+    padding-left: 1.3rem;
+}
+
+/* Riel dorado vertical (la card conserva su borde superior dorado de globals) */
+#ejes-creativos .axis-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 14%;
+    width: 3px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, rgba(241, 183, 52, 0.6), rgba(241, 183, 52, 0.05));
+    pointer-events: none;
+}
+
+.axis-ghost {
+    position: absolute;
+    right: 0.4rem;
+    bottom: -1.6rem;
+    font-family: var(--font-display);
+    font-size: clamp(6rem, 9vw, 8.5rem);
+    line-height: 1;
+    color: rgba(244, 243, 243, 0.05);
+    pointer-events: none;
+    user-select: none;
+}
+
+#matriz-metafiras .reason-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.reason-ghost {
+    position: absolute;
+    right: 0.6rem;
+    bottom: -2rem;
+    font-family: var(--font-display);
+    font-size: clamp(6.5rem, 10vw, 9rem);
+    line-height: 1;
+    color: rgba(241, 183, 52, 0.06);
+    pointer-events: none;
+    user-select: none;
+}
+
+.reason-quote-mark {
+    position: absolute;
+    top: 0.4rem;
+    right: 1rem;
+    font-family: var(--font-display);
+    font-size: 4.5rem;
+    line-height: 1;
+    color: rgba(241, 183, 52, 0.14);
+    pointer-events: none;
+    user-select: none;
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE
+   ------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+    /* A: bento → 1 columna; lámina deja de ser sticky */
+    .brief-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .brief-doc-col {
+        position: static;
+        max-width: 460px;
+        margin: 0 auto;
+        padding-bottom: 0;
+    }
+    .brief-card--a,
+    .brief-card--b,
+    .brief-card--c,
+    .brief-card--d {
+        grid-column: 1 / -1;
+    }
+
+    /* B: quadrant se apila */
+    .gq-ribbon {
+        margin-left: 0;
+    }
+
+    /* C: spans → full width; sin conectores */
+    .ev4-eco--somos,
+    .ev4-eco--problema,
+    .ev4-eco--solucion {
+        grid-column: 1 / -1;
+    }
+    .ev4-eco--somos::after,
+    .ev4-eco--problema::after {
+        display: none;
+    }
+    .ev4-eco-body {
+        grid-template-columns: 1fr;
+    }
+    .ev4-eco-figure {
+        max-width: 340px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 640px) {
+    .brief-bento {
+        gap: 0.9rem;
+    }
+    .brief-card {
+        padding: 1.25rem 1.2rem;
+    }
+    .brief-num {
+        font-size: 1.5rem;
+    }
+    .brief-card--quote {
+        padding: 2.2rem 1.4rem 2rem;
+    }
+    .brief-card--quote::before {
+        font-size: 9rem;
+        bottom: -3.5rem;
+        right: 0.6rem;
+    }
+    .brief-belief-line {
+        font-size: clamp(1.6rem, 6.5vw, 2rem);
+    }
+    .chrom-rail {
+        grid-auto-columns: minmax(200px, 212px);
+    }
+    .goldtex-quadrant {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.3rem 1.2rem;
+    }
+    .ev4-eco-card {
+        padding: 1.4rem 1.2rem;
+    }
+    .ev4-eco-idx {
+        font-size: 1.6rem;
+    }
+    .ev4-eco-ghost {
+        font-size: 6.5rem;
+    }
+    .axis-ghost {
+        font-size: 5.5rem;
+    }
+    .reason-ghost {
+        font-size: 6rem;
+    }
+    .editorial-highlight-card {
+        flex-direction: column;
+    }
+}
+
+/* ------------------------------------------------------------
+   REDUCED MOTION — el sitio nunca anima lo nuevo
+   ------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+    .brief-card,
+    .brief-belief,
+    .brief-doc-panel,
+    .brief-doc-col:hover .brief-doc-panel,
+    .chrom-rail,
+    .chrom-rail .competitor-badge-card,
+    .chrom-rail .competitor-badge-card .chrom-orb,
+    .goldtex-quadrant,
+    .goldtex-quadrant .gq-ribbon,
+    .gq-orb--verde,
+    .gq-orb--oro,
+    .ev4-eco-card,
+    .ev4-eco-icon,
+    .ev4-eco-figure img,
+    .editorial-highlight-card,
+    .editorial-highlight-card::before,
+    .editorial-highlight-card::after,
+    .editorial-image-frame {
+        transition: none !important;
+        animation: none !important;
+    }
+}

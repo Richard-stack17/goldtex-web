@@ -21,12 +21,12 @@ export default function Audiovisual() {
                             <div className="video-ctrl-group">
                                 <button className="video-ctrl-btn" id="audio-btn-1" data-action="toggleAudioVideo(1)"
                                     title="Activar/Silenciar Sonido">
-                                    <span id="audio-icon-1">🔇</span>
+                                    <span id="audio-icon-1" data-ic-muted><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg></span>
                                     <span id="audio-text-1">Silenciado</span>
                                 </button>
                                 <button className="video-ctrl-btn" id="play-btn-1" data-action="togglePlayVideo(1)"
                                     title="Pausar/Reproducir">
-                                    <span id="play-icon-1">⏸</span>
+                                    <span id="play-icon-1" data-ic-pause><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1.2"/><rect x="14" y="4" width="4" height="16" rx="1.2"/></svg></span>
                                 </button>
                             </div>
                             <div className="video-ctrl-group">
@@ -56,12 +56,12 @@ export default function Audiovisual() {
                             <div className="video-ctrl-group">
                                 <button className="video-ctrl-btn" id="audio-btn-2" data-action="toggleAudioVideo(2)"
                                     title="Activar/Silenciar Sonido">
-                                    <span id="audio-icon-2">🔇</span>
+                                    <span id="audio-icon-2" data-ic-muted><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg></span>
                                     <span id="audio-text-2">Silenciado</span>
                                 </button>
                                 <button className="video-ctrl-btn" id="play-btn-2" data-action="togglePlayVideo(2)"
                                     title="Pausar/Reproducir">
-                                    <span id="play-icon-2">⏸</span>
+                                    <span id="play-icon-2" data-ic-pause><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1.2"/><rect x="14" y="4" width="4" height="16" rx="1.2"/></svg></span>
                                 </button>
                             </div>
                             <div className="video-ctrl-group">

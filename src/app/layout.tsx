@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import "./premium2.css";
 
 /*
  * Layout raíz Goldtex (App Router).
@@ -12,6 +13,7 @@ import "./globals.css";
  */
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://goldtex-web.vercel.app"),
   title: "GOLDTEX — Telas que Inspiran | Proveedor Textil en Gamarra, Lima",
   description:
     "GOLDTEX Gamarra: proveedor textil en La Victoria, Lima. Más de 50 tipos de telas, venta por metros y fardos, asesoramiento técnico, WhatsApp Business y despacho express a Lima y provincias. Telas que inspiran.",

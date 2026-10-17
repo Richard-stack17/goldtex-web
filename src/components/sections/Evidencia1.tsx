@@ -155,29 +155,44 @@ export default function Evidencia1() {
             <section className="section-block" id="brief-estrategico">
                 <p className="section-kicker">El Brief Estratégico</p>
                 <h2 className="section-title-xl">"De la idea a tu emprendimiento"</h2>
-                <div className="campaign-hero">
-                    <div>
-                        <div className="psych-card" style={{ borderLeft: "4px solid var(--gold-caramel)", marginBottom: "1.4rem" }} data-tilt data-tilt-max="5">
-                            <h4 style={{ fontFamily: "var(--font-display)", color: "var(--gold-caramel)", marginBottom: "0.4rem" }}>Proyecto</h4>
-                            <p style={{ fontSize: "0.9rem", lineHeight: "1.65" }}>"De la idea a tu emprendimiento"</p>
+                <div className="brief-layout">
+                    <div className="brief-main">
+                        {/*  Bento editorial: Proyecto · Objetivo · Público · Propuesta · Mensaje Clave  */}
+                        <div className="brief-bento">
+                            <article className="brief-card brief-card--a reveal-card">
+                                <span className="brief-num">01</span>
+                                <h4 className="brief-label">Proyecto</h4>
+                                <p>"De la idea a tu emprendimiento"</p>
+                            </article>
+                            <article className="brief-card brief-card--b reveal-card">
+                                <span className="brief-num">02</span>
+                                <h4 className="brief-label">Objetivo</h4>
+                                <p>Incrementar en 25% las consultas calificadas vía WhatsApp en 3 meses. Mejora en la identidad visual.</p>
+                            </article>
+                            <article className="brief-card brief-card--c reveal-card">
+                                <span className="brief-num">03</span>
+                                <h4 className="brief-label">Público</h4>
+                                <p>Diseñadores, confeccionistas y emprendedores textiles.</p>
+                            </article>
+                            <article className="brief-card brief-card--d reveal-card">
+                                <span className="brief-num">04</span>
+                                <h4 className="brief-label">Propuesta</h4>
+                                <p>Mejora de catálogo digital + asesoramiento técnico + atención rápida + identidad visual, consolidando una imagen sólida.</p>
+                            </article>
+                            {/*  Mensaje Clave — hero-quote a ancho completo  */}
+                            <article className="brief-card brief-card--quote reveal-card">
+                                <span className="brief-num">05</span>
+                                <span className="brief-quote-mark" aria-hidden="true">”</span>
+                                <h4 className="brief-label">Mensaje Clave</h4>
+                                <p className="brief-quote-text">"De la idea a tu emprendimiento: tenemos los insumos exactos para que transformes tu creatividad en un negocio real."</p>
+                            </article>
                         </div>
-                        <div className="psych-card" style={{ borderLeft: "4px solid var(--gold-caramel)", marginBottom: "1.4rem" }} data-tilt data-tilt-max="5">
-                            <h4 style={{ fontFamily: "var(--font-display)", color: "var(--gold-caramel)", marginBottom: "0.4rem" }}>Objetivo</h4>
-                            <p style={{ fontSize: "0.9rem", lineHeight: "1.65" }}>Incrementar en 25% las consultas calificadas vía WhatsApp en 3 meses. Mejora en la identidad visual.</p>
+
+                        {/*  Statement block — Razón para Creer  */}
+                        <div className="brief-belief">
+                            <p className="section-kicker">Razón para Creer</p>
+                            <p className="brief-belief-line">"Más que una tienda, un aliado"</p>
                         </div>
-                        <div className="psych-card" style={{ borderLeft: "4px solid var(--gold-caramel)", marginBottom: "1.4rem" }} data-tilt data-tilt-max="5">
-                            <h4 style={{ fontFamily: "var(--font-display)", color: "var(--gold-caramel)", marginBottom: "0.4rem" }}>Público</h4>
-                            <p style={{ fontSize: "0.9rem", lineHeight: "1.65" }}>Diseñadores, confeccionistas y emprendedores textiles.</p>
-                        </div>
-                        <div className="psych-card" style={{ borderLeft: "4px solid var(--gold-caramel)", marginBottom: "1.4rem" }} data-tilt data-tilt-max="5">
-                            <h4 style={{ fontFamily: "var(--font-display)", color: "var(--gold-caramel)", marginBottom: "0.4rem" }}>Propuesta</h4>
-                            <p style={{ fontSize: "0.9rem", lineHeight: "1.65" }}>Mejora de catálogo digital + asesoramiento técnico + atención rápida + identidad visual, consolidando una imagen sólida.</p>
-                        </div>
-                        <div className="psych-card" style={{ borderLeft: "4px solid var(--gold-caramel)" }} data-tilt data-tilt-max="5">
-                            <h4 style={{ fontFamily: "var(--font-display)", color: "var(--gold-caramel)", marginBottom: "0.4rem" }}>Mensaje Clave</h4>
-                            <p style={{ fontSize: "0.9rem", lineHeight: "1.65" }}>"De la idea a tu emprendimiento: tenemos los insumos exactos para que transformes tu creatividad en un negocio real."</p>
-                        </div>
-                        <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", color: "var(--ivory)", margin: "3rem 0 1rem" }}>Razón para Creer: "Más que una tienda, un aliado"</h3>
                                     <div className="reasons-grid">
                 <div className="reason-card reveal-card" data-tilt data-tilt-max="5">
                     <div className="reason-num">01</div>
@@ -206,12 +221,18 @@ export default function Evidencia1() {
                 </div>
             </div>
                     </div>
-                    <div className="campaign-visual-frame reveal-card">
-                        <img src="/assets/evidencias/ev1/ev1_page_09.png"
-                             alt="Brief estratégico — Evidencia 01, página 9"
-                             loading="lazy" />
-                        <div className="campaign-caption">El brief estratégico · Evidencia 01 · Pág. 9 del informe de investigación de mercados.</div>
-                    </div>
+
+                    {/*  Columna documental — lámina del informe en shots sticky  */}
+                    <aside className="brief-doc-col reveal-card">
+                        <figure className="brief-doc-panel">
+                            <div className="brief-doc-shell">
+                                <img src="/assets/evidencias/ev1/ev1_page_09.png"
+                                     alt="Brief estratégico — Evidencia 01, página 9"
+                                     loading="lazy" />
+                            </div>
+                            <figcaption className="brief-doc-caption">El brief estratégico · Evidencia 01 · Pág. 9 del informe de investigación de mercados.</figcaption>
+                        </figure>
+                    </aside>
                 </div>
             </section>
 
@@ -224,46 +245,45 @@ export default function Evidencia1() {
                 con los confeccionistas y emprendedores del Perú.
             </p>
 
-            <div className="timeline-track">
-                <div className="timeline-node reveal-card">
-                    <div className="timeline-year">2005</div>
-                    <div className="timeline-name">Fundación</div>
-                    <p className="timeline-desc">Nace Goldtex en Gamarra, Lima, como tienda de telas importadas.</p>
+            <div className="timeline-v2">
+                <div className="tl2-ghost" aria-hidden="true">
+                    <span data-tl-ghost>2005</span>
                 </div>
-                <div className="timeline-node reveal-card">
-                    <div className="timeline-year">2008</div>
-                    <div className="timeline-name">Importación Global</div>
-                    <p className="timeline-desc">Diversificación de la oferta con telas de Asia y Europa.</p>
+                <div className="tl2-rail" aria-hidden="true">
+                    <span className="tl2-rail-fill" data-tl-fill />
                 </div>
-                <div className="timeline-node reveal-card">
-                    <div className="timeline-year">2010</div>
-                    <div className="timeline-name">Expansión Nacional</div>
-                    <p className="timeline-desc">Llegada a provincias clave: Arequipa, Trujillo y Chiclayo.</p>
+                <div className="tl2-nodes">
+                    {[
+                        ["2005", "Fundación", "Nace Goldtex en Gamarra, Lima, como tienda de telas importadas."],
+                        ["2008", "Importación Global", "Diversificación de la oferta con telas de Asia y Europa."],
+                        ["2010", "Expansión Nacional", "Llegada a provincias clave: Arequipa, Trujillo y Chiclayo."],
+                        ["2015", "Identidad de Marca", "Creación del lema \"Telas Que Inspiran\" y consolidación de la imagen corporativa."],
+                        ["2020", "Transformación Digital", "Implementación de venta por canales digitales y atención personalizada por WhatsApp Business."],
+                        ["2022", "Asesoramiento Técnico", "Consultoría especializada para emprendedores sobre especificaciones de telas y usos."],
+                        ["2024", "Producción Local", "Alianza estratégica con talleres textiles peruanos para producción propia de telas básicas."],
+                        ["2026", "Campaña Nacional", "Iniciativas de Emprendimiento y lanzamiento de la línea exclusiva \"Emprende Fácil\"."],
+                    ].map((entry, i) => (
+                        <article
+                            key={entry[0]}
+                            className="timeline-node-v2"
+                            data-tl-year={entry[0]}
+                            data-tl-i={String(i + 1).padStart(2, "0")}
+                        >
+                            <span className="tl2-dot" aria-hidden="true" />
+                            <div className="tl2-head">
+                                <div className="timeline-year">{entry[0]}</div>
+                                <span className="tl2-index">{String(i + 1).padStart(2, "0")}</span>
+                            </div>
+                            <div className="timeline-name">{entry[1]}</div>
+                            <p className="timeline-desc">{entry[2]}</p>
+                        </article>
+                    ))}
                 </div>
-                <div className="timeline-node reveal-card">
-                    <div className="timeline-year">2015</div>
-                    <div className="timeline-name">Identidad de Marca</div>
-                    <p className="timeline-desc">Creación del lema "Telas Que Inspiran" y consolidación de la imagen corporativa.</p>
-                </div>
-                <div className="timeline-node reveal-card">
-                    <div className="timeline-year">2020</div>
-                    <div className="timeline-name">Transformación Digital</div>
-                    <p className="timeline-desc">Implementación de venta por canales digitales y atención personalizada por WhatsApp Business.</p>
-                </div>
-                <div className="timeline-node reveal-card">
-                    <div className="timeline-year">2022</div>
-                    <div className="timeline-name">Asesoramiento Técnico</div>
-                    <p className="timeline-desc">Consultoría especializada para emprendedores sobre especificaciones de telas y usos.</p>
-                </div>
-                <div className="timeline-node reveal-card">
-                    <div className="timeline-year">2024</div>
-                    <div className="timeline-name">Producción Local</div>
-                    <p className="timeline-desc">Alianza estratégica con talleres textiles peruanos para producción propia de telas básicas.</p>
-                </div>
-                <div className="timeline-node reveal-card">
-                    <div className="timeline-year">2026</div>
-                    <div className="timeline-name">Campaña Nacional</div>
-                    <p className="timeline-desc">Iniciativas de Emprendimiento y lanzamiento de la línea exclusiva "Emprende Fácil".</p>
+                <div className="tl2-meta" aria-hidden="true">
+                    <span className="tl2-current" data-tl-current>01</span>
+                    <span className="tl2-sep">/</span>
+                    <span className="tl2-total">08</span>
+                    <span className="tl2-track-label">· Trayectoria</span>
                 </div>
             </div>
         </section>
@@ -297,10 +317,13 @@ export default function Evidencia1() {
                             alt="Mapeo Cromático de Competencia Textil en Gamarra" className="chromatic-wheel-img" />
                     </div>
 
-                    {/*  Matriz de Competidores Directos con Logos Oficiales Extraídos  */}
-                    <div className="competitor-matrix-list">
+                    {/*  Constelación cromática — rail horizontal con scroll-snap  */}
+                    <div className="chrom-rail reveal-card" role="list">
                         {/*  1. Textil Fiorela's  */}
-                        <div className="competitor-badge-card">
+                        <div className="competitor-badge-card" role="listitem">
+                            <div className="chrom-orb-row">
+                                <span className="chrom-orb" aria-hidden="true" style={{ background: "radial-gradient(circle at 32% 30%, rgba(255,255,255,0.42) 0%, rgba(255,255,255,0) 45%), #FF007F", boxShadow: "0 0 18px rgba(255, 0, 127, 0.55), 0 0 40px rgba(255, 0, 127, 0.25)" }}></span>
+                            </div>
                             <div className="comp-logo-thumb" style={{ background: "#ffffff" }}>
                                 <img src="/logos_competencia/logo_fiorelas.png" alt="Textil Fiorela's Logo" />
                             </div>
@@ -311,7 +334,10 @@ export default function Evidencia1() {
                         </div>
 
                         {/*  2. Nabila  */}
-                        <div className="competitor-badge-card">
+                        <div className="competitor-badge-card" role="listitem">
+                            <div className="chrom-orb-row">
+                                <span className="chrom-orb" aria-hidden="true" style={{ background: "radial-gradient(circle at 32% 30%, rgba(255,255,255,0.42) 0%, rgba(255,255,255,0) 45%), #E63946", boxShadow: "0 0 18px rgba(230, 57, 70, 0.55), 0 0 40px rgba(230, 57, 70, 0.25)" }}></span>
+                            </div>
                             <div className="comp-logo-thumb" style={{ background: "#ffffff" }}>
                                 <img src="/logos_competencia/logo_nabila.png" alt="Nabila Logo" />
                             </div>
@@ -322,7 +348,10 @@ export default function Evidencia1() {
                         </div>
 
                         {/*  3. Grupo Textil Casas  */}
-                        <div className="competitor-badge-card">
+                        <div className="competitor-badge-card" role="listitem">
+                            <div className="chrom-orb-row">
+                                <span className="chrom-orb" aria-hidden="true" style={{ background: "radial-gradient(circle at 32% 30%, rgba(255,255,255,0.42) 0%, rgba(255,255,255,0) 45%), #FF6B00", boxShadow: "0 0 18px rgba(255, 107, 0, 0.55), 0 0 40px rgba(255, 107, 0, 0.25)" }}></span>
+                            </div>
                             <div className="comp-logo-thumb" style={{ background: "#ffffff" }}>
                                 <img src="/logos_competencia/logo_casas.png" alt="Grupo Textil Casas Logo" />
                             </div>
@@ -333,7 +362,10 @@ export default function Evidencia1() {
                         </div>
 
                         {/*  4. TB S.A.C.  */}
-                        <div className="competitor-badge-card">
+                        <div className="competitor-badge-card" role="listitem">
+                            <div className="chrom-orb-row">
+                                <span className="chrom-orb" aria-hidden="true" style={{ background: "radial-gradient(circle at 32% 30%, rgba(255,255,255,0.42) 0%, rgba(255,255,255,0) 45%), #D4AF37", boxShadow: "0 0 18px rgba(212, 175, 55, 0.6), 0 0 40px rgba(212, 175, 55, 0.28)" }}></span>
+                            </div>
                             <div className="comp-logo-thumb" style={{ background: "#ffffff" }}>
                                 <img src="/logos_competencia/logo_tb_sac.png" alt="TB S.A.C. Logo" />
                             </div>
@@ -344,7 +376,10 @@ export default function Evidencia1() {
                         </div>
 
                         {/*  5. Industria Textil Perú  */}
-                        <div className="competitor-badge-card">
+                        <div className="competitor-badge-card" role="listitem">
+                            <div className="chrom-orb-row">
+                                <span className="chrom-orb" aria-hidden="true" style={{ background: "radial-gradient(circle at 32% 30%, rgba(255,255,255,0.42) 0%, rgba(255,255,255,0) 45%), #6B21A8", boxShadow: "0 0 18px rgba(107, 33, 168, 0.85), 0 0 40px rgba(107, 33, 168, 0.4)" }}></span>
+                            </div>
                             <div className="comp-logo-thumb" style={{ background: "#ffffff" }}>
                                 <img src="/logos_competencia/logo_industria_textil_peru.png"
                                     alt="Industria Textil Perú Logo" />
@@ -356,7 +391,10 @@ export default function Evidencia1() {
                         </div>
 
                         {/*  6. Multitelas  */}
-                        <div className="competitor-badge-card">
+                        <div className="competitor-badge-card" role="listitem">
+                            <div className="chrom-orb-row">
+                                <span className="chrom-orb" aria-hidden="true" style={{ background: "radial-gradient(circle at 32% 30%, rgba(255,255,255,0.42) 0%, rgba(255,255,255,0) 45%), #2563EB", boxShadow: "0 0 18px rgba(37, 99, 235, 0.6), 0 0 40px rgba(37, 99, 235, 0.28)" }}></span>
+                            </div>
                             <div className="comp-logo-thumb" style={{ background: "#ffffff" }}>
                                 <img src="/logos_competencia/logo_multitelas.png" alt="Multitelas Logo" />
                             </div>
@@ -367,7 +405,10 @@ export default function Evidencia1() {
                         </div>
 
                         {/*  7. Tejidos San Jacinto  */}
-                        <div className="competitor-badge-card">
+                        <div className="competitor-badge-card" role="listitem">
+                            <div className="chrom-orb-row">
+                                <span className="chrom-orb" aria-hidden="true" style={{ background: "radial-gradient(circle at 32% 30%, rgba(255,255,255,0.42) 0%, rgba(255,255,255,0) 45%), #0284C7", boxShadow: "0 0 18px rgba(2, 132, 199, 0.6), 0 0 40px rgba(2, 132, 199, 0.28)" }}></span>
+                            </div>
                             <div className="comp-logo-thumb" style={{ background: "#ffffff" }}>
                                 <img src="/logos_competencia/logo_san_jacinto.png" alt="Tejidos San Jacinto Logo" />
                             </div>
@@ -378,7 +419,10 @@ export default function Evidencia1() {
                         </div>
 
                         {/*  8. Dini Textil  */}
-                        <div className="competitor-badge-card">
+                        <div className="competitor-badge-card" role="listitem">
+                            <div className="chrom-orb-row">
+                                <span className="chrom-orb" aria-hidden="true" style={{ background: "radial-gradient(circle at 32% 30%, rgba(255,255,255,0.46) 0%, rgba(255,255,255,0) 48%), #1e3a8a", boxShadow: "0 0 18px rgba(30, 58, 138, 0.9), 0 0 40px rgba(30, 58, 138, 0.45)" }}></span>
+                            </div>
                             <div className="comp-logo-thumb" style={{ background: "#ffffff" }}>
                                 <img src="/logos_competencia/logo_dini.png" alt="Dini Textil Logo" />
                             </div>
@@ -388,24 +432,23 @@ export default function Evidencia1() {
                             </div>
                         </div>
 
-                        {/*  9. Badge Destacado de Goldtex con Logo Oficial  */}
-                        <div className="competitor-badge-card goldtex-highlight">
-                            <div className="comp-logo-thumb" style={{ background: "#ffffff", width: "62px", height: "42px" }}>
-                                <img src="/logos_competencia/logo_goldtex.png" alt="Goldtex Logo" />
-                            </div>
-                            <div className="comp-info"
-                                style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
-                                <div>
-                                    <h5
-                                        style={{ color: "var(--gold-champagne)", fontWeight: "700", fontSize: "0.98rem", fontFamily: "var(--font-display)" }}>
-                                        GOLDTEX • La Decisión Segura</h5>
-                                    <span style={{ color: "#4ade80", fontSize: "0.78rem" }}>Verde Institucional [RGB: 0, 62,
-                                        51] + Dorado/Caramelo [RGB: 228, 195, 58]</span>
-                                </div>
-                                <span
-                                    style={{ background: "rgba(228,195,58,0.25)", border: "1px solid var(--gold-caramel)", padding: "5px 12px", borderRadius: "12px", fontSize: "0.72rem", color: "var(--gold-caramel)", fontWeight: "700", letterSpacing: "0.05em" }}>DIFERENCIADOR</span>
-                            </div>
+                    </div>
+
+                    {/*  Cuadrante propio GOLDTEX — dos señales cromáticas pulsantes  */}
+                    <div className="goldtex-quadrant reveal-card">
+                        <div className="gq-orbs" aria-hidden="true">
+                            <span className="gq-orb gq-orb--verde"></span>
+                            <span className="gq-orb gq-orb--oro"></span>
                         </div>
+                        <div className="comp-logo-thumb gq-logo" style={{ background: "#ffffff", width: "62px", height: "42px" }}>
+                            <img src="/logos_competencia/logo_goldtex.png" alt="Goldtex Logo" />
+                        </div>
+                        <div className="comp-info gq-info">
+                            <h5>GOLDTEX • La Decisión Segura</h5>
+                            <span className="gq-rgb">Verde Institucional [RGB: 0, 62, 51] + Dorado/Caramelo [RGB: 228, 195, 58]</span>
+                            <span className="gq-micro">cuadrante propio en Gamarra</span>
+                        </div>
+                        <span className="gq-ribbon">DIFERENCIADOR</span>
                     </div>
                 </div>
             </div>

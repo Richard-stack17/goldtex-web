@@ -1,4 +1,5 @@
 import MirrorVault from "@/components/experience/MirrorVault";
+import KeyVisualSpatialDiorama from "@/components/experience/KeyVisualSpatialDiorama";
 
 /* Generado desde index.html — contenido íntegro preservado (conversión mecánica HTML→JSX). */
 export default function Evidencia3() {
@@ -18,6 +19,9 @@ export default function Evidencia3() {
 
             {/* Bóveda de Espejos 3D — Anillo cilíndrico de 12 espejos con pop-out de la bailarina */}
             <MirrorVault />
+
+            {/* HAUTE COUTURE SPATIAL DIORAMA (3 Capas de Profundidad + Tríptico de Autor + Génesis del Arte) */}
+            <KeyVisualSpatialDiorama />
 
             {/*  Tipografía Oficial  */}
             <section className="section-block" id="tipografia-oficial">
@@ -278,58 +282,7 @@ export default function Evidencia3() {
                 </div>
             </section>
 
-            {/*  Render Final: Boceto vs Key Visual (La Decisión Segura)  */}
-        {/*  Sección 1: Key Visual & Campaña Oficial (Imágenes locales)  */}
-        <section id="key-visual">
-            <div className="section-header">
-                <p>Estrategia Visual & Composición • Campaña Oficial</p>
-                <h2>El Key Visual: La Decisión Segura</h2>
-            </div>
-
-            {/*  Comparativa Procesal: Boceto Original a Mano Alzada vs. Key Visual Final  */}
-            <div
-                style={{ display: "grid", gridTemplateColumns: "1fr 1.25fr", gap: "3rem", marginBottom: "3.5rem", alignItems: "stretch" }}>
-                {/*  1. Boceto Original  */}
-                <div className="media-card reveal-card" style={{ border: "1px dashed rgba(228, 195, 58, 0.45)" }} data-tilt data-tilt-max="5">
-                    <div className="media-card-img-wrap"
-                        style={{ height: "auto", maxHeight: "580px", background: "#ffffff", padding: "1.5rem" }}>
-                        <img src="/boceto_campana.png" alt="Boceto Original a Mano Alzada - La Decisión Segura"
-                            style={{ objectFit: "contain", width: "100%", height: "auto", maxHeight: "520px" }} />
-                    </div>
-                    <div className="card-info">
-                        <div className="experience-tag" style={{ marginBottom: "0.4rem" }}>Proceso Creativo • Ilustración</div>
-                        <h3
-                            style={{ fontFamily: "var(--font-display)", fontSize: "1.45rem", color: "var(--gold-caramel)", marginBottom: "0.3rem" }}>
-                            Boceto Conceptual de Campaña
-                        </h3>
-                        <p style={{ fontSize: "0.9rem", color: "rgba(255, 255, 255, 0.85)", lineHeight: "1.55" }}>
-                            Planteamiento inicial a mano alzada: conceptualización de la perspectiva de la tienda
-                            Goldtex, el umbral de entrada y la silueta del comprador dirigiéndose hacia el interior.
-                        </p>
-                    </div>
-                </div>
-
-                {/*  2. Key Visual Final Terminado  */}
-                <div className="media-card reveal-card"
-                    style={{ border: "1.5px solid var(--gold-caramel)", boxShadow: "0 35px 80px rgba(0,0,0,0.95), 0 0 35px rgba(228, 195, 58, 0.25)" }} data-tilt data-tilt-max="5">
-                    <div className="media-card-img-wrap" style={{ height: "auto", maxHeight: "580px", background: "#000" }}>
-                        <img src="/la_decision_segura.png" alt="Campaña Oficial Goldtex - La Decisión Segura"
-                            style={{ objectFit: "contain", width: "100%", height: "auto", maxHeight: "520px" }} />
-                    </div>
-                    <div className="card-info">
-                        <div className="experience-tag" style={{ marginBottom: "0.4rem" }}>Arte Final • Key Visual</div>
-                        <h3
-                            style={{ fontFamily: "var(--font-display)", fontSize: "1.45rem", color: "var(--gold-caramel)", marginBottom: "0.3rem" }}>
-                            Render Final: "LA DECISIÓN SEGURA"
-                        </h3>
-                        <p style={{ fontSize: "0.9rem", color: "rgba(255, 255, 255, 0.85)", lineHeight: "1.55" }}>
-                            Materialización fotográfica con iluminación dorada volumétrica envolviendo la silueta sobre
-                            el frontis Verde Institucional [RGB: 0, 62, 51], proyectando exclusividad y garantía
-                            comercial.
-                        </p>
-                    </div>
-                </div>
-            </div>
+        <div id="key-visual"></div>
 
                 <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", color: "var(--ivory)", margin: "3.5rem 0 0.2rem" }}>Galería de Campaña</h3>
                 <p style={{ fontSize: "0.92rem", color: "rgba(244,243,243,0.7)", lineHeight: "1.6", fontWeight: "300", marginBottom: "0.6rem" }}>Desliza o usa las flechas para explorar las piezas gráficas oficiales de la campaña.</p>
@@ -382,7 +335,6 @@ export default function Evidencia3() {
                     <div className="swiper-button-prev"></div>
                     <div className="swiper-button-next"></div>
                 </div>
-        </section>
         </section>
     </>
   );

@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+
+<html class="bg-[#010806] text-[#F4F3F3] overflow-hidden select-none" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GOLDTEX — Virtual Spatial Museum &amp; 3D Installation | Active Theory Experience</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&amp;family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&amp;family=Playfair+Display:ital,wght@0,400;0,600;1,400&amp;family=JetBrains+Mono:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Three.js CDN for standalone background rendering -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          obsidian: '#010806',
+          brunswick: '#083E35',
+          'brunswick-dark': '#041d19',
+          'brunswick-light': '#0c5c4f',
+          papaya: '#F1B734',
+          'papaya-glow': '#ffd166',
+          chalk: '#F4F3F3',
+          'chalk-dim': '#a1aba8',
+          emerald: {
+            950: '#021812',
+            900: '#04241d',
+          }
+        },
+        fontFamily: {
+          serif: ['Cinzel', 'Playfair Display', 'serif'],
+          editorial: ['Playfair Display', 'serif'],
+          sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'monospace'],
+        }
+      }
+    }
+  }
+</script>
+<style>
+  ::selection {
+    background: #F1B734;
+    color: #010806;
+  }
+  /* Root Spatial Perspective Wrapper */
+  #spatial-universe {
+    perspective: 1200px;
+    transform-style: preserve-3d;
+    transition: transform 0.15s ease-out;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  /* Holographic glass mirror panel */
+  .holo-glass {
+    background: linear-gradient(135deg, rgba(8, 62, 53, 0.45) 0%, rgba(1, 8, 6, 0.88) 100%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(241, 183, 52, 0.35);
+    box-shadow: 0 25px 55px rgba(0, 0, 0, 0.88), inset 0 0 24px rgba(8, 62, 53, 0.4);
+  }
+  .holo-glass-emerald {
+    background: linear-gradient(145deg, rgba(12, 92, 79, 0.42) 0%, rgba(1, 8, 6, 0.92) 100%);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(13, 242, 164, 0.4);
+    box-shadow: 0 30px 65px rgba(0, 0, 0, 0.92), inset 0 0 32px rgba(13, 242, 164, 0.2);
+  }
+
+  /* Chromatic aberration & gold gradient */
+  .text-gold-glint {
+    background: linear-gradient(135deg, #FFF6DD 0%, #F1B734 50%, #B88014 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Glossy floor reflection gradient */
+  .glossy-floor {
+    background: linear-gradient(to top, rgba(1, 8, 6, 0.98) 0%, rgba(8, 62, 53, 0.3) 65%, transparent 100%);
+  }
+
+  /* Animated HUD audio bars */
+  @keyframes audioWave {
+    0%, 100% { height: 4px; }
+    50% { height: 18px; }
+  }
+  .wave-bar-1 { animation: audioWave 0.8s ease-in-out infinite; }
+  .wave-bar-2 { animation: audioWave 1.1s ease-in-out 0.2s infinite; }
+  .wave-bar-3 { animation: audioWave 0.7s ease-in-out 0.4s infinite; }
+  .wave-bar-4 { animation: audioWave 1.3s ease-in-out 0.1s infinite; }
+  .wave-bar-5 { animation: audioWave 0.9s ease-in-out 0.3s infinite; }
+
+  /* 3D Runway Grid lines */
+  .runway-grid {
+    background-image: 
+      linear-gradient(to right, rgba(241, 183, 52, 0.22) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(8, 62, 53, 0.35) 1px, transparent 1px);
+    background-size: 55px 55px;
+    transform: rotateX(76deg);
+    transform-origin: center bottom;
+  }
+
+  /* Custom Cursor / Needle */
+  @media (pointer: fine) {
+    body, a, button {
+      cursor: crosshair;
+    }
+  }
+
+  /* Scrollbar fine styling */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: rgba(1, 8, 6, 0.7);
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgba(241, 183, 52, 0.5);
+    border-radius: 4px;
+  }
+
+  /* Scene active transition states */
+  .spatial-scene {
+    position: absolute;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.92) translateZ(-220px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .spatial-scene.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1) translateZ(0px);
+  }
+
+  /* Floating animation */
+  @keyframes floatZeroG {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-14px) rotate(1.5deg); }
+  }
+  .animate-zerog {
+    animation: floatZeroG 6s ease-in-out infinite;
+  }
+
+  /* Interactive Cursor Silk Trail Canvas */
+  #silk-trail-canvas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 45;
+  }
+</style>
+</head>
+<body class="bg-obsidian text-chalk font-sans antialiased overflow-hidden w-screen h-screen">
+<!-- ==================== INTERACTIVE SILK THREAD TRAIL CANVAS ==================== -->
+<canvas id="silk-trail-canvas"></canvas>
+<!-- ==================== THREE.JS SPATIAL CANVAS STAGE ==================== -->
+<div class="fixed inset-0 w-full h-full pointer-events-none z-0" id="three-stage"></div>
+<!-- Deep radial dark vignette to focus 3D depth -->
+<div class="fixed inset-0 pointer-events-none z-10 bg-[radial-gradient(ellipse_at_center,transparent_20%,rgba(1,8,6,0.85)_80%,#010806_100%)]"></div>
+<!-- ==================== FIXED ULTRA-REFINED SCI-FI / HAUTE HUD ==================== -->
+<header class="fixed top-0 left-0 w-full z-50 pointer-events-none px-6 lg:px-12 pt-6">
+<div class="max-w-[1840px] mx-auto flex items-center justify-between">
+<!-- Brand / Spatial Museum Identity -->
+<div class="pointer-events-auto flex items-center gap-5">
+<div class="relative w-8 h-8 flex items-center justify-center cursor-pointer" onclick="switchScene(0)">
+<div class="absolute inset-0 border border-papaya/60 rotate-45 animate-spin" style="animation-duration: 20s;"></div>
+<div class="w-3 h-3 bg-papaya rotate-45 shadow-[0_0_12px_#F1B734]"></div>
+</div>
+<div>
+<div class="font-serif tracking-[0.45em] text-sm lg:text-base font-bold text-chalk flex items-center gap-2">
+          GOLDTEX
+          <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-papaya/10 text-papaya border border-papaya/30">SPATIAL 3D v5</span>
+</div>
+<div class="font-mono text-[9px] uppercase tracking-[0.35em] text-chalk-dim">Museo Espacial &amp; Archivo Tridimensional</div>
+</div>
+</div>
+<!-- Center: Interactive Scene Selector (Active Theory Style) -->
+<nav class="pointer-events-auto hidden md:flex items-center gap-1.5 p-1 rounded-full bg-[#010806]/85 backdrop-blur-xl border border-white/10 shadow-2xl">
+<button class="scene-tab px-4 py-2 rounded-full font-mono text-[11px] tracking-widest uppercase transition-all duration-300 bg-papaya/20 text-papaya border border-papaya/50 shadow-[0_0_15px_rgba(241,183,52,0.3)]" id="btn-scene-0" onclick="switchScene(0)">
+        01 PORTAL 3D
+      </button>
+<button class="scene-tab px-4 py-2 rounded-full font-mono text-[11px] tracking-widest uppercase text-chalk-dim hover:text-white transition-all duration-300 border border-transparent" id="btn-scene-1" onclick="switchScene(1)">
+        02 TÚNEL EJE Z
+      </button>
+<button class="scene-tab px-4 py-2 rounded-full font-mono text-[11px] tracking-widest uppercase text-chalk-dim hover:text-white transition-all duration-300 border border-transparent" id="btn-scene-2" onclick="switchScene(2)">
+        03 BÓVEDA DE ESPEJOS
+      </button>
+<button class="scene-tab px-4 py-2 rounded-full font-mono text-[11px] tracking-widest uppercase text-chalk-dim hover:text-white transition-all duration-300 border border-transparent" id="btn-scene-3" onclick="switchScene(3)">
+        04 ECOSISTEMA 3D
+      </button>
+</nav>
+<!-- Right: Telemetry & Spatial Audio Waveform -->
+<div class="pointer-events-auto flex items-center gap-5 font-mono text-[10px] text-chalk-dim">
+<!-- Waveform Binaural Sound Toggle -->
+<button class="hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-md bg-black/60 border border-white/10 hover:border-papaya/50 transition-all cursor-pointer" id="audio-toggle-btn" onclick="toggleAudio()" title="Activar/Silenciar Audio Binaural 3D">
+<span class="text-papaya text-[9px]" id="audio-label">BINAURAL: ON</span>
+<div class="flex items-end gap-0.5 h-4 w-9 pb-0.5" id="audio-waveforms">
+<div class="w-1 bg-papaya wave-bar-1"></div>
+<div class="w-1 bg-emerald-400 wave-bar-2"></div>
+<div class="w-1 bg-papaya wave-bar-3"></div>
+<div class="w-1 bg-white wave-bar-4"></div>
+<div class="w-1 bg-papaya wave-bar-5"></div>
+</div>
+</button>
+<!-- Telemetry Status -->
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-md bg-black/60 border border-papaya/30">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+<span class="tracking-widest text-chalk" id="telemetry-hud">FPS: 60 | SPATIAL 3D: ACTIVE</span>
+</div>
+</div>
+</div>
+</header>
+<!-- HUD Bottom Coordinates Bar -->
+<footer class="fixed bottom-0 left-0 w-full z-50 pointer-events-none px-6 lg:px-12 pb-6">
+<div class="max-w-[1840px] mx-auto flex items-center justify-between text-[10px] font-mono tracking-widest text-chalk-dim/70">
+<div class="flex items-center gap-6">
+<span class="text-papaya font-bold" id="spatial-coords">X: +42.88 Y: -12.04 Z: -340.50 (PORTAL 3D)</span>
+<span class="hidden sm:inline text-white/20">|</span>
+<span class="hidden sm:inline" id="pitch-hud">PITCH: 14.2° ROLL: 0.00°</span>
+<span class="hidden md:inline text-white/20">|</span>
+<span class="hidden md:inline">CAMPAIGN: LA DECISIÓN SEGURA (2024–2026)</span>
+</div>
+<!-- Mobile Scene Switcher Pill & Next Button -->
+<div class="pointer-events-auto flex items-center gap-3">
+<span class="text-[9px] uppercase tracking-widest text-chalk-dim">CAMBIAR NODO</span>
+<button aria-label="Escena anterior" class="w-8 h-8 rounded-full border border-white/20 hover:border-papaya bg-black/60 flex items-center justify-center text-chalk hover:text-papaya transition-all active:scale-90" onclick="prevScene()">←</button>
+<span class="text-papaya font-bold px-1" id="scene-counter">01 / 04</span>
+<button aria-label="Siguiente escena" class="w-8 h-8 rounded-full border border-white/20 hover:border-papaya bg-black/60 flex items-center justify-center text-chalk hover:text-papaya transition-all active:scale-90" onclick="nextScene()">→</button>
+</div>
+</div>
+</footer>
+<!-- ========================================================================= -->
+<!-- ================= 3D UNIVERSE CONTAINER (TILTING PARALLAX) ============== -->
+<!-- ========================================================================= -->
+<main class="w-full h-full relative" id="spatial-universe">
+<!-- ========================================================================= -->
+<!-- ==================== ESCENA 1: EL PORTAL DE HILOS 3D ==================== -->
+<!-- ========================================================================= -->
+<section class="spatial-scene active flex flex-col justify-center items-center z-20 px-6 relative" id="scene-0">
+<!-- Three.js Organic Silk Sculpture Component Embed -->
+<!-- STITCH_THREEJS_START:ANIMATION_32 class="absolute inset-0 w-full h-full bg-transparent pointer-events-none z-0" -->
+<div class="absolute inset-0 w-full h-full bg-transparent pointer-events-none z-0" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_32" style="width:100%;height:100%"></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_32');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  // Three.js Haute Textile Sculpture - GOLDTEX (Fluid Silk & Golden Threads)
+// Replaces simple geometric toruses with an organic floating silk fabric installation & woven golden loom structure
+const container = document.getElementById('threejs-container-ANIMATION_GOLDTEX_SILK') || document.body;
+const width = container.clientWidth || window.innerWidth;
+const height = container.clientHeight || window.innerHeight;
+
+const scene = new THREE.Scene();
+scene.fog = new THREE.FogExp2(0x010806, 0.0016);
+
+const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 2000);
+camera.position.set(0, 0, 220);
+
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "high-performance" });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.4;
+container.appendChild(renderer.domElement);
+
+// Lighting setup - haute couture atmospheric lighting
+const ambientLight = new THREE.AmbientLight(0x083e35, 1.6);
+scene.add(ambientLight);
+
+const keyLightGold = new THREE.PointLight(0xf1b734, 4.2, 800);
+keyLightGold.position.set(120, 140, 160);
+scene.add(keyLightGold);
+
+const rimLightEmerald = new THREE.PointLight(0x00f2a0, 3.2, 900);
+rimLightEmerald.position.set(-140, -100, 100);
+scene.add(rimLightEmerald);
+
+const fillLightWarm = new THREE.DirectionalLight(0xfff3db, 1.2);
+fillLightWarm.position.set(0, 80, 200);
+scene.add(fillLightWarm);
+
+// Group holding our organic textile sculpture
+const textileGroup = new THREE.Group();
+scene.add(textileGroup);
+
+// 1. ORGANIC DRAPING SILK RIBBON 1 (Parametric Mobius / Wave Ribbon of High-End Emerald & Gold Silk)
+const ribbonSegments = 160;
+const ribbonRadial = 24;
+const silkCurvePoints = [];
+const numPoints = 12;
+for (let i = 0; i <= numPoints; i++) {
+  const theta = (i / numPoints) * Math.PI * 2;
+  const r = 58 + Math.sin(theta * 3) * 18;
+  const x = Math.cos(theta) * r;
+  const y = Math.sin(theta * 2) * 28 + Math.cos(theta * 3) * 12;
+  const z = Math.sin(theta) * 45;
+  silkCurvePoints.push(new THREE.Vector3(x, y, z));
+}
+const silkPath1 = new THREE.CatmullRomCurve3(silkCurvePoints, true);
+const silkGeo1 = new THREE.TubeGeometry(silkPath1, 140, 7.5, 16, true);
+
+// Custom shader-like look using MeshPhong with iridescent specular
+const silkMat1 = new THREE.MeshPhongMaterial({
+  color: 0x052a23,
+  emissive: 0x021612,
+  specular: 0xf1b734,
+  shininess: 85,
+  transparent: true,
+  opacity: 0.94,
+  side: THREE.DoubleSide
+});
+const silkMesh1 = new THREE.Mesh(silkGeo1, silkMat1);
+textileGroup.add(silkMesh1);
+
+// 2. SECOND COMPLEMENTARY LIQUID GOLD SILK SASH (Twisting haute couture fabric)
+const silkCurvePoints2 = [];
+for (let i = 0; i <= numPoints; i++) {
+  const theta = (i / numPoints) * Math.PI * 2;
+  const r = 44 + Math.cos(theta * 4) * 14;
+  const x = Math.sin(theta) * r;
+  const y = Math.cos(theta * 2) * 36;
+  const z = Math.sin(theta * 3) * 35;
+  silkCurvePoints2.push(new THREE.Vector3(x, y, z));
+}
+const silkPath2 = new THREE.CatmullRomCurve3(silkCurvePoints2, true);
+const silkGeo2 = new THREE.TubeGeometry(silkPath2, 120, 3.2, 12, true);
+const silkMat2 = new THREE.MeshPhongMaterial({
+  color: 0xd99f26,
+  emissive: 0x3d2700,
+  specular: 0xffffff,
+  shininess: 120,
+  transparent: true,
+  opacity: 0.88,
+  side: THREE.DoubleSide
+});
+const silkMesh2 = new THREE.Mesh(silkGeo2, silkMat2);
+textileGroup.add(silkMesh2);
+
+// 3. FINE GOLD WEAVING THREADS (Loom threads connecting the space)
+const threadGroup = new THREE.Group();
+const threadCount = 28;
+for (let i = 0; i < threadCount; i++) {
+  const p1 = silkPath1.getPoint(i / threadCount);
+  const p2 = silkPath2.getPoint(((i * 2) % threadCount) / threadCount);
+  const mid = new THREE.Vector3().addVectors(p1, p2).multiplyScalar(0.5);
+  mid.y += Math.sin(i * 0.8) * 18;
+  mid.z += Math.cos(i * 0.8) * 18;
+  
+  const threadCurve = new THREE.CatmullRomCurve3([p1, mid, p2]);
+  const threadGeo = new THREE.TubeGeometry(threadCurve, 24, 0.45, 6, false);
+  const threadMat = new THREE.MeshBasicMaterial({
+    color: 0xf1b734,
+    transparent: true,
+    opacity: 0.72
+  });
+  const threadMesh = new THREE.Mesh(threadGeo, threadMat);
+  threadGroup.add(threadMesh);
+}
+textileGroup.add(threadGroup);
+
+// 4. FLOATING TEXTILE WEAVE FIBERS & GLITTER (Gold & Emerald particles)
+const pCount = 1400;
+const pGeo = new THREE.BufferGeometry();
+const pPos = new Float32Array(pCount * 3);
+const pColors = new Float32Array(pCount * 3);
+
+const cGold = new THREE.Color(0xf1b734);
+const cEmerald = new THREE.Color(0x0df2a4);
+const cWhite = new THREE.Color(0xf4f3f3);
+
+for (let i = 0; i < pCount; i++) {
+  pPos[i*3] = (Math.random() - 0.5) * 800;
+  pPos[i*3+1] = (Math.random() - 0.5) * 600;
+  pPos[i*3+2] = (Math.random() - 0.5) * 1000;
+
+  const rand = Math.random();
+  const c = rand > 0.45 ? cGold : (rand > 0.15 ? cEmerald : cWhite);
+  pColors[i*3] = c.r;
+  pColors[i*3+1] = c.g;
+  pColors[i*3+2] = c.b;
+}
+
+pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+pGeo.setAttribute('color', new THREE.BufferAttribute(pColors, 3));
+
+const pMat = new THREE.PointsMaterial({
+  size: 2.6,
+  vertexColors: true,
+  transparent: true,
+  opacity: 0.82,
+  blending: THREE.AdditiveBlending
+});
+const particles = new THREE.Points(pGeo, pMat);
+scene.add(particles);
+
+// MOUSE PARALLAX & MOTION
+let mouseX = 0, mouseY = 0;
+let targetX = 0, targetY = 0;
+
+window.addEventListener('mousemove', (e) => {
+  mouseX = (e.clientX - width / 2) * 0.09;
+  mouseY = (e.clientY - height / 2) * 0.09;
+});
+
+window.addEventListener('resize', () => {
+  const w = container.clientWidth || window.innerWidth;
+  const h = container.clientHeight || window.innerHeight;
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+  renderer.setSize(w, h);
+});
+
+// ANIMATION LOOP
+const clock = new THREE.Clock();
+
+function animate() {
+  requestAnimationFrame(animate);
+  const time = clock.getElapsedTime();
+
+  targetX += (mouseX - targetX) * 0.04;
+  targetY += (mouseY - targetY) * 0.04;
+
+  camera.position.x = targetX * 0.35;
+  camera.position.y = -targetY * 0.35;
+  camera.lookAt(0, 0, 0);
+
+  // Undulating fluid motion like silk moving in gentle breeze
+  textileGroup.rotation.y = time * 0.22 + targetX * 0.003;
+  textileGroup.rotation.x = Math.sin(time * 0.4) * 0.18 + targetY * 0.003;
+  textileGroup.rotation.z = Math.cos(time * 0.3) * 0.12;
+
+  silkMesh1.rotation.y = Math.sin(time * 0.5) * 0.08;
+  silkMesh2.rotation.x = time * 0.15;
+
+  // Gentle particle breathing
+  const posArr = particles.geometry.attributes.position.array;
+  for (let i = 0; i < pCount; i++) {
+    posArr[i*3+1] += Math.sin(time + posArr[i*3]) * 0.14;
+  }
+  particles.geometry.attributes.position.needsUpdate = true;
+
+  renderer.render(scene, camera);
+}
+animate();
+
+})();
+</script>
+</div>
+<!-- STITCH_THREEJS_END:ANIMATION_32 -->
+<div class="relative max-w-5xl mx-auto text-center flex flex-col items-center z-10 pointer-events-auto">
+<!-- Subtitle Archival Badge -->
+<div class="inline-flex items-center gap-3 border border-papaya/40 bg-brunswick-dark/80 backdrop-blur-md px-6 py-2 rounded-full mb-8 shadow-[0_0_30px_rgba(8,62,53,0.8)]">
+<span class="w-2 h-2 rounded-full bg-papaya shadow-[0_0_10px_#F1B734] animate-ping"></span>
+<span class="text-[11px] uppercase tracking-[0.35em] font-mono text-papaya font-semibold">MUSEO ESPACIAL &amp; ARCHIVO ESTRATÉGICO DE CAMPAÑA</span>
+</div>
+<!-- Monumental Chromatic Typographic Mark -->
+<h1 class="font-serif font-black tracking-[-0.03em] uppercase leading-[0.88] text-chalk text-5xl sm:text-7xl md:text-8xl xl:text-[115px] max-w-6xl drop-shadow-2xl">
+<span class="block text-transparent bg-clip-text bg-gradient-to-b from-white via-chalk to-chalk/60">GOLDTEX</span>
+<span class="block font-editorial italic font-light tracking-[0.03em] text-gold-glint mt-2">La Decisión Segura</span>
+</h1>
+<!-- Editorial Spatial Narrative -->
+<p class="mt-8 font-sans font-light text-base md:text-xl text-chalk-dim max-w-2xl leading-relaxed">
+        Navegue a través de la instalación dimensional de alta costura, etnográfica y publicitaria creada para redefinir el estándar textil peruano en el emporio de Gamarra.
+      </p>
+<!-- Tactile Spatial Triggers -->
+<div class="mt-12 flex flex-wrap items-center justify-center gap-5">
+<button class="group flex items-center gap-3 px-8 py-3.5 rounded-full bg-gradient-to-r from-brunswick to-[#0c5c4f] hover:from-papaya hover:to-amber-500 text-chalk hover:text-obsidian border border-papaya/50 shadow-[0_0_30px_rgba(241,183,52,0.35)] transition-all duration-300 font-mono text-xs tracking-[0.2em] uppercase font-bold" onclick="switchScene(1)">
+<span>INICIAR VUELO ESPACIAL</span>
+<span class="text-sm transition-transform group-hover:translate-x-1">→</span>
+</button>
+<button class="group flex items-center gap-3 px-7 py-3.5 rounded-full bg-black/60 hover:bg-white/10 border border-white/20 hover:border-white/50 backdrop-blur-md transition-all duration-300 font-mono text-xs tracking-[0.2em] uppercase text-chalk" onclick="toggleTelemetry()">
+<svg class="w-4 h-4 text-papaya" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-width="1.5"></path></svg>
+<span>MODO TELEMETRÍA</span>
+</button>
+<button class="group flex items-center gap-3 px-7 py-3.5 rounded-full bg-black/60 hover:bg-white/10 border border-papaya/30 hover:border-papaya backdrop-blur-md transition-all duration-300 font-mono text-xs tracking-[0.2em] uppercase text-papaya" onclick="switchScene(2)">
+<span class="w-2 h-2 rounded-full bg-papaya animate-pulse"></span>
+<span>EXPLORAR BÓVEDA 3D</span>
+</button>
+</div>
+<!-- Active Theory spatial wireframe marker -->
+<div class="mt-14 flex items-center gap-8 font-mono text-[10px] text-chalk-dim/70 uppercase tracking-widest border-t border-white/10 pt-4">
+<span>ESCULTURA 01 // SEDA ONDULANTE DE ALTA COSTURA &amp; TELARES DE ORO</span>
+<span>•</span>
+<span>HILOS DORADOS SUSPENDIDOS</span>
+<span>•</span>
+<span>ROTACIÓN LIBRE 360°</span>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- ==================== ESCENA 2: EL TÚNEL EN EJE Z ======================== -->
+<!-- ========================================================================= -->
+<section class="spatial-scene flex items-center justify-center z-20 overflow-hidden" id="scene-1">
+<!-- Perspective Tunnel Chamber -->
+<div class="relative w-full h-full max-w-7xl mx-auto flex items-center justify-center pt-14 pb-12 preserve-3d">
+<!-- Vanishing Runway Floor Lines -->
+<div class="absolute bottom-0 w-[950px] h-[520px] runway-grid opacity-35 pointer-events-none"></div>
+<div class="absolute bottom-12 w-1 h-72 bg-gradient-to-t from-papaya via-emerald-400 to-transparent shadow-[0_0_20px_#F1B734]"></div>
+<!-- Central Tunnel Depth Badge -->
+<div class="absolute top-14 left-1/2 -translate-x-1/2 text-center pointer-events-none z-30">
+<span class="font-mono text-xs uppercase tracking-[0.4em] text-papaya block mb-1">EJE Z: -1200PX // DOBLE CÁMARA ETNOGRÁFICA</span>
+<h2 class="font-serif text-2xl lg:text-3xl font-bold uppercase tracking-wider text-chalk">Túnel de Evidencias 01 &amp; 02</h2>
+</div>
+<!-- 3D TUNNEL CONTAINER WITH FLOATING ANGLED GLASS MIRRORS -->
+<div class="relative w-full max-w-6xl h-[640px] flex items-center justify-between preserve-3d px-4 mt-8">
+<!-- ================= LEFT MIRROR PANELS (EVIDENCIA 01: INVESTIGACIÓN) ================= -->
+<div class="w-full md:w-[48%] h-[560px] overflow-y-auto pr-3 preserve-3d transition-transform duration-700 hover:rotate-y-0 scrollbar-thin" style="transform: perspective(1000px) rotateY(26deg) translateZ(-40px);">
+<!-- Panel 1: Focus Group Gamarra + Blue Brocade Test -->
+<div class="holo-glass p-5 rounded-2xl mb-5 relative group border-l-4 border-l-papaya">
+<div class="flex items-center justify-between text-xs font-mono mb-2">
+<span class="text-papaya tracking-widest uppercase">EVIDENCIA 01 • FOCUS GROUP</span>
+<span class="text-chalk-dim font-mono text-[10px]">TALLER GAMARRA</span>
+</div>
+<div class="rounded-xl overflow-hidden border border-white/20 aspect-video mb-3 shadow-lg">
+<img alt="Clienta evaluando tela de brocado azul" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2-vnGr5hxgi18dKJMlkC0mHfiNPib4j_xKeMf-0JTBPZpAdTwNtQchj3IjEdf0ERPHzIDa5Hv0b1FsXf-Xp3-NHwbmSEaXnxSrQODt_5MoEnX7pIktiAQsckBj_fiYkPdvaR9sNPbM-Om61Mkqzu1VWR-TKqRUFKGONx7-66aXnkzcQyCBS5sPjPGBMMFIwf7V_JfM2ZVU2ZPhONpROxuwrTVZSU_-KzyK94YMasZnZFMsyoBFjYhlEUZK-hJkdvmb2s"/>
+</div>
+<p class="font-editorial italic text-xs lg:text-sm text-chalk mb-2">
+              “Si compro tela barata y la prenda encoge en la plancha de vapor o destiñe cuando mi cliente la lava, el reclamo me lo hacen a mí. Elegir la tela equivocada te quiebra.”
+            </p>
+<div class="flex items-center justify-between text-[10px] font-mono text-chalk-dim pt-2 border-t border-white/10">
+<span>Doña Gladys — Confeccionista</span>
+<span class="text-papaya font-semibold">DOLOR: RIESGO TOTAL</span>
+</div>
+</div>
+<!-- Panel 2: Goldtex Real Shop & Counter -->
+<div class="holo-glass-emerald p-5 rounded-2xl mb-5">
+<div class="flex items-center justify-between text-xs font-mono mb-2">
+<span class="text-emerald-300 tracking-widest uppercase">TIENDA REAL GAMARRA &amp; STOCK</span>
+<span class="text-chalk-dim text-[10px]">JR. GAMARRA</span>
+</div>
+<div class="grid grid-cols-2 gap-3 mb-3">
+<div class="rounded-lg overflow-hidden border border-white/20 aspect-[3/4] shadow-md">
+<img alt="Goldtex Tienda Real con mostradores y telas" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCD__NWN9gMQxgkeVQCf9k6lrC5wI9SaRML4Fmc7Me3EB-aloaewYA8BmOGFjOFVlY0d2UnRQJzlWPhjJPyLuvi4gvVs_kfFMfn6OjN9_VwHnl7NyCeW41XAubfkEBY3rtSjbKtnivGIle1dtyrKiEuVJnC4tHOi7BBrUdcnUW74_lu9L2-Pa_lggUQDLkNPSg8EEhi1Bv_ts7_UWcKed1IBtGwtQVwLiVnq0Lf2uU001oAIaDNozXQjtZw_X-rMM8e9Vk"/>
+</div>
+<div class="rounded-lg overflow-hidden border border-white/20 aspect-[3/4] shadow-md">
+<img alt="Goldtex Mostrador con pantalla de stock y rollos" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYWYmCmyfWEhk0QFA6B2KYq4RqT0NLIzNfqjYg6wp7smx2V42OvUG5zaYxFV5d_IjdJDfUU9FMobv007ReJbjp5zV_QN6giTjijp3IAuSSDkeKe1VfGMzQ26Ea8dbgGHSHP5x1r2t4xgiLbSIXWrbD6FmA9msGQUxLLgyDoNS4MAonwaVdJD0yx40PcAtsusdGQ2wi-HizLIvlH__arc7E9y-5Zx22eRwM1skEMd9X9jTWAftMAkksW-2QPJENIqYYx1E"/>
+</div>
+</div>
+<p class="text-xs font-sans text-chalk-dim leading-relaxed">
+              Presencia directa en Jr. Gamarra con trazabilidad métrica computarizada, asegurando 100% hilado seleccionado y cero margen de deformación de rollo.
+            </p>
+<div class="mt-2.5 flex items-center justify-between text-[10px] font-mono text-papaya">
+<span>100% ALGODÓN &amp; LINO PREMIUM</span>
+<span>2005 — 2026 ROADMAP</span>
+</div>
+</div>
+<!-- Panel 3: Pregnant Customer & Certified Safe & Correct Choice -->
+<div class="holo-glass p-5 rounded-2xl border-l-2 border-l-emerald-400">
+<div class="flex items-center justify-between text-xs font-mono mb-2">
+<span class="text-emerald-300 tracking-widest uppercase">TU ELECCIÓN SEGURA • VALIDACIÓN</span>
+<span class="text-papaya text-[10px]">CERTIFICADO</span>
+</div>
+<div class="rounded-lg overflow-hidden border border-white/20 aspect-[4/3] mb-3">
+<img alt="Clienta con muestrario y certificación Safe &amp; Correct Choice" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-ef1rTLFfXlcVG0ldym1_TYFYdHoHqAN1rSNX9QTrFpCizMWuagrk74UZkjnYflCA52b0cvsaw08tAFLad2utuWypQ9gYwpiggBLPfMy5sBlmO2s8iU3VYRtAO4InX29FxilRt0AGIIGiRxPbd9rMlLeC1myukxpSKHK5QA6WGGwyYHZGzYHGOGMMJzZZw2RLJ5yFycHhW8cXLriWCQdBPoZG7K3uV84mAD34AajN68lYaZT3vGyj6g4bopu_wi4HzvQ"/>
+</div>
+<p class="text-xs font-editorial italic text-chalk">
+              “El cliente entra tocando la tela con el pulgar y el índice; si siente aspereza, se va a otra galería. Cuando les doy Goldtex, sé que regresan por tres rollos más.”
+            </p>
+</div>
+</div>
+<!-- ================= RIGHT MIRROR PANELS (EVIDENCIA 02: ESTRATEGIA CREATIVA) ================= -->
+<div class="w-full md:w-[48%] h-[560px] overflow-y-auto pl-3 preserve-3d transition-transform duration-700 hover:rotate-y-0 scrollbar-thin" style="transform: perspective(1000px) rotateY(-26deg) translateZ(-40px);">
+<!-- Panel 1: Buyer Persona Pedro -->
+<div class="holo-glass p-5 rounded-2xl mb-5 relative border-r-4 border-r-papaya">
+<div class="flex items-center justify-between text-xs font-mono mb-2">
+<span class="text-papaya tracking-widest uppercase">EVIDENCIA 02 • BUYER PERSONA</span>
+<span class="text-chalk-dim text-[10px]">GAMARRA CENTRAL</span>
+</div>
+<div class="flex items-center gap-4 mb-3">
+<div class="w-11 h-11 rounded-full border border-papaya bg-brunswick flex items-center justify-center font-serif text-lg font-bold text-papaya shadow-[0_0_12px_#F1B734]">
+                P
+              </div>
+<div>
+<h3 class="font-serif text-lg font-bold text-chalk leading-none">Pedro, 42 años</h3>
+<span class="font-mono text-[10px] text-chalk-dim uppercase">Maestro Confeccionista &amp; Propietario</span>
+</div>
+</div>
+<p class="text-xs font-sans text-chalk-dim leading-relaxed mb-3">
+              Lidera 12 operarios en Jr. Agustín Gamarra. Produce 3 colecciones cápsula por temporada. Exige hilatura noble y sin fallas para resguardar su capital familiar.
+            </p>
+<div class="grid grid-cols-3 gap-2 text-center font-mono text-[10px] pt-3 border-t border-white/10">
+<div class="p-2 bg-black/40 rounded border border-white/5 text-papaya font-bold">SEGURIDAD</div>
+<div class="p-2 bg-black/40 rounded border border-white/5 text-chalk font-bold">CALIDAD</div>
+<div class="p-2 bg-black/40 rounded border border-white/5 text-emerald-400 font-bold">COMODIDAD</div>
+</div>
+</div>
+<!-- Panel 2: Needle Craft Artwork & Geometry -->
+<div class="holo-glass-emerald p-5 rounded-2xl mb-5">
+<div class="flex items-center justify-between text-xs font-mono mb-2">
+<span class="text-emerald-300 tracking-widest uppercase">PUNTADA ARTESANAL DE PRECISIÓN</span>
+<span class="text-chalk-dim text-[10px]">GEOMETRÍA Y CORTE</span>
+</div>
+<div class="rounded-xl overflow-hidden border border-white/20 aspect-[3/4] max-h-56 w-full mb-3 shadow-md">
+<img alt="Fotografía de aguja y puntada artesanal con diagramas geométricos" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqhhPlzZW84m_1mpeXk1VfVsjiUtWikt5mzuPWE1s2tWCY4Yltm-YuMaAkCzkDRyj84B22TrY46sH2dvS-wUZM8LesF84nGPvSvzDmuupcIOY_7tq7BaZD8SUabNaDHHkWURsnlPCGq2VyZ_eVRtOn7M4X-0ixOZAtKqZBSXhXm3PpOB_vyUucKAiNPSOTcbZdKBsTVsuiCbMKnTKKjf3s2znitwuHddlLyMyyHXtDxd2GMeutbbz_3LrKwnxvAIdLQLA"/>
+</div>
+<p class="text-xs font-sans text-chalk-dim">
+              La puntada milimétrica como contrato silencioso: “Una buena tela es el inicio y la salvaguarda de un gran proyecto”.
+            </p>
+</div>
+<!-- Panel 3: Premium Design Certificate -->
+<div class="holo-glass p-5 rounded-2xl border-r-2 border-r-emerald-400">
+<div class="flex items-center justify-between text-xs font-mono mb-2">
+<span class="text-papaya tracking-widest uppercase">TOTAL COMPLIANCE &amp; ASESORÍA</span>
+<span class="text-chalk-dim text-[10px]">EST. 1932</span>
+</div>
+<div class="rounded-xl overflow-hidden border border-white/20 aspect-[4/3] mb-3 shadow-md">
+<img alt="Certificado Goldtex Premium Design con asesora" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVvPuyK87utYIC2hK_VE9DxHAt41L6QArkkt3-Vit8mEj3ziPHSRFBDHj0UrTUr9VLzjzFSKmjM7XQvi9igb-ViWvPWyqZqXsyC2lQ7rI4LJHWrpjAkwIcvAUTYVQe_gQH9AkgRVzVvPfO8uymQyM2rreQg0vnTtgYnBMn_XQuh9I2L1ooAasyjSdNBIdQtT56R7WKCEFNYkTFnLn0M7CVFyKEJt4Khmdjukg39wYlEiOmarfT5UBItPGp1srOE8RyVWA"/>
+</div>
+<div class="flex items-center justify-between text-[10px] font-mono text-chalk-dim">
+<span>GOLDTEX PREMIUM DESIGN</span>
+<span class="text-emerald-300">CALIDAD CERTIFICADA</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Tunnel Navigation Indicator -->
+<div class="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-4 text-xs font-mono text-papaya z-30">
+<button class="px-5 py-2 rounded-full border border-papaya/40 hover:border-papaya bg-black/80 backdrop-blur-md flex items-center gap-2 transition-all hover:bg-papaya/10" onclick="switchScene(2)">
+<span>AVANZAR A LA BÓVEDA DE ESPEJOS 03</span>
+<span>→</span>
+</button>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- ==================== ESCENA 3: LA BÓVEDA DE LOS ESPEJOS FLOTANTES ====== -->
+<!-- ========================================================================= -->
+<section class="spatial-scene flex items-center justify-center z-20 overflow-hidden" id="scene-2">
+<!-- Mirror Vault Stage Container -->
+<div class="relative w-full h-full max-w-[1720px] mx-auto flex flex-col justify-between py-12 px-6 preserve-3d">
+<!-- Vault Section Header Floating in 3D -->
+<div class="text-center z-30 pt-4">
+<div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full border border-papaya/30 bg-black/60 font-mono text-xs uppercase tracking-[0.3em] text-papaya mb-2">
+<span>ESCENA 03 • DIRECCIÓN DE ARTE &amp; KEY VISUAL</span>
+</div>
+<h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold uppercase tracking-tight text-chalk">
+          La Bóveda de los Espejos Flotantes
+        </h2>
+<p class="text-xs sm:text-sm font-sans text-chalk-dim mt-1 max-w-xl mx-auto">
+          Donde nace la inspiración: seda esmeralda y reverso satén en explosión espacial fuera del plano tridimensional.
+        </p>
+</div>
+<!-- ================= MONUMENTAL CENTRAL 3D POP-OUT COMPOSITION ================= -->
+<div class="relative w-full max-w-6xl mx-auto flex items-center justify-center my-auto preserve-3d">
+<!-- Back Wall Typographic Projection -->
+<div class="absolute -top-10 select-none pointer-events-none text-center opacity-10">
+<span class="font-serif font-black text-6xl sm:text-8xl xl:text-9xl uppercase tracking-widest text-white block">HAUTE TEXTILE</span>
+</div>
+<!-- Semicircular Floating Left Mirror (Key Visual Panorámico https://lh3.googleusercontent.com/aida-public/AB6AXuAKiVkL2tUmRBT65tOKuUysDfUhq8NU1mIQTGtCyTgKSxYXpHfvShrBZQPdPJ0EHv6tYwLZnPRLmda8DK9LDA3p61qrkBevN8kFG0f4sGi6bZb5B5QsM5whsz8nAJUaDt2PKVPshC_yFjQeMnlScN9R3HGowxW74FkB_j-AIE8qJmO6_IUymbHHahpmCT6E37WIpr7qSHvnbs1NV5FNxYMPGSvXGlGWc8oKq0YL1nfFQL239QBwrQSPhAIwiw-e4gkmKTI) -->
+<div class="hidden lg:block absolute -left-6 xl:-left-16 w-72 h-[420px] holo-glass rounded-2xl overflow-hidden border border-white/20 shadow-2xl transition-transform duration-700 hover:scale-105" style="transform: perspective(1000px) rotateY(24deg) translateZ(-40px);">
+<img alt="Key Visual Horizontal Panorámico" class="w-full h-full object-cover filter contrast-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKiVkL2tUmRBT65tOKuUysDfUhq8NU1mIQTGtCyTgKSxYXpHfvShrBZQPdPJ0EHv6tYwLZnPRLmda8DK9LDA3p61qrkBevN8kFG0f4sGi6bZb5B5QsM5whsz8nAJUaDt2PKVPshC_yFjQeMnlScN9R3HGowxW74FkB_j-AIE8qJmO6_IUymbHHahpmCT6E37WIpr7qSHvnbs1NV5FNxYMPGSvXGlGWc8oKq0YL1nfFQL239QBwrQSPhAIwiw-e4gkmKTI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4 text-[10px] font-mono text-papaya bg-black/85 px-3 py-1.5 rounded border border-papaya/30">
+            KEY VISUAL PANORÁMICO • #F1B734
+          </div>
+</div>
+<!-- Semicircular Floating Right Mirror (Goldtex Logo Oficial & Paleta) -->
+<div class="hidden lg:block absolute -right-6 xl:-right-16 w-72 h-[420px] holo-glass-emerald rounded-2xl overflow-hidden border border-white/20 shadow-2xl transition-transform duration-700 hover:scale-105 flex flex-col justify-between p-4" style="transform: perspective(1000px) rotateY(-24deg) translateZ(-40px);">
+<div class="relative w-full h-44 rounded-xl overflow-hidden bg-white/5 border border-white/10 p-4 flex items-center justify-center">
+<img alt="Goldtex Identidad y Logo Oficial" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGh8M5HPiZZSMRQW1KSov3S7DLEXghncQxKGDkxTCe3m6ocBNrKUgBn0u-o2ggyFpLobUrsF8BeMVgCjapp8_ZNe7V1ReyTh1Rtd8DIm_9cUgurgEZcsi0v98new-YFp6Ov5G_OBBb6K2QFCc0zH4n9MOqY_N3Z0ApfRkMAPX927skk3HeRlXIeOCSyHMxlj7IrWgXBLcy6UzUvlh-b8QjX-ElYDiqvNbj9TpbAuuruXtmslnYgKK4TDJCX_NAWVhZwYw"/>
+</div>
+<div class="space-y-2 mt-4 text-xs font-sans text-chalk-dim">
+<div class="text-emerald-300 font-mono text-[10px] uppercase tracking-wider">PALETA DE ALTA COSTURA</div>
+<p class="text-[11px] leading-relaxed">Verde Brunswick (#083E35) y Oro Imperial (#F1B734). Fusión entre herencia textil y modernidad arquitectónica.</p>
+</div>
+<div class="text-[10px] font-mono text-emerald-300 bg-black/85 px-3 py-1.5 rounded border border-emerald-500/30">
+            ESMERALDA MILITAR: #083E35
+          </div>
+</div>
+<!-- ================= THE CENTRAL FOCAL POP-OUT FRAME ================= -->
+<div class="relative w-full max-w-xl sm:max-w-2xl h-[470px] sm:h-[520px] preserve-3d group">
+<!-- Outer Gold Glow Halo -->
+<div class="absolute -inset-4 rounded-3xl bg-gradient-to-r from-papaya/25 via-emerald-500/20 to-papaya/25 filter blur-3xl opacity-75 group-hover:opacity-100 transition-opacity"></div>
+<!-- The Physical Glass Frame -->
+<div class="relative w-full h-full rounded-3xl overflow-hidden border-2 border-papaya/70 bg-[#02130e] shadow-[0_30px_90px_rgba(0,0,0,0.95)]">
+<!-- Background Scene Canvas (https://lh3.googleusercontent.com/aida-public/AB6AXuAKiVkL2tUmRBT65tOKuUysDfUhq8NU1mIQTGtCyTgKSxYXpHfvShrBZQPdPJ0EHv6tYwLZnPRLmda8DK9LDA3p61qrkBevN8kFG0f4sGi6bZb5B5QsM5whsz8nAJUaDt2PKVPshC_yFjQeMnlScN9R3HGowxW74FkB_j-AIE8qJmO6_IUymbHHahpmCT6E37WIpr7qSHvnbs1NV5FNxYMPGSvXGlGWc8oKq0YL1nfFQL239QBwrQSPhAIwiw-e4gkmKTI Master Shot) -->
+<img alt="Bailarina Goldtex Master Shot Donde Nace la Inspiración" class="w-full h-full object-cover object-top filter contrast-105 transition-transform duration-1000 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKiVkL2tUmRBT65tOKuUysDfUhq8NU1mIQTGtCyTgKSxYXpHfvShrBZQPdPJ0EHv6tYwLZnPRLmda8DK9LDA3p61qrkBevN8kFG0f4sGi6bZb5B5QsM5whsz8nAJUaDt2PKVPshC_yFjQeMnlScN9R3HGowxW74FkB_j-AIE8qJmO6_IUymbHHahpmCT6E37WIpr7qSHvnbs1NV5FNxYMPGSvXGlGWc8oKq0YL1nfFQL239QBwrQSPhAIwiw-e4gkmKTI"/>
+<!-- Inner Ambient Gradients -->
+<div class="absolute inset-0 bg-gradient-to-t from-obsidian/90 via-transparent to-obsidian/40 pointer-events-none"></div>
+<!-- Master Shot Haute Badge -->
+<div class="absolute top-5 left-5 flex items-center gap-2.5 bg-black/75 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-papaya/40 z-20">
+<span class="w-2 h-2 rounded-full bg-papaya animate-pulse"></span>
+<span class="font-mono text-[9px] uppercase tracking-widest text-chalk">CAMPAIGN KEY VISUAL • 4K MASTER</span>
+</div>
+<!-- Bottom Editorial Inscription -->
+<div class="absolute bottom-6 left-6 right-6 z-20 flex items-end justify-between">
+<div>
+<span class="font-mono text-[10px] uppercase text-papaya tracking-widest block">DIRECCIÓN DE ARTE</span>
+<h3 class="font-serif text-2xl sm:text-3xl font-bold text-chalk leading-none">Donde nace la inspiración</h3>
+<p class="font-sans text-xs text-chalk-dim mt-1.5 max-w-md">Terciopelo verde esmeralda y satén dorado suspendidos en caída libre gravitacional.</p>
+</div>
+<div class="font-mono text-[10px] text-papaya border border-papaya/40 px-3 py-1 rounded bg-black/70 backdrop-blur-md">
+                DEPTH: +240PX POP-OUT
+              </div>
+</div>
+</div>
+<!-- DRAMATIC 3D POP-OUT EFFECT ELEMENT: Bailarina Billowing Beyond the Frame using https://lh3.googleusercontent.com/aida-public/AB6AXuDjH1na2UKBcAGAMeeyB4JXH9tKaOkAjrH14QNIsUtOL1zz5HRMBktuGnZcjXbdXqJbN6mkIhmtwI0cbNjytsZ-LYgwr56TxrpYJVg7cMVNTB_C_Akp0_3HLDo-dkJAhuNjVwjTKii7xC-bfyvv_e7wqa_qSdo3BzrYbaxB_eDPX_RnzUWBTkMuWUXNKrvaT3FQL3UCvDGNLQ3rMAXTaG0OewSnbayC1TMFR60PCrG1nj6YzEmy4zKxqBJB0v87D9UI-Y0 -->
+<div class="absolute -top-10 -right-6 sm:-right-14 w-48 sm:w-64 h-72 sm:h-96 pointer-events-none z-30 transition-transform duration-700 group-hover:translate-x-3 group-hover:-translate-y-2" style="transform: translateZ(95px);">
+<!-- Floating Gown / Fabric Layer -->
+<div class="relative w-full h-full drop-shadow-[0_20px_40px_rgba(241,183,52,0.5)] animate-zerog">
+<img alt="Pop out fabric cutout seda esmeralda" class="w-full h-full object-contain filter contrast-125 brightness-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjH1na2UKBcAGAMeeyB4JXH9tKaOkAjrH14QNIsUtOL1zz5HRMBktuGnZcjXbdXqJbN6mkIhmtwI0cbNjytsZ-LYgwr56TxrpYJVg7cMVNTB_C_Akp0_3HLDo-dkJAhuNjVwjTKii7xC-bfyvv_e7wqa_qSdo3BzrYbaxB_eDPX_RnzUWBTkMuWUXNKrvaT3FQL3UCvDGNLQ3rMAXTaG0OewSnbayC1TMFR60PCrG1nj6YzEmy4zKxqBJB0v87D9UI-Y0"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Mirror Glossy Floor Reflection Effect -->
+<div class="w-full h-12 glossy-floor border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-chalk-dim px-4 z-30">
+<span>REFLEXIÓN OBSIDIANA ACTIVA (ROUGHNESS: 0.08)</span>
+<button class="text-papaya hover:text-white uppercase tracking-widest transition-colors flex items-center gap-1.5 cursor-pointer" onclick="switchScene(3)">
+<span>PASAR A ESCENA 04: ECOSISTEMA 3D</span>
+<span>→</span>
+</button>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- ==================== ESCENA 4: EL CELULAR HOLOGRÁFICO 3D ================ -->
+<!-- ========================================================================= -->
+<section class="spatial-scene flex items-center justify-center z-20 overflow-hidden" id="scene-3">
+<div class="relative w-full h-full max-w-[1720px] mx-auto flex flex-col justify-between py-12 px-6 preserve-3d">
+<!-- Scene 4 Title Header -->
+<div class="text-center z-30 pt-3">
+<div class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-papaya/30 bg-black/60 font-mono text-xs uppercase tracking-[0.3em] text-papaya mb-2">
+<span>ESCENA 04 • ECOSISTEMA DIGITAL &amp; OOH IMPACT</span>
+</div>
+<h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold uppercase tracking-tight text-chalk">
+          El Celular Holográfico &amp; El Hilo Conductor
+        </h2>
+<p class="text-xs sm:text-sm font-sans text-chalk-dim mt-1 max-w-xl mx-auto">
+          Del feed vertical TikTok @Goldtex.Oficial a la monumental valla publicitaria y stories de Instagram.
+        </p>
+</div>
+<!-- ================= STAGE AREA: PHONE + INSTAGRAM STORIES + CONTINUOUS S-RIBBON + BILLBOARDS ================= -->
+<div class="relative w-full max-w-6xl mx-auto h-[550px] flex items-center justify-center preserve-3d my-auto">
+<!-- BACKGROUND VOLUMETRIC BILLBOARDS (https://lh3.googleusercontent.com/aida-public/AB6AXuA-8NLEv8-AVUyV2tfdQgdv41dxfLr0JUZQ8x-IdkLlav3Y5sQTUxuOH2gZMqEDouUc5KN8ZT8T5jeyDs9HVJ9fiXUZS8FzU4eIPC_1fqHCL60PrTslhALz0G7uNosp9He8QJ5VeSqpInw0rzyye1kg2zn8qqxENRkipS84D9Luh2JvaQzTDsEEhgVOdeOR2mTzcVFgU0PSBI-oP8pGPw9skBm0_eq5Ea2s6BVrrEvh5OV49eCSc8wdxQ2j8xV5CRRtO9I & https://lh3.googleusercontent.com/aida-public/AB6AXuDWpWc6XvTn58X1gOJiTZu3jS7ZHk1ncPO4xUGfreE4CzuaHPfllYN3NYPDFHb9a6y3_Q_kblI6LBFDzulg9wT1uiLRBFHTuxBNJWtTiA5gBs4fxgXMWmcmAnMwFt70kUIU0u5t8FCyKOtH0SXTgrKsX28uALJUcbVMNWx-nCrg9qNQmn0ZYvev8c_OEQDo2kG-NdiIx7gq5h1tHk2gL_xW2E2aYoLiz2u13zFC-HGSsdFFYluHbw4M-Az3cpFAKsgLLws) -->
+<div class="absolute -top-12 w-full max-w-4xl h-52 sm:h-60 rounded-2xl overflow-hidden border border-white/20 shadow-[0_20px_70px_rgba(0,0,0,0.95)] opacity-60 hover:opacity-100 transition-all duration-700 z-10 flex gap-2 p-1.5 bg-black/60" style="transform: translateZ(-200px) scale(0.92);">
+<div class="relative w-1/2 h-full rounded-xl overflow-hidden border border-white/10">
+<img alt="Valla Publicitaria Monumental La Decisión Segura" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-8NLEv8-AVUyV2tfdQgdv41dxfLr0JUZQ8x-IdkLlav3Y5sQTUxuOH2gZMqEDouUc5KN8ZT8T5jeyDs9HVJ9fiXUZS8FzU4eIPC_1fqHCL60PrTslhALz0G7uNosp9He8QJ5VeSqpInw0rzyye1kg2zn8qqxENRkipS84D9Luh2JvaQzTDsEEhgVOdeOR2mTzcVFgU0PSBI-oP8pGPw9skBm0_eq5Ea2s6BVrrEvh5OV49eCSc8wdxQ2j8xV5CRRtO9I"/>
+<div class="absolute bottom-2 left-2 text-[9px] font-mono text-papaya bg-black/85 px-2 py-0.5 rounded border border-papaya/30">OOH ESTRUCTURA</div>
+</div>
+<div class="relative w-1/2 h-full rounded-xl overflow-hidden border border-white/10">
+<img alt="Valla Panorámica La Decisión Segura" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpWc6XvTn58X1gOJiTZu3jS7ZHk1ncPO4xUGfreE4CzuaHPfllYN3NYPDFHb9a6y3_Q_kblI6LBFDzulg9wT1uiLRBFHTuxBNJWtTiA5gBs4fxgXMWmcmAnMwFt70kUIU0u5t8FCyKOtH0SXTgrKsX28uALJUcbVMNWx-nCrg9qNQmn0ZYvev8c_OEQDo2kG-NdiIx7gq5h1tHk2gL_xW2E2aYoLiz2u13zFC-HGSsdFFYluHbw4M-Az3cpFAKsgLLws"/>
+<div class="absolute bottom-2 left-2 text-[9px] font-mono text-emerald-300 bg-black/85 px-2 py-0.5 rounded border border-emerald-500/30">VÍA EXPRESA LIMA • 14.40 × 4.80 M</div>
+</div>
+</div>
+<!-- SPATIAL GOLDEN RIBBON (S-CURVED CONTINUOUS HORIZONTAL CAMPAIGN https://lh3.googleusercontent.com/aida-public/AB6AXuDx1PFEAm-tOsU8TR6jd8X5-MFTedj4uDs65htOSBujlregVPE5SRO627KDTyeuj2Uin47Nyv3gQxOsj9xcm93JlMjvFCTOgJYqwCcNijPDCahBEjn8Scrj7jQeUwlzXfvTB2zD6RR1MXvDtugt2Ek4oxo6Pstmsk-BwRUcFykCnh_rqFgiAGCQXsgQt7p8OWho_Tedv9ESQxN7xK6FagCLKhbsEZxY-Ex37wRi77fx9d-vhx0DCoVy7e2wjJUL2SMKidk) -->
+<div class="absolute w-[140vw] -left-[20vw] h-36 preserve-3d pointer-events-none z-15" style="transform: rotate(-3deg) translateY(28px);">
+<div class="w-full h-full rounded-2xl overflow-hidden border-y border-papaya/50 shadow-[0_0_35px_rgba(241,183,52,0.3)] bg-[#02130e]/90 backdrop-blur-md opacity-85 flex items-center">
+<img alt="Narrativa Panorámica Continua Goldtex con cinta métrica y telas" class="w-full h-full object-cover object-center filter contrast-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDx1PFEAm-tOsU8TR6jd8X5-MFTedj4uDs65htOSBujlregVPE5SRO627KDTyeuj2Uin47Nyv3gQxOsj9xcm93JlMjvFCTOgJYqwCcNijPDCahBEjn8Scrj7jQeUwlzXfvTB2zD6RR1MXvDtugt2Ek4oxo6Pstmsk-BwRUcFykCnh_rqFgiAGCQXsgQt7p8OWho_Tedv9ESQxN7xK6FagCLKhbsEZxY-Ex37wRi77fx9d-vhx0DCoVy7e2wjJUL2SMKidk"/>
+</div>
+</div>
+<!-- LEFT SATELLITE: VERTICAL EDITORIAL STORY (https://lh3.googleusercontent.com/aida-public/AB6AXuA2kmivUcFjSMEKeIyp9HS6nxZHi-T6K40Zmof0SLlAHgjPo-IYo7-kbLIxksAUd0mgBT51JSVI8f0S01XdHUkkjK2SLbU_zl1Bfuxtld6iNxw0S82TWuhXwtHmD-DzsugEHnAUkI9f1Gl8OZvCGCFBILsn-D5rNo_kl7p_W8xJwOG4zB4IdGFztjqlSiPI0MhEkQpn8aNcPHcW784aOhqFp30B9vrHLAVSujTVtdCwgbqF_u4O2icbJPPk3Y7USX_0eDk) -->
+<div class="hidden md:block absolute left-4 lg:left-12 w-48 lg:w-56 h-[380px] lg:h-[440px] rounded-3xl overflow-hidden bg-black border-2 border-white/20 shadow-2xl z-25 transition-transform duration-700 hover:scale-105" style="transform: perspective(1000px) rotateY(18deg) rotateX(4deg) translateZ(40px);">
+<img alt="Vertical Reel Dale Vida a tus Ideas" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2kmivUcFjSMEKeIyp9HS6nxZHi-T6K40Zmof0SLlAHgjPo-IYo7-kbLIxksAUd0mgBT51JSVI8f0S01XdHUkkjK2SLbU_zl1Bfuxtld6iNxw0S82TWuhXwtHmD-DzsugEHnAUkI9f1Gl8OZvCGCFBILsn-D5rNo_kl7p_W8xJwOG4zB4IdGFztjqlSiPI0MhEkQpn8aNcPHcW784aOhqFp30B9vrHLAVSujTVtdCwgbqF_u4O2icbJPPk3Y7USX_0eDk"/>
+<div class="absolute bottom-2 left-2 right-2 text-center text-[9px] font-mono text-papaya bg-black/85 py-1 rounded border border-papaya/30">
+            VERTICAL 9:16 INTERACTIVO
+          </div>
+</div>
+<!-- ================= THE 3D HOLOGRAPHIC SMARTPHONE FRAME (TIKTOK https://lh3.googleusercontent.com/aida-public/AB6AXuCetGwjQWFWShtbinxsFfbXu_GHMADP5FpbdT0IpWVjTDLVh91hZ0oF5ZuPy0r1mIt80ruFtA-OBJSgYihRxgvYmfKuINqfKpvNo23j0mMGnbaiH-6uYCpy42Q_SZkyCNg8mQt3R25O3pSN3hqWVvgS__-K9v2_IeEUDDO-GaAAxkJhocrs4d8ZIOE8kuoxKV2ozg_OMlGtNb78TW1hE-xf6K44E76EDOZyJFYnkJa00xeRqK7CWSwHwiKqJs4-3PrG2tI) ================= -->
+<div class="relative z-30 w-[270px] sm:w-[300px] h-[540px] sm:h-[580px] rounded-[48px] bg-black p-3 shadow-[0_30px_90px_rgba(0,0,0,0.98)] border-4 border-[#242b29] transition-transform duration-700 hover:rotate-0 hover:scale-105" style="transform: perspective(1000px) rotateY(-8deg) rotateX(5deg) translateZ(90px);">
+<!-- Phone Speaker Notch / Dynamic Island -->
+<div class="absolute top-5 left-1/2 -translate-x-1/2 w-24 h-6 bg-black rounded-full z-40 flex items-center justify-between px-3 border border-white/10">
+<div class="w-2 h-2 rounded-full bg-[#0a1815]"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-emerald-950"></div>
+</div>
+<!-- Inner Glass Display (Real TikTok Screen https://lh3.googleusercontent.com/aida-public/AB6AXuCetGwjQWFWShtbinxsFfbXu_GHMADP5FpbdT0IpWVjTDLVh91hZ0oF5ZuPy0r1mIt80ruFtA-OBJSgYihRxgvYmfKuINqfKpvNo23j0mMGnbaiH-6uYCpy42Q_SZkyCNg8mQt3R25O3pSN3hqWVvgS__-K9v2_IeEUDDO-GaAAxkJhocrs4d8ZIOE8kuoxKV2ozg_OMlGtNb78TW1hE-xf6K44E76EDOZyJFYnkJa00xeRqK7CWSwHwiKqJs4-3PrG2tI) -->
+<div class="relative w-full h-full rounded-[38px] overflow-hidden bg-obsidian flex flex-col justify-between">
+<img alt="TikTok Goldtex Oficial" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCetGwjQWFWShtbinxsFfbXu_GHMADP5FpbdT0IpWVjTDLVh91hZ0oF5ZuPy0r1mIt80ruFtA-OBJSgYihRxgvYmfKuINqfKpvNo23j0mMGnbaiH-6uYCpy42Q_SZkyCNg8mQt3R25O3pSN3hqWVvgS__-K9v2_IeEUDDO-GaAAxkJhocrs4d8ZIOE8kuoxKV2ozg_OMlGtNb78TW1hE-xf6K44E76EDOZyJFYnkJa00xeRqK7CWSwHwiKqJs4-3PrG2tI"/>
+<!-- Glowing Gold Accent Border Inside Screen -->
+<div class="absolute inset-0 border border-papaya/30 rounded-[38px] pointer-events-none"></div>
+</div>
+<!-- Hologram spatial tag -->
+<div class="absolute -bottom-4 left-1/2 -translate-x-1/2 font-mono text-[9px] uppercase tracking-widest text-papaya bg-black/90 px-3 py-1 rounded-full border border-papaya/50 shadow-xl whitespace-nowrap">
+            HOLOGRAM DISP • TIKTOK 9:16 LIVE
+          </div>
+</div>
+<!-- RIGHT SATELLITE: MOBILE USER PERSPECTIVE -->
+<div class="hidden md:block absolute right-4 lg:right-12 w-48 lg:w-56 h-[380px] lg:h-[440px] rounded-3xl overflow-hidden bg-black border-2 border-white/20 shadow-2xl z-25 transition-transform duration-700 hover:scale-105" style="transform: perspective(1000px) rotateY(-18deg) rotateX(4deg) translateZ(40px);">
+<img alt="Experiencia Móvil TikTok en mano" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7Im9fFcBm4JBjn6KAUisXoCzCHQa-3x1N32MxP4y4Ccw10iug3BD7oQMjGME5INrIDre_c7MT3sTDRIkRxjCCkfe6PDC1_YIidZMK-iDSXDaWzjjDVWt5yn4tpiDXrbFTV-JGRv7_0uoPxOWt0b1HGXBmQW5et1i78fbsVJroV-SylZHIo_uUN-zLyYo0J4cliK_DCcNcF-x5bHV4OXBtJ5hIDPStxXYrxso2kxV6Exs2xSW49yKXFHj2VXv29bP8WZ8"/>
+<div class="absolute bottom-2 left-2 right-2 text-center text-[9px] font-mono text-emerald-300 bg-black/85 py-1 rounded border border-emerald-500/30">
+            VIRAL REACH • @GOLDTEX.OFICIAL
+          </div>
+</div>
+</div>
+<!-- Finale Closing Signature & Museum Replay Bar -->
+<div class="z-30 pt-3 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-chalk-dim">
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 bg-papaya rotate-45 shadow-[0_0_8px_#F1B734]"></div>
+<span class="text-chalk font-semibold font-serif tracking-widest">GOLDTEX S.A.C.</span>
+<span>• LA DECISIÓN SEGURA • GAMARRA 2024–2026</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-5 py-2 rounded-full border border-papaya/40 hover:border-papaya bg-papaya/10 text-papaya hover:text-white font-mono text-[10px] tracking-widest uppercase transition-all cursor-pointer" onclick="switchScene(0)">
+            ↻ REINICIAR EXPERIENCIA 3D
+          </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- ========================================================================= -->
+<!-- ==================== SPATIAL NAVIGATION & AUDIO CONTROLLER =============== -->
+<!-- ========================================================================= -->
+<script>
+  let currentSceneIndex = 0;
+  const totalScenes = 4;
+  const scenes = [
+    document.getElementById('scene-0'),
+    document.getElementById('scene-1'),
+    document.getElementById('scene-2'),
+    document.getElementById('scene-3')
+  ];
+  const tabs = [
+    document.getElementById('btn-scene-0'),
+    document.getElementById('btn-scene-1'),
+    document.getElementById('btn-scene-2'),
+    document.getElementById('btn-scene-3')
+  ];
+  const coordsHUD = document.getElementById('spatial-coords');
+  const counterHUD = document.getElementById('scene-counter');
+  const pitchHUD = document.getElementById('pitch-hud');
+
+  const coordinatesMap = [
+    "X: +42.88 Y: -12.04 Z: -340.50 (PORTAL 3D)",
+    "X: +0.00 Y: -4.10 Z: -1200.00 (TÚNEL Z)",
+    "X: -18.45 Y: +22.80 Z: -150.00 (BÓVEDA 3D)",
+    "X: +86.12 Y: -30.00 Z: +80.00 (ECOSISTEMA 3D)"
+  ];
+
+  const pitchMap = [
+    "PITCH: 14.2° ROLL: 0.00°",
+    "PITCH: 2.1° ROLL: -1.20°",
+    "PITCH: 8.4° ROLL: +3.10°",
+    "PITCH: -5.6° ROLL: 0.00°"
+  ];
+
+  function switchScene(index) {
+    if (index < 0 || index >= totalScenes) return;
+    currentSceneIndex = index;
+
+    // Update scene visibility with 3D depth transition
+    scenes.forEach((scene, i) => {
+      if (i === index) {
+        scene.classList.add('active');
+      } else {
+        scene.classList.remove('active');
+      }
+    });
+
+    // Update HUD Tabs
+    tabs.forEach((tab, i) => {
+      if (!tab) return;
+      if (i === index) {
+        tab.className = "scene-tab px-4 py-2 rounded-full font-mono text-[11px] tracking-widest uppercase transition-all duration-300 bg-papaya/20 text-papaya border border-papaya/50 shadow-[0_0_15px_rgba(241,183,52,0.3)]";
+      } else {
+        tab.className = "scene-tab px-4 py-2 rounded-full font-mono text-[11px] tracking-widest uppercase text-chalk-dim hover:text-white transition-all duration-300 border border-transparent";
+      }
+    });
+
+    // Update HUD Telemetry
+    if (coordsHUD) coordsHUD.textContent = coordinatesMap[index];
+    if (counterHUD) counterHUD.textContent = `0${index + 1} / 0${totalScenes}`;
+    if (pitchHUD) pitchHUD.textContent = pitchMap[index];
+
+    // Trigger Three.js camera position interpolation in Z space
+    if (window.spatialCameraTarget) {
+      window.spatialCameraTarget.z = 180 - index * 60;
+      window.spatialCameraTarget.y = (index % 2 === 0 ? 0 : 15);
+    }
+  }
+
+  function nextScene() {
+    let next = (currentSceneIndex + 1) % totalScenes;
+    switchScene(next);
+  }
+
+  function prevScene() {
+    let prev = (currentSceneIndex - 1 + totalScenes) % totalScenes;
+    switchScene(prev);
+  }
+
+  // Wheel Scroll Transition (Active Theory Page Snapping)
+  let isScrolling = false;
+  window.addEventListener('wheel', (e) => {
+    if (isScrolling) return;
+    if (Math.abs(e.deltaY) > 35) {
+      isScrolling = true;
+      if (e.deltaY > 0) {
+        nextScene();
+      } else {
+        prevScene();
+      }
+      setTimeout(() => { isScrolling = false; }, 850);
+    }
+  }, { passive: true });
+
+  // Keybindings (Arrow keys & numbers 1-4)
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextScene();
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prevScene();
+    if (e.key >= '1' && e.key <= '4') switchScene(parseInt(e.key) - 1);
+  });
+
+  // Telemetry Toggle
+  let telemetryActive = true;
+  function toggleTelemetry() {
+    telemetryActive = !telemetryActive;
+    const hud = document.getElementById('telemetry-hud');
+    if (hud) {
+      hud.textContent = telemetryActive ? 'FPS: 60 | SPATIAL 3D: ACTIVE' : 'TELEMETRY: STANDBY';
+    }
+  }
+
+  // Binaural Audio Toggle
+  let isAudioActive = true;
+  function toggleAudio() {
+    isAudioActive = !isAudioActive;
+    const label = document.getElementById('audio-label');
+    const wave = document.getElementById('audio-waveforms');
+    if (label) label.textContent = isAudioActive ? 'BINAURAL: ON' : 'BINAURAL: MUTE';
+    if (wave) wave.style.opacity = isAudioActive ? '1' : '0.2';
+  }
+
+  // Interactive 3D Parallax on mouse move
+  const universe = document.getElementById('spatial-universe');
+  let targetRotX = 0;
+  let targetRotY = 0;
+  let currentRotX = 0;
+  let currentRotY = 0;
+
+  window.addEventListener('mousemove', (e) => {
+    const xRatio = (e.clientX / window.innerWidth) - 0.5;
+    const yRatio = (e.clientY / window.innerHeight) - 0.5;
+    targetRotY = xRatio * 6; // Max 6 deg tilt
+    targetRotX = -yRatio * 6;
+
+    // Update coordinates HUD micro-values
+    if (coordsHUD && telemetryActive) {
+      const baseCoords = coordinatesMap[currentSceneIndex].split(' ')[0];
+      const liveX = (xRatio * 100).toFixed(2);
+      const liveY = (-yRatio * 100).toFixed(2);
+      pitchHUD.textContent = `PITCH: ${(liveY * 0.15).toFixed(1)}° ROLL: ${(liveX * 0.08).toFixed(2)}°`;
+    }
+  });
+
+  function smoothParallax() {
+    currentRotX += (targetRotX - currentRotX) * 0.08;
+    currentRotY += (targetRotY - currentRotY) * 0.08;
+    if (universe) {
+      universe.style.transform = `rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg)`;
+    }
+    requestAnimationFrame(smoothParallax);
+  }
+  smoothParallax();
+
+  // ==================== GOLDEN SILK THREAD TRAIL CANVAS ====================
+  (function initSilkTrail() {
+    const canvas = document.getElementById('silk-trail-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const points = [];
+    const maxPoints = 28;
+
+    window.addEventListener('mousemove', (e) => {
+      points.push({ x: e.clientX, y: e.clientY, age: 0 });
+    });
+
+    function drawSilk() {
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < points.length; i++) {
+        points[i].age++;
+      }
+      while (points.length > 0 && points[0].age > maxPoints) {
+        points.shift();
+      }
+
+      if (points.length > 2) {
+        ctx.beginPath();
+        ctx.moveTo(points[0].x, points[0].y);
+        for (let i = 1; i < points.length - 1; i++) {
+          const xc = (points[i].x + points[i + 1].x) / 2;
+          const yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+        }
+        ctx.strokeStyle = "rgba(241, 183, 52, 0.4)";
+        ctx.lineWidth = 1.6;
+        ctx.shadowColor = "#F1B734";
+        ctx.shadowBlur = 8;
+        ctx.stroke();
+      }
+      requestAnimationFrame(drawSilk);
+    }
+    drawSilk();
+  })();
+
+  // ==================== THREE.JS 3D BACKGROUND STAGE ====================
+  (function initThreeBackground() {
+    const stage = document.getElementById('three-stage');
+    if (!stage || stage.children.length > 0) return;
+
+    try {
+      const scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0x010806, 0.0016);
+
+      const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 2000);
+      camera.position.set(0, 0, 180);
+      window.spatialCameraTarget = { z: 180, y: 0 };
+
+      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "high-performance" });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      stage.appendChild(renderer.domElement);
+
+      const ambient = new THREE.AmbientLight(0x083e35, 1.8);
+      scene.add(ambient);
+
+      const pointGold = new THREE.PointLight(0xf1b734, 4.0, 700);
+      pointGold.position.set(90, 110, 130);
+      scene.add(pointGold);
+
+      const pointEmerald = new THREE.PointLight(0x0df2a4, 2.5, 800);
+      pointEmerald.position.set(-110, -70, 60);
+      scene.add(pointEmerald);
+
+      // Floating Thread Particles across cosmic stage
+      const pCount = 900;
+      const pGeo = new THREE.BufferGeometry();
+      const pPos = new Float32Array(pCount * 3);
+      const pCol = new Float32Array(pCount * 3);
+
+      const cGold = new THREE.Color(0xf1b734);
+      const cEmerald = new THREE.Color(0x083e35);
+      const cWhite = new THREE.Color(0xf4f3f3);
+
+      for (let i = 0; i < pCount; i++) {
+        pPos[i * 3] = (Math.random() - 0.5) * 1100;
+        pPos[i * 3 + 1] = (Math.random() - 0.5) * 800;
+        pPos[i * 3 + 2] = (Math.random() - 0.5) * 1500;
+        let c = Math.random() > 0.4 ? cGold : (Math.random() > 0.5 ? cEmerald : cWhite);
+        pCol[i * 3] = c.r;
+        pCol[i * 3 + 1] = c.g;
+        pCol[i * 3 + 2] = c.b;
+      }
+      pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+      pGeo.setAttribute('color', new THREE.BufferAttribute(pCol, 3));
+
+      const pMat = new THREE.PointsMaterial({ size: 2.0, vertexColors: true, transparent: true, opacity: 0.75, blending: THREE.AdditiveBlending });
+      const particles = new THREE.Points(pGeo, pMat);
+      scene.add(particles);
+
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+
+      let mouseX = 0, mouseY = 0;
+      window.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX - window.innerWidth / 2) * 0.04;
+        mouseY = (e.clientY - window.innerHeight / 2) * 0.04;
+      });
+
+      const clock = new THREE.Clock();
+      function animate() {
+        requestAnimationFrame(animate);
+        const time = clock.getElapsedTime();
+        camera.position.x += (mouseX - camera.position.x) * 0.05;
+        camera.position.y += (-mouseY + (window.spatialCameraTarget ? window.spatialCameraTarget.y : 0) - camera.position.y) * 0.05;
+        if (window.spatialCameraTarget) {
+          camera.position.z += (window.spatialCameraTarget.z - camera.position.z) * 0.05;
+        }
+        camera.lookAt(0, 0, 0);
+
+        particles.rotation.y = time * 0.02;
+        renderer.render(scene, camera);
+      }
+      animate();
+    } catch (err) {
+      console.warn("Three.js WebGL fallback active", err);
+    }
+  })();
+</script>
+</body></html>

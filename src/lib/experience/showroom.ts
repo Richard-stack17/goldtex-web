@@ -936,7 +936,13 @@ export function initShowroomExperience(): ShowroomHandle {
             curtainEl.style.opacity = '0';
             curtainEl.style.transform = 'scale(1.04)';
             curtainEl.style.pointerEvents = 'none';
-            setTimeout(() => { curtainEl.style.display = 'none'; }, 1100);
+            setTimeout(() => {
+                curtainEl.style.display = 'none';
+                const iv = document.getElementById('intro-brand-video') as HTMLVideoElement | null;
+                if (iv && !iv.paused) {
+                    iv.pause();
+                }
+            }, 1100);
         }
 
         // Reproducir video del Hero sincronizado
@@ -999,15 +1005,56 @@ export function initShowroomExperience(): ShowroomHandle {
         });
     }
 
-    const introVid = document.getElementById('intro-brand-video');
+    const introVid = document.getElementById('intro-brand-video') as HTMLVideoElement | null;
     if (introVid) {
+        let hasTransitionedToLogo = false;
+
+        const updateScaleToCover = () => {
+            if (hasTransitionedToLogo || !introVid) return;
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+            const sAspect = w / h;
+            const vAspect = 16 / 9;
+            const s = sAspect > vAspect ? (sAspect / vAspect) : (vAspect / sAspect);
+            introVid.style.transform = `scale(${s.toFixed(4)})`;
+        };
+
+        _onWindow('resize', updateScaleToCover);
+        updateScaleToCover();
+
+        // Control de transición de encuadre en video intro:
+        // 1. Al inicio mientras se muestra la tela (0 a ~13s) el video cubre el 100% de la pantalla (video completo, cover).
+        // 2. Al llegar a ~13.2s (cuando los hilos convergen hacia el centro para revelar las letras GOLDTEX),
+        //    se anima suavemente hacia scale(1.0) [contain] para que las letras "GOLDTEX" y "TELAS QUE INSPIRAN"
+        //    se aprecien completas, nítidas y centradas sin cortarse en ninguna pantalla.
+        const onIntroTimeUpdate = () => {
+            if (introVid.currentTime >= 13.2 && !hasTransitionedToLogo) {
+                hasTransitionedToLogo = true;
+                introVid.removeEventListener('timeupdate', onIntroTimeUpdate);
+
+                gsap.to(introVid, {
+                    scale: 1,
+                    duration: 1.6,
+                    ease: "power2.inOut"
+                });
+            }
+        };
+
+        introVid.addEventListener('timeupdate', onIntroTimeUpdate);
+
         introVid.addEventListener('ended', () => {
-            // Pausa de 600ms para admirar el logo final de GOLDTEX antes de abrir el showroom
-            setTimeout(finishIntroCurtain, 600);
+            // Pausa elegante de 700ms para admirar el logo final de GOLDTEX antes de abrir el showroom
+            setTimeout(finishIntroCurtain, 700);
         });
+
         introVid.addEventListener('error', finishIntroCurtain);
-        // Fallback de seguridad por si el navegador bloquea el autoplay o el video es largo
-        setTimeout(finishIntroCurtain, 12000);
+
+        if (introVid.paused) {
+            introVid.play().catch(() => {});
+        }
+
+        // Fallback de seguridad extendido a 24 segundos (el video dura 18.6s)
+        setTimeout(finishIntroCurtain, 24000);
     }
 
     // Control de seguridad del Hero para evitar colisiones de logo
@@ -1255,6 +1302,11 @@ export function initShowroomExperience(): ShowroomHandle {
     window.__gtGsapVersion = gsap.version;
 
     // ================= CONTROLADORES DE VIDEO DE CAMPAÑA =================
+    const ICON_MUTED = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>';
+    const ICON_SOUND = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.6 5.4a9.5 9.5 0 0 1 0 13.2"/></svg>';
+    const ICON_PAUSE = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1.2"/><rect x="14" y="4" width="4" height="16" rx="1.2"/></svg>';
+    const ICON_PLAY = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>';
+
     function toggleAudioVideo(id) {
         const video = document.getElementById('spot-video-' + id);
         const audioIcon = document.getElementById('audio-icon-' + id);
@@ -1263,10 +1315,10 @@ export function initShowroomExperience(): ShowroomHandle {
 
         video.muted = !video.muted;
         if (video.muted) {
-            audioIcon.textContent = '🔇';
+            audioIcon.innerHTML = ICON_MUTED;
             audioText.textContent = 'Silenciado';
         } else {
-            audioIcon.textContent = '🔊';
+            audioIcon.innerHTML = ICON_SOUND;
             audioText.textContent = 'Con Audio';
             video.play();
         }
@@ -1279,10 +1331,10 @@ export function initShowroomExperience(): ShowroomHandle {
 
         if (video.paused) {
             video.play();
-            playIcon.textContent = '⏸';
+            playIcon.innerHTML = ICON_PAUSE;
         } else {
             video.pause();
-            playIcon.textContent = '▶';
+            playIcon.innerHTML = ICON_PLAY;
         }
     }
 
@@ -1452,7 +1504,7 @@ export function initShowroomExperience(): ShowroomHandle {
     });
 
     // ================= SPOTLIGHT CURSOR GLOW + VANILLA TILT EN TARJETAS =================
-    const interactiveCards = document.querySelectorAll('.service-card, .reason-card, .media-card, .psych-card, .axis-card, .persona-card, .spatial-portal-card');
+    const interactiveCards = document.querySelectorAll('.service-card, .reason-card, .media-card, .psych-card, .axis-card, .persona-card, .spatial-portal-card, [data-tilt]');
     interactiveCards.forEach((card) => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
