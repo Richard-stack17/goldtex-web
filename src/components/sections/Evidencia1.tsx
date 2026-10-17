@@ -110,7 +110,7 @@ export default function Evidencia1() {
                     </div>
                 </div>
 
-                <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", color: "var(--ivory)", margin: "3.5rem 0 1rem" }}>Principales Problemas Detectados</h3>
+                <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", color: "var(--ivory)", margin: "2.4rem 0 1.2rem" }}>Principales Problemas Detectados</h3>
                 <div className="services-grid">
                     <div className="service-card reveal-card" data-tilt data-tilt-max="5">
                         <div className="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 10v3.5l2.5 1.5"/><path d="M9.5 2.5h5"/></svg></div>
@@ -134,7 +134,7 @@ export default function Evidencia1() {
                     </div>
                 </div>
 
-                <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", color: "var(--ivory)", margin: "3.5rem 0 1rem" }}>Insights Clave de la Investigación</h3>
+                <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", color: "var(--ivory)", margin: "2.4rem 0 1.2rem" }}>Insights Clave de la Investigación</h3>
                 <div className="axes-row">
                     <div className="axis-card reveal-card">
                         <h4>01 · Confianza Técnica</h4>
@@ -270,12 +270,14 @@ export default function Evidencia1() {
                             data-tl-i={String(i + 1).padStart(2, "0")}
                         >
                             <span className="tl2-dot" aria-hidden="true" />
-                            <div className="tl2-head">
-                                <div className="timeline-year">{entry[0]}</div>
-                                <span className="tl2-index">{String(i + 1).padStart(2, "0")}</span>
+                            <div className="tl2-card">
+                                <div className="tl2-head">
+                                    <div className="timeline-year">{entry[0]}</div>
+                                    <span className="tl2-index">{String(i + 1).padStart(2, "0")}</span>
+                                </div>
+                                <div className="timeline-name">{entry[1]}</div>
+                                <p className="timeline-desc">{entry[2]}</p>
                             </div>
-                            <div className="timeline-name">{entry[1]}</div>
-                            <p className="timeline-desc">{entry[2]}</p>
                         </article>
                     ))}
                 </div>

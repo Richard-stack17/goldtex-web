@@ -189,9 +189,9 @@ export default function MirrorVault() {
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
       >
-        {/* CARRIER TRASERO: Empuja los 12 espejos y su reflejo al fondo (Z negativo) para que nunca tapen la imagen principal */}
-        <div className="mirror-vault-backdrop-carrier">
-          {/* 1. Anillo Curvo 3D de 12 Espejos Flotantes */}
+        {/* CAPA 1: FONDO 3D DE ESPEJOS (z-index: 10, estrictamente en el fondo detrás de la imagen) */}
+        <div className="mirror-vault-3d-backdrop" aria-hidden="false">
+          {/* Anillo Curvo 3D de 12 Espejos Flotantes */}
           <div className="mirror-vault-ring" ref={ringRef}>
             {MIRROR_ITEMS.map((item, i) => {
               const angle = i * 30; // 12 espejos * 30deg = 360deg
@@ -200,7 +200,7 @@ export default function MirrorVault() {
                   key={item.src + i}
                   className="mirror-pane"
                   style={{
-                    transform: `rotateY(${angle}deg) translateZ(520px)`,
+                    transform: `rotateY(${angle}deg) translateZ(580px)`,
                   }}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -218,7 +218,7 @@ export default function MirrorVault() {
             })}
           </div>
 
-          {/* 2. Suelo Reflectante con Espejo Invertido */}
+          {/* Suelo Reflectante con Espejo Invertido */}
           <div className="mirror-vault-reflection-ring" ref={reflectionRingRef} aria-hidden="true">
             {MIRROR_ITEMS.map((item, i) => {
               const angle = i * 30;
@@ -227,7 +227,7 @@ export default function MirrorVault() {
                   key={"ref-" + item.src + i}
                   className="mirror-pane"
                   style={{
-                    transform: `rotateY(${angle}deg) translateZ(520px)`,
+                    transform: `rotateY(${angle}deg) translateZ(580px)`,
                   }}
                 >
                   <img src={item.src} alt="" />
@@ -236,42 +236,38 @@ export default function MirrorVault() {
               );
             })}
           </div>
+
+          {/* Plano base del suelo reflectante */}
+          <div className="mirror-vault-floor" aria-hidden="true"></div>
         </div>
 
-        {/* 3. TARJETA MAESTRA CENTRAL: LA IMAGEN PRINCIPAL EN PRIMER PLANO DESTACADO */}
-        <div className="mirror-master-card" data-tilt data-tilt-max="5">
-          <div className="master-card-frame">
-            {/* Imagen Principal de Evidencia 3 en Máxima Resolución */}
-            <img
-              src="/ev3_key_visual_master.png"
-              alt="Campaña Oficial Goldtex — La Decisión Segura"
-              className="master-card-base"
-            />
+        {/* CAPA 2: PRIMER PLANO DESTACADO (z-index: 50, LA IMAGEN PRINCIPAL TOTALMENTE DESPEJADA) */}
+        <div className="mirror-vault-hero-foreground">
+          <div className="mirror-master-card" data-tilt data-tilt-max="4">
+            <div className="master-card-frame">
+              {/* Imagen Principal de Evidencia 3 en Máxima Resolución */}
+              <img
+                src="/ev3_key_visual_master.png"
+                alt="Campaña Oficial Goldtex — La Decisión Segura"
+                className="master-card-base"
+              />
 
-            {/* Aura de Resplandor Oro & Esmeralda */}
-            <div className="master-card-ambient-glow" aria-hidden="true"></div>
-
-            {/* Sello Oficial Superior */}
-            <div className="master-card-top-tag">
-              <span className="master-tag-dot"></span>
-              <span>KEY VISUAL OFICIAL • PIEZA MAESTRA</span>
+              {/* Sello Oficial Superior */}
+              <div className="master-card-top-tag">
+                <span className="master-tag-dot"></span>
+                <span>KEY VISUAL OFICIAL • PIEZA MAESTRA</span>
+              </div>
             </div>
 
-            {/* Overlay Editorial Inferior */}
-            <div className="master-card-overlay">
-              <div className="master-overlay-text">
-                <span className="experience-tag" style={{ background: "rgba(241,183,52,0.95)", color: "#001a15", fontWeight: 700 }}>
-                  CAMPAÑA OFICIAL GOLDTEX
+            {/* Pedestal editorial inferior con controles */}
+            <div className="master-card-footer-bar">
+              <div className="master-footer-info">
+                <span className="master-footer-label">ESPEJO DE FONDO:</span>
+                <span className="master-footer-active">
+                  <strong>{selectedItem.title}</strong> — {selectedItem.tag}
                 </span>
-                <h3 className="master-card-title">La Decisión Segura</h3>
-                <p className="master-card-desc">
-                  “Una buena decisión es el inicio de un gran proyecto.”
-                </p>
-                <div className="master-card-subinfo">
-                  <span>Espejo de fondo activo: <strong>{selectedItem.title}</strong> — {selectedItem.tag}</span>
-                </div>
               </div>
-              <div className="master-card-actions">
+              <div className="master-footer-actions">
                 <button
                   type="button"
                   className="master-rotate-btn"
@@ -289,9 +285,6 @@ export default function MirrorVault() {
             </div>
           </div>
         </div>
-
-        {/* Plano base del suelo reflectante */}
-        <div className="mirror-vault-floor" aria-hidden="true"></div>
       </div>
     </section>
   );

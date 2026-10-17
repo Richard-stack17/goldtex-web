@@ -3,9 +3,10 @@ export default function Hero() {
   return (
     <>
         <section className="hero" id="hero-section">
-            {/*  Video de Fondo del Hero (Bucle continuo de hilos de seda sin texto)  */}
+            {/* Video de Fondo del Hero */}
             <video className="hero-video-bg" id="hero-bg-video" autoPlay muted loop playsInline preload="auto">
-                <source src="/Green_silk_threads_and_gold_20261014210923.mp4" type="video/mp4" />
+                <source src="/portada%20hero.mp4" type="video/mp4" />
+                <source src="/portada_hero.mp4" type="video/mp4" />
                 <source src="/heroe_video.mp4" type="video/mp4" />
             </video>
             <div className="hero-video-overlay"></div>

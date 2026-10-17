@@ -1,9 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function KeyVisualSpatialDiorama() {
-  const [activeFocal, setActiveFocal] = useState<"center" | "left" | "right">("center");
+  const [activeFocal, setActiveFocal] = useState<"center" | "left" | "right" | "all">("center");
+  const [lightboxImage, setLightboxImage] = useState<{
+    src: string;
+    title: string;
+    subtitle: string;
+    format?: string;
+  } | null>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxImage(null);
+    };
+    if (lightboxImage) {
+      window.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
+    }
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [lightboxImage]);
 
   return (
     <div className="spatial-diorama-container" id="key-visual-diorama">
@@ -24,7 +44,43 @@ export default function KeyVisualSpatialDiorama() {
         </p>
       </div>
 
-      {/* ================= 2. SPATIAL 3D IMMERSIVE GALLERY (LA IMAGEN DEL USUARIO) ================= */}
+      {/* Selector de Perspectivas / Focal Modes */}
+      <div className="diorama-perspective-nav">
+        <button
+          type="button"
+          className={`perspective-pill-btn ${activeFocal === "center" ? "is-active" : ""}`}
+          onClick={() => setActiveFocal("center")}
+        >
+          <span className="pill-dot"></span>
+          ★ Master Key Visual Panorámico 4K
+        </button>
+        <button
+          type="button"
+          className={`perspective-pill-btn ${activeFocal === "left" ? "is-active" : ""}`}
+          onClick={() => setActiveFocal("left")}
+        >
+          <span className="pill-dot"></span>
+          ✦ Perspectiva I: Vuelo Textil Atelier
+        </button>
+        <button
+          type="button"
+          className={`perspective-pill-btn ${activeFocal === "right" ? "is-active" : ""}`}
+          onClick={() => setActiveFocal("right")}
+        >
+          <span className="pill-dot"></span>
+          ✦ Perspectiva II: Showroom Living
+        </button>
+        <button
+          type="button"
+          className={`perspective-pill-btn ${activeFocal === "all" ? "is-active" : ""}`}
+          onClick={() => setActiveFocal("all")}
+        >
+          <span className="pill-dot"></span>
+          👁 Vista Tríptico Completo (3 Planos)
+        </button>
+      </div>
+
+      {/* ================= 2. SPATIAL 3D IMMERSIVE GALLERY (IMÁGENES COMPLETAS) ================= */}
       <div className="diorama-stage-wrapper">
         {/* Marca de Agua Tipográfica Monumental detrás de las imágenes */}
         <div className="diorama-backdrop-watermark" aria-hidden="true">
@@ -33,49 +89,61 @@ export default function KeyVisualSpatialDiorama() {
         </div>
 
         {/* Galería Curva en 3 Capas de Profundidad */}
-        <div className="diorama-layers-track">
+        <div className={`diorama-layers-track mode-${activeFocal}`}>
           {/* Capa Izquierda Flotante: -150px de profundidad */}
           <div
-            className={`diorama-side-layer layer-left ${activeFocal === "left" ? "is-focal" : ""}`}
+            className={`diorama-side-layer layer-left ${activeFocal === "left" ? "is-focal" : activeFocal === "all" ? "is-spread" : ""}`}
             onClick={() => setActiveFocal("left")}
             title="Ver perspectiva Atelier"
           >
             <div className="layer-frame">
               <img
                 src="/key_visual_2.png"
-                alt="Goldtex Fabric Detail Perspective"
+                alt="Goldtex Fabric Detail Perspective — Sillón botánico y vuelo textil"
                 className="layer-img"
               />
-              <div className="layer-gradient-overlay"></div>
+              <button
+                type="button"
+                className="layer-lightbox-trigger"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setLightboxImage({
+                    src: "/key_visual_2.png",
+                    title: "Perspectiva 01 — Vuelo Textil & Tapicería",
+                    subtitle: "Estudio de tapicería botánica, monstera y textiles decorativos Goldtex (600 × 750 px)",
+                    format: "Perspectiva Atelier",
+                  });
+                }}
+                title="Ver imagen completa en alta definición"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <polyline points="9 21 3 21 3 15"></polyline>
+                  <line x1="21" y1="3" x2="14" y2="10"></line>
+                  <line x1="3" y1="21" x2="10" y2="14"></line>
+                </svg>
+              </button>
             </div>
             <div className="layer-depth-badge badge-left">
               DEPTH LAYER: -150PX • VUELO TEXTIL
             </div>
           </div>
 
-          {/* COMPOSICIÓN CENTRAL HERO: Focal Depth 0.00 */}
+          {/* COMPOSICIÓN CENTRAL HERO: Formato Panorámico Completo Sin Recorte */}
           <div
-            className={`diorama-hero-card ${activeFocal === "center" ? "is-focal" : ""}`}
+            className={`diorama-hero-card ${activeFocal === "center" ? "is-focal" : activeFocal === "all" ? "is-spread" : ""}`}
             onClick={() => setActiveFocal("center")}
           >
             {/* Anillos de Resplandor Oro y Esmeralda */}
             <div className="hero-glow-aura" aria-hidden="true"></div>
 
-            {/* Píldora Superior Derecha: Telemetría Espacial */}
-            <div className="hero-focal-pill">
-              FOCAL DEPTH: 0.00 (CENTRAL HERO)
-            </div>
-
-            {/* Marco Estructural Editorial */}
+            {/* Marco Estructural Editorial con Aspect Ratio Panorámico 2279:1458 */}
             <div className="hero-frame">
               <img
                 src="/ev3_key_visual_master.png"
-                alt="Master Key Visual 4K — La Decisión Segura"
+                alt="Master Key Visual 4K — La Decisión Segura (Goldtex Telas que Inspiran)"
                 className="hero-main-img"
               />
-
-              {/* Degradado Cinematográfico */}
-              <div className="hero-img-overlay" aria-hidden="true"></div>
 
               {/* Badge Superior Izquierdo */}
               <div className="hero-master-badge">
@@ -83,18 +151,52 @@ export default function KeyVisualSpatialDiorama() {
                 <span>CAMPAIGN KEY VISUAL • MASTER SHOT</span>
               </div>
 
-              {/* Contenido Editorial Inferior */}
-              <div className="hero-footer-content">
-                <div>
-                  <span className="hero-kicker-label">CAMPAÑA CENTRAL</span>
-                  <h3 className="hero-display-title">La Decisión Segura</h3>
-                  <p className="hero-caption-text">
-                    “Una buena decisión es el inicio de un gran proyecto.” Dirección de arte y composición publicitaria oficial Goldtex.
-                  </p>
+              {/* Badge Superior Derecho: Telemetría Espacial */}
+              <div className="hero-focal-pill">
+                FOCAL DEPTH: 0.00 • 2279 × 1458 PX
+              </div>
+            </div>
+
+            {/* Placa Editorial Consola debajo del Marco (No tapa la imagen) */}
+            <div className="hero-editorial-plaque">
+              <div className="plaque-col-info">
+                <div className="plaque-tag">
+                  <span className="badge-gold-dot"></span>
+                  <span>COMPOSICIÓN PUBLICITARIA MAESTRA • DIRECCIÓN DE ARTE GOLDTEX</span>
                 </div>
-                <div className="hero-project-year">
-                  PROYECTO GAMARRA 2024
+                <h3 className="plaque-headline">La Decisión Segura</h3>
+                <p className="plaque-narrative">
+                  “Una buena decisión es el inicio de un gran proyecto.” La diseñadora en su taller rodeada de rollos nobles en Verde Institucional (#083E35) y Oro Papaya (#F1B734).
+                </p>
+              </div>
+
+              <div className="plaque-col-actions">
+                <div className="plaque-meta-item">
+                  <span className="meta-label">ENCUADRE PANORÁMICO</span>
+                  <span className="meta-val">100% VISIBLE • 4K</span>
                 </div>
+                <button
+                  type="button"
+                  className="plaque-expand-btn"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setLightboxImage({
+                      src: "/ev3_key_visual_master.png",
+                      title: "Master Key Visual 4K — La Decisión Segura",
+                      subtitle: "Composición publicitaria maestra Goldtex • Resolución nativa 2279 × 1458 px sin recorte",
+                      format: "Master Key Visual 4K",
+                    });
+                  }}
+                  title="Ver imagen completa en pantalla completa"
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <polyline points="9 21 3 21 3 15"></polyline>
+                    <line x1="21" y1="3" x2="14" y2="10"></line>
+                    <line x1="3" y1="21" x2="10" y2="14"></line>
+                  </svg>
+                  <span>Ver Completa (4K)</span>
+                </button>
               </div>
             </div>
 
@@ -103,7 +205,8 @@ export default function KeyVisualSpatialDiorama() {
               <div className="orb-glass-inner">
                 <span>
                   TELA EN MOVIMIENTO<br />
-                  • SALIDA DE PLANO 3D •
+                  • SALIDA DE PLANO 3D •<br />
+                  <small style={{ color: "#ffffff", opacity: 0.75 }}>GAMARRA 2024</small>
                 </span>
               </div>
             </div>
@@ -111,17 +214,37 @@ export default function KeyVisualSpatialDiorama() {
 
           {/* Capa Derecha Flotante: +150px de profundidad */}
           <div
-            className={`diorama-side-layer layer-right ${activeFocal === "right" ? "is-focal" : ""}`}
+            className={`diorama-side-layer layer-right ${activeFocal === "right" ? "is-focal" : activeFocal === "all" ? "is-spread" : ""}`}
             onClick={() => setActiveFocal("right")}
             title="Ver perspectiva Showroom"
           >
             <div className="layer-frame">
               <img
                 src="/key_visual.png"
-                alt="Showroom Goldtex Key Visual"
+                alt="Showroom Goldtex Key Visual — Atelier View y modelo saltando en traje floral"
                 className="layer-img"
               />
-              <div className="layer-gradient-overlay"></div>
+              <button
+                type="button"
+                className="layer-lightbox-trigger"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setLightboxImage({
+                    src: "/key_visual.png",
+                    title: "Perspectiva 02 — Showroom & Movimiento",
+                    subtitle: "Dirección de arte de sastrería y aplicación residencial en alta definición (600 × 750 px)",
+                    format: "Showroom Living",
+                  });
+                }}
+                title="Ver imagen completa en alta definición"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <polyline points="9 21 3 21 3 15"></polyline>
+                  <line x1="21" y1="3" x2="14" y2="10"></line>
+                  <line x1="3" y1="21" x2="10" y2="14"></line>
+                </svg>
+              </button>
             </div>
             <div className="layer-depth-badge badge-right">
               DEPTH LAYER: +150PX • ATELIER VIEW
@@ -235,9 +358,29 @@ export default function KeyVisualSpatialDiorama() {
             <div className="genesis-img-box">
               <img
                 src="/boceto_campana.png"
-                alt="Boceto conceptual a mano alzada"
+                alt="Boceto conceptual a mano alzada — Fachada Goldtex y silueta"
                 className="genesis-img"
               />
+              <button
+                type="button"
+                className="layer-lightbox-trigger"
+                onClick={() => {
+                  setLightboxImage({
+                    src: "/boceto_campana.png",
+                    title: "Fase 01 — Boceto Conceptual a Mano Alzada",
+                    subtitle: "Estudio de perspectiva: umbral de entrada de Goldtex y la silueta del comprador (745 × 1024 px)",
+                    format: "Boceto de Taller",
+                  });
+                }}
+                title="Ver boceto completo"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <polyline points="9 21 3 21 3 15"></polyline>
+                  <line x1="21" y1="3" x2="14" y2="10"></line>
+                  <line x1="3" y1="21" x2="10" y2="14"></line>
+                </svg>
+              </button>
             </div>
             <div className="genesis-card-caption">
               <span className="quote-italic">“La tela no cae; la tela danza.”</span>
@@ -251,18 +394,34 @@ export default function KeyVisualSpatialDiorama() {
           <div className="genesis-card genesis-card--highlight">
             <div className="genesis-card-top">
               <span className="genesis-tag-gold font-bold">FASE 02 • CAMPAÑA OFICIAL</span>
-              <span className="genesis-tag-gold">Master Key Visual 4K</span>
+              <span className="genesis-tag-gold">Master Key Visual Fachada</span>
             </div>
             <div className="genesis-img-box">
               <img
                 src="/la_decision_segura.png"
-                alt="Master Key Visual 4K — La Decisión Segura"
+                alt="Master Key Visual 4K — La Decisión Segura Fachada"
                 className="genesis-img"
               />
-              <div className="genesis-img-badge">
-                <strong>GOLDTEX • TELAS QUE INSPIRAN</strong>
-                <p>Una buena tela es el inicio de un gran proyecto.</p>
-              </div>
+              <button
+                type="button"
+                className="layer-lightbox-trigger"
+                onClick={() => {
+                  setLightboxImage({
+                    src: "/la_decision_segura.png",
+                    title: "Fase 02 — Campaña Oficial: Fachada La Decisión Segura",
+                    subtitle: "Render final concluido con iluminación dorada volumétrica sobre el frontis Verde Institucional (1024 × 672 px)",
+                    format: "Render Oficial",
+                  });
+                }}
+                title="Ver render completo"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <polyline points="9 21 3 21 3 15"></polyline>
+                  <line x1="21" y1="3" x2="14" y2="10"></line>
+                  <line x1="3" y1="21" x2="10" y2="14"></line>
+                </svg>
+              </button>
             </div>
             <div className="genesis-card-caption">
               <span className="quote-italic" style={{ color: "var(--white-chalk)" }}>
@@ -275,6 +434,54 @@ export default function KeyVisualSpatialDiorama() {
           </div>
         </div>
       </div>
+
+      {/* ================= 5. LIGHTBOX MODAL: VISUALIZACIÓN EN ALTA DEFINICIÓN 100% COMPLETA ================= */}
+      {lightboxImage && (
+        <div
+          className="diorama-lightbox-backdrop"
+          onClick={() => setLightboxImage(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div className="diorama-lightbox-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="lightbox-header">
+              <div>
+                {lightboxImage.format && (
+                  <span className="lightbox-tag">{lightboxImage.format}</span>
+                )}
+                <h4 className="lightbox-title">{lightboxImage.title}</h4>
+                <p className="lightbox-subtitle">{lightboxImage.subtitle}</p>
+              </div>
+              <button
+                type="button"
+                className="lightbox-close-btn"
+                onClick={() => setLightboxImage(null)}
+                aria-label="Cerrar vista completa"
+              >
+                ✕
+              </button>
+            </div>
+            <div className="lightbox-img-wrapper">
+              <img
+                src={lightboxImage.src}
+                alt={lightboxImage.title}
+                className="lightbox-full-img"
+              />
+            </div>
+            <div className="lightbox-footer">
+              <span className="lightbox-spec">VISUALIZACIÓN COMPLETA 100% SIN RECORTE • ARTE ORIGINAL GOLDTEX</span>
+              <button
+                type="button"
+                className="lightbox-action-btn"
+                onClick={() => window.open(lightboxImage.src, "_blank")}
+              >
+                Abrir imagen original en nueva pestaña ↗
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
+

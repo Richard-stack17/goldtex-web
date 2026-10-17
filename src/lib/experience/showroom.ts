@@ -945,9 +945,10 @@ export function initShowroomExperience(): ShowroomHandle {
             }, 1100);
         }
 
-        // Reproducir video del Hero sincronizado
-        const heroVideo = document.getElementById('hero-bg-video');
-        if (heroVideo && heroVideo.paused) {
+        // Reproducir video del Hero sincronizado desde el inicio al abrir la portada
+        const heroVideo = document.getElementById('hero-bg-video') as HTMLVideoElement | null;
+        if (heroVideo) {
+            heroVideo.currentTime = 0;
             heroVideo.play().catch(() => {});
         }
 

@@ -97,30 +97,54 @@ export function initPremiumExperience(): PremiumHandle {
             scrub: 1.2,
             pin: true,
             anticipatePin: 1,
+            // #historia es display:flex → ScrollTrigger DESACTIVA pinSpacing
+            // automáticamente en padres flex (heurística de GSAP). Sin esto el
+            // spacer queda en 0px y la sección siguiente se desliza DEBAJO del
+            // timeline pineado (se veía la línea "rota"). Forzamos el espaciado.
+            pinSpacing: true,
             invalidateOnRefresh: true,
             onUpdate: (self) => applyStep(self.progress),
           },
         });
-        // nodos despiertan en cascada mientras el rail avanza
-        tl.fromTo(
-          nodes,
-          { autoAlpha: 0.22, y: 26 },
-          { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.62, ease: "power1.out" },
-          0,
-        );
+        // escenario de foco único: solo el hito actual ocupa el centro.
+        // Entra con elevación; el anterior se retira hacia arriba.
+        // Los dots (fuera de .tl2-card) permanecen siempre visibles.
+        const cards = nodes.map((nd) => nd.querySelector<HTMLElement>(".tl2-card"));
+        const step = 0.62;
+        cards.forEach((card, i) => {
+          if (!card) return;
+          tl.fromTo(
+            card,
+            { autoAlpha: 0, y: 42 },
+            { autoAlpha: 1, y: 0, duration: 0.5, ease: "power2.out" },
+            i * step,
+          );
+          if (i > 0) {
+            tl.to(cards[i - 1], {
+              autoAlpha: 0,
+              y: -34,
+              duration: 0.36,
+              ease: "power1.in",
+            }, i * step - 0.1);
+          }
+        });
         tl.to(
           fill,
-          { scaleX: 1, duration: Math.max(0.5, nodes.length * 0.62), ease: "none" },
+          { scaleX: 1, duration: Math.max(0.5, nodes.length * step), ease: "none" },
           0,
         );
         if (ghost) {
           tl.fromTo(
             ghost,
             { y: -18, opacity: 0.3 },
-            { y: 16, opacity: 0.75, duration: Math.max(0.5, nodes.length * 0.62), ease: "none" },
+            { y: 16, opacity: 0.75, duration: Math.max(0.5, nodes.length * step), ease: "none" },
             0,
           );
         }
+        // estado inicial legible antes del primer scrub
+        nodes[0]?.classList.add("is-active");
+        if (ghost && years[0]) ghost.textContent = years[0];
+        if (cards[0]) gsap.set(cards[0], { autoAlpha: 1, y: 0 });
         return () => {
           tl.scrollTrigger?.kill();
           tl.kill();

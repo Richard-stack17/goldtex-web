@@ -41,19 +41,6 @@ function Carousel({ id, label, slides }: { id: string; label: string; slides: Sl
   );
 }
 
-const tiktok: Slide[] = [
-  { src: `${BASE}/ev4_tiktok_01.png`, tag: "TikTok · Pieza 01", title: "Perfil GOLDTEX en TikTok", text: "Presencia vertical de la marca con la identidad cromática verde institucional y dorado." },
-  { src: `${BASE}/ev4_tiktok_02.png`, tag: "TikTok · Pieza 02", title: "Contenido de Campaña", text: "Formato corto 9:16 que comunica el mensaje: una buena tela es el inicio de un gran proyecto." },
-  { src: `${BASE}/ev4_tiktok_03.png`, tag: "TikTok · Pieza 03", title: "Pieza Vertical", text: "Aplicación de tipografía Times New Roman y Cantarell sobre contenido audiovisual." },
-];
-
-const instagram: Slide[] = [
-  { src: `${BASE}/ev4_instagram_01.png`, tag: "Instagram · Pieza 01", title: "Perfil GOLDTEX en Instagram", text: "Feed coherente con la paleta y los recursos gráficos del manual de marca." },
-  { src: `${BASE}/ev4_instagram_02.png`, tag: "Instagram · Pieza 02", title: "Post de Campaña", text: "Publicación cuadrada 1:1 bajo el concepto “La decisión segura”." },
-  { src: `${BASE}/ev4_instagram_03.png`, tag: "Instagram · Pieza 03", title: "Historia", text: "Story vertical para generar interacción y tráfico hacia la tienda en Gamarra." },
-  { src: `${BASE}/ev4_instagram_04.jpeg`, tag: "Instagram · Pieza 04", title: "Banner Panorámico", text: "Pieza horizontal de portada que unifica telas, marca y mensaje." },
-];
-
 const calle: Slide[] = [
   { src: `${BASE}/ev4_calle_01.png`, tag: "Vía pública · Pieza 01", title: "Panel Publicitario", text: "Valla de gran formato para el emporio comercial de Gamarra." },
   { src: `${BASE}/ev4_calle_02.png`, tag: "Vía pública · Pieza 02", title: "Mockup Urbano", text: "Aplicación de la campaña en el entorno urbano para reforzar el reconocimiento de marca." },
@@ -82,61 +69,164 @@ export default function Evidencia4() {
       </div>
 
       <section className="section-block" id="ev4-contexto">
-        <img src={`${BASE}/ev4_portada_logo.png`} alt="Logotipo GOLDTEX — Telas que inspiran"
-          style={{ maxWidth: "340px", width: "100%", margin: "0 auto 2rem", display: "block" }} />
+        <div className="ev4-logo-badge">
+          <img
+            src={`${BASE}/ev4_portada_logo.png`}
+            alt="Logotipo GOLDTEX — Telas que inspiran"
+          />
+        </div>
         <p className="section-kicker">Concepto de Campaña</p>
         <h2 className="section-title-xl">Una buena tela es el inicio de un gran proyecto</h2>
+
         <div className="ev4-eco-grid">
-          {pillars.map((p, i) => (
-            <article key={p.k}
-              className={`ev4-eco-card ev4-eco-${i === 0 ? "somos" : i === 1 ? "problema" : "solucion"} reveal-card`}>
-              <span className="ev4-eco-idx">0{i + 1}</span>
-              {i === 2 && <span className="ev4-eco-ghost" aria-hidden="true">03</span>}
-              <div className="ev4-eco-head">
-                <span className="ev4-eco-icon" aria-hidden="true">
-                  {i === 0 ? (
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
-                  ) : i === 1 ? (
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></svg>
-                  ) : (
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" /></svg>
-                  )}
-                </span>
-                <span className="experience-tag">{p.k}</span>
+          {/* 01: ¿QUIÉNES SOMOS? */}
+          <article className="ev4-eco-card ev4-eco--somos reveal-card">
+            <span className="ev4-eco-idx">01</span>
+            <div className="ev4-eco-head">
+              <span className="ev4-eco-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              </span>
+              <span className="experience-tag">¿Quiénes somos?</span>
+            </div>
+
+            <div className="ev4-eco-body">
+              <div className="ev4-eco-content">
+                <p className="ev4-eco-lead">
+                  Empresa de comercialización de telas en el emporio comercial de Gamarra, atendiendo a clientes mayoristas y minoristas con productos de calidad.
+                </p>
+                <ul className="ev4-eco-bullets">
+                  <li>
+                    <span className="bullet-dot" />
+                    <span><strong>Atención Integral:</strong> Venta por mayor y menor para diseñadores y confeccionistas.</span>
+                  </li>
+                  <li>
+                    <span className="bullet-dot" />
+                    <span><strong>Presencia en Gamarra:</strong> Ubicación estratégica en el principal polo textil del Perú.</span>
+                  </li>
+                  <li>
+                    <span className="bullet-dot" />
+                    <span><strong>Surtido &amp; Calidad:</strong> Diversidad de texturas, caídas y colores para alta confección.</span>
+                  </li>
+                </ul>
               </div>
-              {i === 0 ? (
-                <div className="ev4-eco-body">
-                  <p>{p.v}</p>
-                  <figure className="ev4-eco-figure">
-                    {/* REGLA DE ORO: imagen completa, contain — nunca cover */}
-                    <img src="/chica.jpg" alt="Asesoría de telas en tienda Goldtex" loading="lazy" />
-                    <figcaption className="ev4-eco-figure-cap">Asesoría de telas en tienda · Gamarra</figcaption>
-                  </figure>
+
+              <figure className="ev4-eco-figure">
+                <div className="ev4-eco-img-wrap">
+                  <img src="/chica.jpg" alt="Asesoría de telas en tienda Goldtex" loading="lazy" />
                 </div>
-              ) : (
-                <p>{p.v}</p>
-              )}
-            </article>
-          ))}
+                <figcaption className="ev4-eco-figure-cap">
+                  Asesoría de telas en tienda · Gamarra
+                </figcaption>
+              </figure>
+            </div>
+          </article>
+
+          {/* 02: PROBLEMA */}
+          <article className="ev4-eco-card ev4-eco--problema reveal-card">
+            <span className="ev4-eco-idx">02</span>
+            <div className="ev4-eco-head">
+              <span className="ev4-eco-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <circle cx="12" cy="12" r="6" />
+                  <circle cx="12" cy="12" r="2" />
+                </svg>
+              </span>
+              <span className="experience-tag">Problema</span>
+            </div>
+
+            <div className="ev4-eco-content">
+              <p className="ev4-eco-lead">
+                Falta de una identidad visual corporativa definida y coherente que la diferencie frente a la competencia.
+              </p>
+              <ul className="ev4-eco-bullets ev4-eco-bullets--problem">
+                <li>
+                  <span className="bullet-alert">⚠️</span>
+                  <span><strong>Sin sistema normativo:</strong> Presencia física en tienda pero sin lineamientos gráficos unificados.</span>
+                </li>
+                <li>
+                  <span className="bullet-alert">⚠️</span>
+                  <span><strong>Baja diferenciación:</strong> Dificultad para destacar en la saturación comercial de Gamarra.</span>
+                </li>
+                <li>
+                  <span className="bullet-alert">⚠️</span>
+                  <span><strong>Percepción limitada:</strong> Restringe la consolidación de valor de marca y recordación del cliente.</span>
+                </li>
+              </ul>
+              <div className="ev4-eco-pill-row">
+                <span className="ev4-tag-pill">Sin manual normativo</span>
+                <span className="ev4-tag-pill">Dispersión visual</span>
+                <span className="ev4-tag-pill">Baja recordación</span>
+              </div>
+            </div>
+          </article>
+
+          {/* 03: SOLUCIÓN */}
+          <article className="ev4-eco-card ev4-eco--solucion reveal-card">
+            <span className="ev4-eco-idx">03</span>
+            <span className="ev4-eco-ghost" aria-hidden="true">03</span>
+            <div className="ev4-eco-head">
+              <span className="ev4-eco-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+                </svg>
+              </span>
+              <span className="experience-tag">Solución</span>
+            </div>
+
+            <div className="ev4-eco-content">
+              <p className="ev4-eco-lead">
+                Identidad visual integral: logotipo, paleta cromática, tipografía y recursos gráficos coherentes y profesionales.
+              </p>
+
+              <div className="ev4-solution-grid">
+                <div className="ev4-solution-mini">
+                  <div className="ev4-mini-top">
+                    <span className="ev4-mini-icon">🏛️</span>
+                    <h4>Logotipo &amp; Isotipo GT</h4>
+                  </div>
+                  <p>Monograma heráldico con serifa que transmite prestigio, trayectoria y solidez textil.</p>
+                </div>
+
+                <div className="ev4-solution-mini">
+                  <div className="ev4-mini-top">
+                    <span className="ev4-mini-icon">🎨</span>
+                    <h4>Paleta Institucional</h4>
+                  </div>
+                  <p>Verde Institucional (#083E35) y Oro Papaya (#F1B734), equilibrio de lujo y tradición.</p>
+                </div>
+
+                <div className="ev4-solution-mini">
+                  <div className="ev4-mini-top">
+                    <span className="ev4-mini-icon">✒️</span>
+                    <h4>Tipografía de Marca</h4>
+                  </div>
+                  <p>Times New Roman para jerarquía editorial combinada con Cantarell para legibilidad moderna.</p>
+                </div>
+
+                <div className="ev4-solution-mini">
+                  <div className="ev4-mini-top">
+                    <span className="ev4-mini-icon">📐</span>
+                    <h4>Recursos Gráficos</h4>
+                  </div>
+                  <p>Tramas textiles continuas, patrones geométricos y señalética coherente para retail y digital.</p>
+                </div>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
 
       {/* EFECTO 3: CELULAR 3D FLOTANTE, CINTA CONTINUA PASANTE Y BILLBOARD CALLEJERO CON LUCES LED */}
       <SpatialPhoneBillboard />
 
-      <section className="section-block" id="ev4-tiktok" style={{ marginTop: "4rem" }}>
-        <p className="section-kicker">Archivo de Campaña</p>
-        <h2 className="section-title-xl">Galería Detallada · TikTok</h2>
-        <Carousel id="carousel-ev4-tiktok" label="Piezas de TikTok" slides={tiktok} />
-      </section>
-
-      <section className="section-block" id="ev4-instagram">
-        <p className="section-kicker">Archivo de Campaña</p>
-        <h2 className="section-title-xl">Galería Detallada · Instagram</h2>
-        <Carousel id="carousel-ev4-instagram" label="Piezas de Instagram" slides={instagram} />
-      </section>
-
-      <section className="section-block" id="ev4-calle">
+      <section className="section-block" id="ev4-calle" style={{ marginTop: "4rem" }}>
         <p className="section-kicker">Archivo de Campaña</p>
         <h2 className="section-title-xl">Galería Detallada · Vía Pública</h2>
         <Carousel id="carousel-ev4-calle" label="Publicidad exterior" slides={calle} />
