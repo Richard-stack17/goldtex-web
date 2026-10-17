@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth bg-[#010806] text-[#F4F3F3]" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GOLDTEX — La Decisión Segura | Digital Campaign Case Study</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&amp;family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#010806',
+            brunswick: '#083E35',
+            'brunswick-dark': '#041d19',
+            'brunswick-light': '#0c5c4f',
+            papaya: '#F1B734',
+            'papaya-glow': '#ffd166',
+            chalk: '#F4F3F3',
+            'chalk-dim': '#a1aba8',
+          },
+          fontFamily: {
+            serif: ['Cinzel', 'Playfair Display', 'serif'],
+            editorial: ['Playfair Display', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          backgroundImage: {
+            'emerald-radial': 'radial-gradient(circle at 50% 40%, rgba(8, 62, 53, 0.45) 0%, rgba(1, 8, 6, 0.95) 75%, #010806 100%)',
+            'gold-gradient': 'linear-gradient(135deg, #F1B734 0%, #D89C1D 50%, #FFE599 100%)',
+            'subtle-grain': 'radial-gradient(rgba(241, 183, 52, 0.03) 1px, transparent 0)',
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Custom styling for luxury typography & smooth subtle interactions */
+    ::selection {
+      background-color: #F1B734;
+      color: #010806;
+    }
+    .text-gold-gradient {
+      background: linear-gradient(135deg, #FFF1CE 0%, #F1B734 50%, #D89C1D 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .text-emerald-gold {
+      background: linear-gradient(180deg, #F4F3F3 0%, #a2c4bc 60%, #F1B734 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .border-gold-subtle {
+      border-color: rgba(241, 183, 52, 0.22);
+    }
+    .border-emerald-subtle {
+      border-color: rgba(8, 62, 53, 0.4);
+    }
+    .glow-gold {
+      box-shadow: 0 0 35px -5px rgba(241, 183, 52, 0.25);
+    }
+    .glow-emerald {
+      box-shadow: 0 0 60px 10px rgba(8, 62, 53, 0.35);
+    }
+    .silk-noise {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.025'/%3E%3C/svg%3E");
+    }
+    /* Hide scrollbar for clean luxury horizontal scroll panels */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(0.8deg); }
+    }
+    .animate-float-slow {
+      animation: floatSlow 8s ease-in-out infinite;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.25; filter: blur(30px); }
+      50% { opacity: 0.45; filter: blur(45px); }
+    }
+    .animate-glow {
+      animation: pulseGlow 6s ease-in-out infinite;
+    }
+
+    /* Custom Needle Cursor Aura */
+    @media (pointer: fine) {
+      body.custom-needle-active,
+      body.custom-needle-active a,
+      body.custom-needle-active button {
+        cursor: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-obsidian text-chalk font-sans silk-noise overflow-x-hidden selection:bg-papaya selection:text-obsidian antialiased custom-needle-active">
+<!-- ==================== IMMERSIVE HAUTE COUTURE GOLDEN THREAD OVERLAY ==================== -->
+<canvas class="pointer-events-none fixed inset-0 z-[60] w-full h-full" id="golden-thread-canvas"></canvas>
+<!-- ==================== FIXED ULTRA-REFINED HEADER ==================== -->
+<header class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-[#010806]/75 border-b border-white/[0.06] transition-all duration-500">
+<div class="max-w-[1720px] mx-auto px-8 lg:px-14 h-24 flex items-center justify-between">
+<!-- Brand Logotype -->
+<a class="group flex items-center gap-4" href="#hero">
+<div class="relative w-7 h-7 flex items-center justify-center">
+<div class="absolute inset-0 border border-papaya/50 rotate-45 group-hover:rotate-90 transition-transform duration-700"></div>
+<div class="w-2.5 h-2.5 bg-papaya rotate-45"></div>
+</div>
+<div class="flex flex-col">
+<span class="font-serif tracking-[0.35em] text-lg font-bold text-chalk group-hover:text-papaya transition-colors">GOLDTEX</span>
+<span class="font-sans text-[8px] uppercase tracking-[0.45em] text-chalk-dim -mt-1">Telas Que Inspiran</span>
+</div>
+</a>
+<!-- Case Study Meta Badge -->
+<div class="hidden xl:flex items-center gap-4 text-xs font-mono tracking-widest text-chalk-dim/70">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-papaya animate-pulse"></span>
+<span>CAMPAIGN CASE STUDY • PERÚ 2024–2026</span>
+<span class="text-white/20">/</span>
+<span class="text-papaya font-serif italic text-xs tracking-wider">La Decisión Segura</span>
+</div>
+<!-- Chapter Navigation -->
+<nav class="flex items-center gap-1 sm:gap-2 lg:gap-7 text-xs uppercase tracking-[0.22em] font-medium">
+<a class="hidden md:inline-block px-3 py-1.5 text-chalk-dim hover:text-papaya transition-colors" href="#hero">Inicio</a>
+<a class="px-3 py-1.5 text-chalk-dim hover:text-papaya transition-colors" href="#evidencia-01"><span class="text-papaya/60 font-mono text-[10px] mr-1">01</span>Investigación</a>
+<a class="px-3 py-1.5 text-chalk-dim hover:text-papaya transition-colors" href="#evidencia-02"><span class="text-papaya/60 font-mono text-[10px] mr-1">02</span>Estrategia</a>
+<a class="px-3 py-1.5 text-chalk-dim hover:text-papaya transition-colors" href="#evidencia-03"><span class="text-papaya/60 font-mono text-[10px] mr-1">03</span>Key Visual</a>
+<a class="px-3 py-1.5 text-chalk-dim hover:text-papaya transition-colors" href="#evidencia-04"><span class="text-papaya/60 font-mono text-[10px] mr-1">04</span>Ecosistema</a>
+<!-- Interactive tactile trigger CTA -->
+<a class="ml-3 hidden sm:flex items-center gap-2 border border-papaya/40 hover:border-papaya px-4 py-2 rounded-full text-[10px] font-mono tracking-widest text-papaya hover:bg-papaya/10 transition-all" href="#experiencia-tactil">
+<svg class="w-3.5 h-3.5 text-papaya" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+<span>TOCAR LA TELA</span>
+</a>
+</nav>
+</div>
+</header>
+<!-- ==================== SCREEN 1: CINEMATIC INTRO / HERO ==================== -->
+<section class="relative min-h-screen w-full flex flex-col justify-between pt-24 pb-14 overflow-hidden bg-emerald-radial" id="hero">
+<!-- Background Atmospheric Lighting & Silk Visual References -->
+<div class="absolute inset-0 pointer-events-none z-0">
+<div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[550px] bg-brunswick/50 rounded-full blur-[140px] animate-glow"></div>
+<div class="absolute bottom-10 right-10 w-[450px] h-[350px] bg-papaya/10 rounded-full blur-[120px]"></div>
+<!-- Subtly layered hero banner visual -->
+<div class="absolute inset-0 opacity-30 mix-blend-screen scale-105 filter blur-[0.5px]">
+<img alt="Goldtex Campaign Silk Dancer Background" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxO7LoHU9udi6ZqpB7bSh9CzeP364Da-sXbiO_n8fWHm8xQndRBL4Bny31eVgyDi2ZXXyLoJ1J3qWuuMN8V7bdPaz0eM4U_CQuCcUpCCPx9Hi9nL_o6OSVuxvmM4Uy_fZedTcHhgdraFnpuMpKa_7Y5_JtzEP-26VGbJ66N9pnULW55ndtRqFkjnzlxeIRt9K2fNVwm0AUCQioF3xv-fpnWw_B0dGTbfMfsroflFZFGpxI7bcuTRYZqvdzpUxo47IziwQ"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/70 to-transparent"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-obsidian via-transparent to-obsidian"></div>
+</div>
+<!-- Fine Grid & Coordinate Lines -->
+<div class="absolute inset-0 pointer-events-none z-0 opacity-15">
+<div class="w-full h-full max-w-[1720px] mx-auto grid grid-cols-12 border-x border-white/10">
+<div class="border-r border-white/5"></div>
+<div class="border-r border-white/5 col-span-2"></div>
+<div class="border-r border-white/5 col-span-6"></div>
+<div class="border-r border-white/5 col-span-2"></div>
+<div></div>
+</div>
+</div>
+<!-- Main Hero Stage -->
+<div class="relative z-10 max-w-[1720px] mx-auto px-8 lg:px-14 w-full my-auto py-12 flex flex-col items-center text-center">
+<!-- Curator & Metadata Intro tag -->
+<div class="inline-flex items-center gap-3 border border-papaya/30 bg-brunswick-dark/80 backdrop-blur-md px-5 py-2 rounded-full mb-8 shadow-2xl">
+<span class="w-2 h-2 rounded-full bg-papaya shadow-[0_0_8px_#F1B734]"></span>
+<span class="text-xs uppercase tracking-[0.3em] font-mono text-papaya">PERUVIAN HAUTE TEXTILE CAMPAIGN • ARCHIVE VOL. IV</span>
+</div>
+<!-- Monumental Headline -->
+<h1 class="font-serif font-black tracking-[-0.03em] uppercase leading-[0.88] text-chalk text-5xl sm:text-7xl md:text-8xl xl:text-[130px] max-w-6xl mx-auto drop-shadow-2xl">
+<span class="block text-transparent bg-clip-text bg-gradient-to-b from-white via-chalk to-chalk/70">LA DECISIÓN</span>
+<span class="block font-serif italic font-light tracking-[0.02em] text-gold-gradient mt-1">SEGURA</span>
+</h1>
+<!-- Editorial Subtitle -->
+<p class="mt-8 font-sans font-light text-base md:text-xl text-chalk-dim max-w-2xl leading-relaxed">
+        El viaje cinemático que redefine la excelencia textil en Perú. Un despliegue de 
+        <span class="text-white font-medium">investigación de mercado, alta costura en movimiento</span> y convicción comercial para los talleres y mayoristas de Gamarra.
+      </p>
+<!-- Tactile Interactive Pill Bar -->
+<div class="mt-12 flex flex-wrap items-center justify-center gap-4">
+<button class="group flex items-center gap-3 px-6 py-3 rounded-full bg-brunswick/70 hover:bg-brunswick border border-papaya/40 hover:border-papaya transition-all duration-300 backdrop-blur-md">
+<span class="w-2 h-2 rounded-full bg-papaya group-hover:scale-125 transition-transform"></span>
+<span class="text-xs font-mono uppercase tracking-[0.2em] text-chalk group-hover:text-papaya">Explorar Fibras</span>
+<span class="text-[10px] text-chalk-dim font-mono">01/04</span>
+</button>
+<button class="group flex items-center gap-3 px-6 py-3 rounded-full bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 hover:border-white/30 transition-all duration-300 backdrop-blur-md">
+<svg class="w-4 h-4 text-papaya" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+<span class="text-xs font-mono uppercase tracking-[0.2em] text-chalk">Tocar la Tela</span>
+<span class="text-[10px] text-papaya font-mono">Sensorial</span>
+</button>
+<button class="group flex items-center gap-3 px-6 py-3 rounded-full bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 hover:border-white/30 transition-all duration-300 backdrop-blur-md">
+<svg class="w-4 h-4 text-chalk-dim group-hover:text-papaya transition-colors" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+<span class="text-xs font-mono uppercase tracking-[0.2em] text-chalk">Arrastrar Rollo</span>
+<span class="text-[10px] text-chalk-dim font-mono">360°</span>
+</button>
+</div>
+</div>
+<!-- Hero Footer Status Bar -->
+<div class="relative z-10 max-w-[1720px] mx-auto px-8 lg:px-14 w-full flex flex-col md:flex-row items-center justify-between gap-6 pt-6 border-t border-white/[0.08]">
+<div class="flex items-center gap-6 text-[11px] font-mono tracking-widest text-chalk-dim">
+<span>BRAND: GOLDTEX S.A.C.</span>
+<span class="text-white/20">|</span>
+<span>CATEGORY: TEXTILE &amp; HAUTE WEAVING</span>
+<span class="text-white/20">|</span>
+<span>LOCATION: LIMA, PERÚ</span>
+</div>
+<!-- Refined Scroll Down Indicator -->
+<a class="group flex items-center gap-3 text-xs uppercase font-mono tracking-[0.25em] text-papaya hover:text-white transition-colors" href="#evidencia-01">
+<span>Descender a Evidencias</span>
+<div class="w-7 h-11 border border-papaya/50 rounded-full flex items-start justify-center p-1.5">
+<div class="w-1.5 h-2.5 bg-papaya rounded-full animate-bounce"></div>
+</div>
+</a>
+</div>
+</section>
+<!-- ==================== SCREEN 2: EVIDENCIA 01: INVESTIGACIÓN Y CONTEXTO ==================== -->
+<section class="relative py-32 border-t border-white/[0.06] bg-[#020d0a] overflow-hidden" id="evidencia-01">
+<!-- Editorial Watermark -->
+<div class="absolute top-12 right-6 lg:right-16 text-[180px] font-serif font-black text-white/[0.02] select-none pointer-events-none leading-none">
+      01
+    </div>
+<div class="max-w-[1720px] mx-auto px-8 lg:px-14 relative z-10">
+<!-- Chapter Section Header -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end pb-16 border-b border-white/[0.08]">
+<div class="lg:col-span-8">
+<div class="flex items-center gap-3 text-papaya font-mono text-xs uppercase tracking-[0.3em] mb-4">
+<span class="px-2 py-0.5 border border-papaya/40 rounded text-[10px]">CAPÍTULO 01</span>
+<span>• FUNDAMENTOS &amp; COMPRENSIÓN DEL MERCADO</span>
+</div>
+<h2 class="font-serif text-4xl sm:text-5xl lg:text-7xl font-bold uppercase tracking-tight text-chalk">
+            Investigación <br/>&amp; Contexto
+          </h2>
+</div>
+<div class="lg:col-span-4">
+<p class="font-sans text-chalk-dim text-sm sm:text-base leading-relaxed">
+            Comprender el pulso del emporio comercial textil más grande de Sudamérica: Gamarra. Análisis etnográfico de los talleres de confección, los mayoristas y el dolor de la tela defectuosa.
+          </p>
+</div>
+</div>
+<!-- Row 1: Who Goldtex Is & Audience Matrix -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 pt-16">
+<!-- Left: Who Goldtex Is -->
+<div class="lg:col-span-5 bg-gradient-to-b from-brunswick/30 to-transparent p-8 sm:p-12 border border-emerald-subtle rounded-2xl relative group">
+<div class="absolute top-0 right-0 w-24 h-24 bg-papaya/5 rounded-bl-full pointer-events-none"></div>
+<span class="text-xs font-mono uppercase tracking-[0.3em] text-papaya block mb-3">Identidad Corporativa</span>
+<h3 class="font-serif text-3xl text-chalk font-semibold mb-6">El Estándar Dorado en Telas Industriales</h3>
+<p class="text-chalk-dim text-sm leading-relaxed mb-6">
+            Goldtex no vende únicamente metros de tejido; provee la garantía técnica sobre la cual diseñadores, confeccionistas y marcas peruanas construyen su reputación. Con presencia directa en Gamarra y distribución a nivel nacional.
+          </p>
+<div class="grid grid-cols-2 gap-4 pt-6 border-t border-white/10">
+<div>
+<span class="font-serif text-3xl text-papaya font-bold block">100%</span>
+<span class="text-xs font-mono text-chalk-dim uppercase tracking-wider">Hilado Seleccionado</span>
+</div>
+<div>
+<span class="font-serif text-3xl text-chalk font-bold block">0%</span>
+<span class="text-xs font-mono text-chalk-dim uppercase tracking-wider">Margen de Deformación</span>
+</div>
+</div>
+</div>
+<!-- Right: Target Audiences (Wholesalers vs Entrepreneurs) -->
+<div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Wholesalers Card -->
+<div class="bg-white/[0.02] hover:bg-white/[0.04] p-8 border border-white/10 rounded-2xl transition-all duration-300">
+<div class="w-10 h-10 rounded-full border border-papaya/50 flex items-center justify-center text-papaya mb-6 font-mono text-sm">
+              01
+            </div>
+<h4 class="font-serif text-2xl text-chalk font-medium mb-3">Mayoristas &amp; Distribuidores</h4>
+<p class="text-xs text-papaya uppercase font-mono tracking-widest mb-4">Prioridad: Rotación y Cero Mermas</p>
+<p class="text-chalk-dim text-sm leading-relaxed mb-6">
+              Empresarios que compran rollos enteros para revender en provincias o abastecer cadenas. Su mayor pesadilla es la tela descolorida o con hilos quebradizos que genera devoluciones en cadena.
+            </p>
+<ul class="space-y-2 text-xs font-mono text-chalk-dim">
+<li class="flex items-center gap-2"><span class="w-1 h-1 bg-papaya"></span> Volumen continuo</li>
+<li class="flex items-center gap-2"><span class="w-1 h-1 bg-papaya"></span> Exactitud métrica de rollo</li>
+<li class="flex items-center gap-2"><span class="w-1 h-1 bg-papaya"></span> Rentabilidad asegurada</li>
+</ul>
+</div>
+<!-- Entrepreneurs / Atelier Card -->
+<div class="bg-white/[0.02] hover:bg-white/[0.04] p-8 border border-white/10 rounded-2xl transition-all duration-300">
+<div class="w-10 h-10 rounded-full border border-brunswick-light flex items-center justify-center text-chalk mb-6 font-mono text-sm">
+              02
+            </div>
+<h4 class="font-serif text-2xl text-chalk font-medium mb-3">Confeccionistas &amp; Emprendedores</h4>
+<p class="text-xs text-chalk-dim uppercase font-mono tracking-widest mb-4">Prioridad: Fidelidad y Caída Textil</p>
+<p class="text-chalk-dim text-sm leading-relaxed mb-6">
+              Talleres donde el corte y confección es un arte de alta precisión. Una tela que encoge al lavado o cuya caída se deforma arruina la colección completa y el trabajo de semanas.
+            </p>
+<ul class="space-y-2 text-xs font-mono text-chalk-dim">
+<li class="flex items-center gap-2"><span class="w-1 h-1 bg-chalk"></span> Textura y tacto superior</li>
+<li class="flex items-center gap-2"><span class="w-1 h-1 bg-chalk"></span> Resistencia a la costura rápida</li>
+<li class="flex items-center gap-2"><span class="w-1 h-1 bg-chalk"></span> Colorimetría inalterable</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Row 2: Simulated Focus-Group Presentation (Customer vs Seller Voices) -->
+<div class="mt-16 bg-[#041a15]/50 border border-emerald-subtle rounded-3xl p-8 lg:p-14">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between pb-8 border-b border-white/10 gap-4">
+<div>
+<span class="text-xs font-mono uppercase tracking-[0.3em] text-papaya block mb-1">Evidencia Etnográfica Directa</span>
+<h3 class="font-serif text-2xl lg:text-3xl font-bold text-chalk">Focus Group: Sala de Confección vs Mostrador de Venta</h3>
+</div>
+<div class="inline-flex items-center gap-2 text-xs font-mono text-chalk-dim bg-black/40 px-4 py-2 rounded-full border border-white/10">
+<span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            AUDIO REVIEWS • GAMARRA TRANSCRIPTS
+          </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10">
+<!-- Perspective A: The Workshop Owner -->
+<div class="relative pl-6 border-l-2 border-papaya">
+<span class="text-xs font-mono uppercase text-papaya tracking-widest block mb-2">Perspectiva Confeccionista — Doña Gladys (Taller San Cristóbal)</span>
+<p class="font-editorial italic text-lg sm:text-xl text-chalk leading-snug">
+              “Si compro tela barata y la prenda encoge en la plancha de vapor o destiñe cuando mi cliente la lava, el reclamo no va al fabricante del rollo... me lo hacen a mí. En este negocio, elegir la tela equivocada te quiebra.”
+            </p>
+<div class="mt-4 flex items-center gap-3 text-xs font-mono text-chalk-dim">
+<span class="px-2 py-0.5 bg-papaya/10 text-papaya rounded">DOLOR CLAVE</span>
+<span>Riesgo reputacional del taller ante el consumidor final</span>
+</div>
+</div>
+<!-- Perspective B: The Senior Fabric Salesperson -->
+<div class="relative pl-6 border-l-2 border-chalk/40">
+<span class="text-xs font-mono uppercase text-chalk-dim tracking-widest block mb-2">Perspectiva Mostrador — Manuel R. (Distribuidor Mayorista Jr. Gamarra)</span>
+<p class="font-editorial italic text-lg sm:text-xl text-chalk leading-snug">
+              “El cliente entra tocando la tela con el pulgar y el índice; si siente aspereza o hilos falsos, se va a otra galería. Quieren seguridad sin tener que dudar. Cuando les doy Goldtex, sé que regresan por tres rollos más.”
+            </p>
+<div class="mt-4 flex items-center gap-3 text-xs font-mono text-chalk-dim">
+<span class="px-2 py-0.5 bg-white/10 text-chalk rounded">MOTIVADOR CLAVE</span>
+<span>Certeza sensorial en el primer contacto táctil</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Row 3: Strategic Brief & Timeline 2005 - 2026 -->
+<div class="mt-16 grid grid-cols-1 lg:grid-cols-12 gap-10">
+<!-- Strategic Brief Summary -->
+<div class="lg:col-span-5 bg-white/[0.02] border border-white/10 rounded-2xl p-8 flex flex-col justify-between">
+<div>
+<span class="text-xs font-mono uppercase tracking-[0.3em] text-papaya block mb-3">Brief Estratégico de Campaña</span>
+<h4 class="font-serif text-2xl text-chalk font-semibold mb-4">El Salto de Comodidad a Certidumbre Absoluta</h4>
+<div class="space-y-4 text-sm text-chalk-dim leading-relaxed">
+<p><strong class="text-white">Problema:</strong> Saturación publicitaria en Gamarra basada en precios bajos que ocultan mezclas sintéticas de baja calidad.</p>
+<p><strong class="text-white">Oportunidad:</strong> Elevar la tela a categoría de alta inversión creativa; transformar la decisión de compra en un acto de orgullo y seguridad financiera.</p>
+<p><strong class="text-white">Insight Rector:</strong> “Una buena tela no es un gasto en materia prima; es el inicio y la salvaguarda de un gran proyecto.”</p>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-white/10 flex items-center justify-between font-mono text-xs text-papaya">
+<span>OBJETIVO: TOP OF MIND GAMARRA</span>
+<span>STATUS: CAMPAÑA ACTIVA</span>
+</div>
+</div>
+<!-- Timeline 2005 - 2026 -->
+<div class="lg:col-span-7 bg-white/[0.02] border border-white/10 rounded-2xl p-8">
+<div class="flex items-center justify-between mb-8">
+<span class="text-xs font-mono uppercase tracking-[0.3em] text-chalk-dim">Evolución de Confianza Textil</span>
+<span class="text-xs font-mono text-papaya">LÍNEA DE TIEMPO 2005 — 2026</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-4 gap-6 relative">
+<div class="border-t-2 border-white/20 pt-4">
+<span class="font-mono text-lg font-bold text-chalk block mb-1">2005</span>
+<h5 class="font-serif text-sm font-semibold text-papaya mb-2">Fundación Textil</h5>
+<p class="text-xs text-chalk-dim leading-normal">Primer almacén de hilados finos en el corazón comercial de La Victoria.</p>
+</div>
+<div class="border-t-2 border-white/20 pt-4">
+<span class="font-mono text-lg font-bold text-chalk block mb-1">2014</span>
+<h5 class="font-serif text-sm font-semibold text-chalk mb-2">Expansión Mayorista</h5>
+<p class="text-xs text-chalk-dim leading-normal">Apertura del hub logístico central y alianzas con 300 talleres confeccionistas.</p>
+</div>
+<div class="border-t-2 border-papaya pt-4">
+<span class="font-mono text-lg font-bold text-papaya block mb-1">2024</span>
+<h5 class="font-serif text-sm font-semibold text-papaya mb-2">La Decisión Segura</h5>
+<p class="text-xs text-chalk-dim leading-normal">Lanzamiento del posicionamiento premium con lenguaje editorial de alta costura.</p>
+</div>
+<div class="border-t-2 border-dashed border-white/30 pt-4">
+<span class="font-mono text-lg font-bold text-chalk-dim block mb-1">2026</span>
+<h5 class="font-serif text-sm font-semibold text-chalk mb-2">Eco-Trazabilidad</h5>
+<p class="text-xs text-chalk-dim leading-normal">Certificación digital de origen fibra peruana y expansión internacional.</p>
+</div>
+</div>
+<!-- Market Communication Comparison Banner -->
+<div class="mt-8 p-5 bg-black/60 rounded-xl border border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="text-xs text-chalk-dim">
+<span class="text-papaya font-mono uppercase tracking-wider block font-semibold mb-1">Contraste de Comunicación en Gamarra</span>
+              Tradicional: carteles de descuento agresivo vs. Goldtex: estética editorial de museo y certidumbre técnica.
+            </div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-red-500/80" title="Competencia convencional"></span>
+<span class="text-[10px] font-mono text-chalk-dim">Convencional</span>
+<span class="w-3 h-3 rounded-full bg-papaya ml-3" title="Goldtex Brand"></span>
+<span class="text-[10px] font-mono text-papaya font-semibold">Goldtex Standard</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== SCREEN 3: EVIDENCIA 02: ESTRATEGIA CREATIVA ==================== -->
+<section class="relative py-32 border-t border-white/[0.06] bg-obsidian overflow-hidden" id="evidencia-02">
+<!-- Editorial Watermark -->
+<div class="absolute top-12 right-6 lg:right-16 text-[180px] font-serif font-black text-white/[0.02] select-none pointer-events-none leading-none">
+      02
+    </div>
+<div class="max-w-[1720px] mx-auto px-8 lg:px-14 relative z-10">
+<!-- Section Header -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end pb-16 border-b border-white/[0.08]">
+<div class="lg:col-span-8">
+<div class="flex items-center gap-3 text-papaya font-mono text-xs uppercase tracking-[0.3em] mb-4">
+<span class="px-2 py-0.5 border border-papaya/40 rounded text-[10px]">CAPÍTULO 02</span>
+<span>• NARRATIVA &amp; ARQUITECTURA DE MARCA</span>
+</div>
+<h2 class="font-serif text-4xl sm:text-5xl lg:text-7xl font-bold uppercase tracking-tight text-chalk">
+            Estrategia <br/><span class="text-gold-gradient font-editorial italic lowercase text-5xl sm:text-6xl lg:text-8xl">Creativa</span>
+</h2>
+</div>
+<div class="lg:col-span-4">
+<p class="font-sans text-chalk-dim text-sm sm:text-base leading-relaxed">
+            Cómo “La Decisión Segura” se convierte en el pacto de honor entre el proveedor textil y el emprendedor que arriesga su patrimonio en cada costura.
+          </p>
+</div>
+</div>
+<!-- Buyer Persona: Pedro & Empathy Map -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 pt-16">
+<!-- Pedro Persona Profile Card -->
+<div class="lg:col-span-4 bg-gradient-to-b from-brunswick-dark via-obsidian to-obsidian p-8 border border-white/10 rounded-3xl relative">
+<div class="w-16 h-16 rounded-full border border-papaya/60 p-1 mb-6">
+<div class="w-full h-full rounded-full bg-brunswick flex items-center justify-center font-serif text-xl font-bold text-papaya">
+              P
+            </div>
+</div>
+<span class="text-xs font-mono uppercase tracking-[0.25em] text-papaya block mb-1">Buyer Persona Arquetípico</span>
+<h3 class="font-serif text-3xl font-bold text-chalk mb-2">Pedro, 42 años</h3>
+<p class="text-xs font-mono text-chalk-dim uppercase tracking-wider mb-6">Maestro Confeccionista &amp; Propietario de Taller</p>
+<p class="text-sm text-chalk-dim leading-relaxed mb-6">
+            Lleva 18 años operando en las galerías de Jr. Agustín Gamarra. Empezó con una sola máquina remalladora y hoy lidera un equipo de 12 costureros. Produce 3 colecciones cápsula por temporada para marcas de boutique limeñas.
+          </p>
+<div class="space-y-3 pt-6 border-t border-white/10 text-xs font-mono">
+<div class="flex justify-between text-chalk-dim">
+<span>Frustración:</span>
+<span class="text-chalk text-right">Lotes inconsistentes</span>
+</div>
+<div class="flex justify-between text-chalk-dim">
+<span>Aspiración:</span>
+<span class="text-papaya text-right">Exportar confección premium</span>
+</div>
+<div class="flex justify-between text-chalk-dim">
+<span>Momento Clave:</span>
+<span class="text-chalk text-right">El tacto en el mostrador</span>
+</div>
+</div>
+</div>
+<!-- Empathy Map: 4 Quadrants -->
+<div class="lg:col-span-8 bg-white/[0.02] border border-white/10 rounded-3xl p-8 lg:p-12">
+<div class="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
+<h4 class="font-serif text-2xl text-chalk font-semibold">Mapa de Empatía: En la mente del comprador textil</h4>
+<span class="text-xs font-mono text-papaya uppercase tracking-widest hidden sm:inline">Perspectiva 360°</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="p-6 bg-black/40 rounded-2xl border border-white/5">
+<span class="text-xs font-mono text-papaya tracking-widest uppercase block mb-2">¿QUÉ PIENSA Y SIENTE?</span>
+<p class="text-sm text-chalk leading-relaxed">
+                “Tengo que cumplir con la fecha de entrega navideña. Si esta partida de tela me falla, no solo pierdo dinero, pierdo a mis clientes fijos.”
+              </p>
+</div>
+<div class="p-6 bg-black/40 rounded-2xl border border-white/5">
+<span class="text-xs font-mono text-papaya tracking-widest uppercase block mb-2">¿QUÉ VE EN EL MERCADO?</span>
+<p class="text-sm text-chalk leading-relaxed">
+                Galerías atiborradas de rollos sin etiqueta clara, vendedoras que ofrecen tela barata sin garantía de composición ni certificado de lavado.
+              </p>
+</div>
+<div class="p-6 bg-black/40 rounded-2xl border border-white/5">
+<span class="text-xs font-mono text-papaya tracking-widest uppercase block mb-2">¿QUÉ DICE Y HACE?</span>
+<p class="text-sm text-chalk leading-relaxed">
+                Exige desenrollar los primeros tres metros antes de pagar. Pregunta a otros colegas confeccionistas qué proveedor nunca los ha dejado colgados.
+              </p>
+</div>
+<div class="p-6 bg-black/40 rounded-2xl border border-white/5">
+<span class="text-xs font-mono text-papaya tracking-widest uppercase block mb-2">¿QUÉ LE DUELE Y QUÉ ASPIRA?</span>
+<p class="text-sm text-chalk leading-relaxed">
+                Dolor: Merma en mesa de corte. Aspiración: Un socio textil con el que pueda cerrar pedidos grandes a ojos cerrados.
+              </p>
+</div>
+</div>
+</div>
+</div>
+<!-- The 3 Creative Pillars: Seguridad, Calidad, Comodidad -->
+<div class="mt-20">
+<div class="text-center max-w-2xl mx-auto mb-16">
+<span class="text-xs font-mono uppercase tracking-[0.3em] text-papaya block mb-2">Fundamento Conceptual</span>
+<h3 class="font-serif text-3xl sm:text-5xl text-chalk font-bold">Los Tres Pilares Creativos</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Pillar 1: Seguridad -->
+<div class="group relative p-10 bg-gradient-to-b from-[#083E35]/40 to-obsidian border border-papaya/30 hover:border-papaya rounded-3xl transition-all duration-500 hover:-translate-y-2">
+<div class="text-5xl font-serif font-black text-papaya/20 group-hover:text-papaya/40 transition-colors mb-6">
+              01
+            </div>
+<h4 class="font-serif text-2xl text-chalk font-bold uppercase mb-4 tracking-wide group-hover:text-papaya transition-colors">Seguridad</h4>
+<p class="text-sm text-chalk-dim leading-relaxed mb-6">
+              La tranquilidad de quien invierte sus ahorros. Rollos probados contra deformaciones de urdimbre y trama antes de llegar al taller de costura.
+            </p>
+<div class="font-mono text-xs text-papaya flex items-center gap-2">
+<span>EL ESCUDO DEL TALLER</span>
+<span class="text-lg">→</span>
+</div>
+</div>
+<!-- Pillar 2: Calidad -->
+<div class="group relative p-10 bg-gradient-to-b from-white/[0.04] to-obsidian border border-white/10 hover:border-white/30 rounded-3xl transition-all duration-500 hover:-translate-y-2">
+<div class="text-5xl font-serif font-black text-white/10 group-hover:text-white/20 transition-colors mb-6">
+              02
+            </div>
+<h4 class="font-serif text-2xl text-chalk font-bold uppercase mb-4 tracking-wide">Calidad</h4>
+<p class="text-sm text-chalk-dim leading-relaxed mb-6">
+              Textura táctil inconfundible, caída sedosa para vestidos y firmeza estructurada para sastrería. Colores profundos que resisten el paso de las temporadas.
+            </p>
+<div class="font-mono text-xs text-chalk-dim flex items-center gap-2">
+<span>HILATURA SIN FALLAS</span>
+<span class="text-lg">→</span>
+</div>
+</div>
+<!-- Pillar 3: Comodidad -->
+<div class="group relative p-10 bg-gradient-to-b from-white/[0.04] to-obsidian border border-white/10 hover:border-white/30 rounded-3xl transition-all duration-500 hover:-translate-y-2">
+<div class="text-5xl font-serif font-black text-white/10 group-hover:text-white/20 transition-colors mb-6">
+              03
+            </div>
+<h4 class="font-serif text-2xl text-chalk font-bold uppercase mb-4 tracking-wide">Comodidad</h4>
+<p class="text-sm text-chalk-dim leading-relaxed mb-6">
+              Facilidad de corte, costura dócil sin deshilachado prematuro y suavidad que el consumidor final agradece desde el primer contacto en el cuerpo.
+            </p>
+<div class="font-mono text-xs text-chalk-dim flex items-center gap-2">
+<span>EXPERIENCIA SENSORIAL</span>
+<span class="text-lg">→</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Metaphor Matrix & B2B Campaign Kit -->
+<div class="mt-20 grid grid-cols-1 lg:grid-cols-12 gap-10">
+<!-- Metaphor Matrix -->
+<div class="lg:col-span-7 bg-[#02130e] border border-emerald-subtle rounded-3xl p-8 lg:p-12">
+<span class="text-xs font-mono uppercase tracking-[0.3em] text-papaya block mb-2">Semiótica Visual</span>
+<h4 class="font-serif text-2xl lg:text-3xl font-bold text-chalk mb-8">Matriz de Metáforas Visuales</h4>
+<div class="space-y-6">
+<div class="flex items-start gap-5 pb-6 border-b border-white/10">
+<div class="w-12 h-12 rounded-xl bg-papaya/10 border border-papaya/30 flex items-center justify-center shrink-0 text-papaya">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</div>
+<div>
+<h5 class="font-serif text-lg text-chalk font-semibold mb-1">El Rollo de Tela = La Mina de Oro</h5>
+<p class="text-sm text-chalk-dim leading-relaxed">
+                  El rollo cerrado no es un objeto pasivo; es un tesoro sin abrir. Al desenrollarse con el forro esmeralda y oro, desata el potencial de negocio del cliente.
+                </p>
+</div>
+</div>
+<div class="flex items-start gap-5 pb-6 border-b border-white/10">
+<div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 text-chalk">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</div>
+<div>
+<h5 class="font-serif text-lg text-chalk font-semibold mb-1">La Puntada = El Contrato Silencioso</h5>
+<p class="text-sm text-chalk-dim leading-relaxed">
+                  Cada pasada de aguja sobre Goldtex sella la reputación del sastre. El hilo dorado representa la continuidad entre el esfuerzo del taller y el éxito en ventas.
+                </p>
+</div>
+</div>
+<div class="flex items-start gap-5">
+<div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 text-chalk">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</div>
+<div>
+<h5 class="font-serif text-lg text-chalk font-semibold mb-1">La Gorra del Taller = El Orgullo del Oficio</h5>
+<p class="text-sm text-chalk-dim leading-relaxed">
+                  El uniforme verde esmeralda con ribetes dorados que unifica a los cortadores, cargadores y operarios de Gamarra como artífices de alta distinción.
+                </p>
+</div>
+</div>
+</div>
+</div>
+<!-- B2B Campaign Kit Box -->
+<div class="lg:col-span-5 bg-gradient-to-b from-brunswick/50 to-obsidian border border-papaya/40 rounded-3xl p-8 lg:p-12 flex flex-col justify-between">
+<div>
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-papaya/10 text-papaya rounded-full text-[10px] font-mono tracking-widest uppercase mb-4">
+<span>DESPLIEGUE EN PUNTO DE VENTA</span>
+</div>
+<h4 class="font-serif text-3xl font-bold text-chalk mb-4">Kit B2B para Mayoristas</h4>
+<p class="text-sm text-chalk-dim leading-relaxed mb-6">
+              Materiales físicos y de apoyo comercial entregados a las 150 principales distribuidoras aliadas de Lima y provincias para comunicar la campaña.
+            </p>
+<div class="space-y-3 font-mono text-xs">
+<div class="p-3 bg-black/40 rounded-xl border border-white/5 flex items-center justify-between">
+<span>01. Muestrario de Caída “Sensory Swatch”</span>
+<span class="text-papaya">✓ Incluido</span>
+</div>
+<div class="p-3 bg-black/40 rounded-xl border border-white/5 flex items-center justify-between">
+<span>02. Cinta Métrica de Oro Real &amp; Esmeralda</span>
+<span class="text-papaya">✓ Incluido</span>
+</div>
+<div class="p-3 bg-black/40 rounded-xl border border-white/5 flex items-center justify-between">
+<span>03. Placas de Pared Certificadas para Taller</span>
+<span class="text-papaya">✓ Incluido</span>
+</div>
+<div class="p-3 bg-black/40 rounded-xl border border-white/5 flex items-center justify-between">
+<span>04. Catálogo Digital Interactivo con QR</span>
+<span class="text-papaya">✓ Incluido</span>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-white/10 flex items-center justify-between text-xs font-mono text-chalk-dim">
+<span>PACKAGING: SEDA &amp; CARTÓN RÍGIDO</span>
+<span class="text-papaya font-bold">100% EXCLUSIVO</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== SCREEN 3: EVIDENCIA 03: DIRECCIÓN DE ARTE Y KEY VISUAL ==================== -->
+<section class="relative py-32 border-t border-white/[0.06] bg-[#000504] overflow-hidden" id="evidencia-03">
+<!-- Atmospheric Ambient Background -->
+<div class="absolute inset-0 pointer-events-none">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[800px] bg-brunswick/40 rounded-full blur-[160px] animate-pulse"></div>
+<div class="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-papaya/15 rounded-full blur-[140px]"></div>
+</div>
+<!-- Chapter Watermark -->
+<div class="absolute top-12 right-6 lg:right-16 text-[180px] font-serif font-black text-white/[0.02] select-none pointer-events-none leading-none">
+      03
+    </div>
+<div class="max-w-[1720px] mx-auto px-8 lg:px-14 relative z-10">
+<!-- Section Header -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end pb-16 border-b border-white/[0.08]">
+<div class="lg:col-span-8">
+<div class="flex items-center gap-3 text-papaya font-mono text-xs uppercase tracking-[0.3em] mb-4">
+<span class="px-2 py-0.5 border border-papaya/40 rounded text-[10px]">CAPÍTULO 03</span>
+<span>• ALTA COSTURA &amp; MONTAJE ESPACIAL</span>
+</div>
+<h2 class="font-serif text-4xl sm:text-5xl lg:text-7xl font-bold uppercase tracking-tight text-chalk">
+            Dirección de Arte <br/><span class="text-gold-gradient font-editorial italic lowercase text-5xl sm:text-6xl lg:text-8xl">&amp; Key Visual</span>
+</h2>
+</div>
+<div class="lg:col-span-4">
+<p class="font-sans text-chalk-dim text-sm sm:text-base leading-relaxed">
+            Una bailarina envuelta en metros infinitos de seda esmeralda y oro que trasciende el marco fotográfico: la tela cobra vida propia en el espacio tridimensional.
+          </p>
+</div>
+</div>
+<!-- ================= SPATIAL 3D IMMERSIVE GALLERY ================= -->
+<div class="mt-20 relative w-full min-h-[920px] flex items-center justify-center py-10">
+<!-- Large Backdrop Typography behind imagery -->
+<div class="absolute inset-0 flex flex-col items-center justify-center select-none pointer-events-none z-0 overflow-hidden">
+<span class="font-serif font-black text-[120px] sm:text-[180px] lg:text-[260px] uppercase text-white/[0.03] tracking-tighter leading-none whitespace-nowrap">
+            LA DECISIÓN
+          </span>
+<span class="font-editorial italic text-[90px] sm:text-[140px] lg:text-[220px] text-papaya/[0.04] leading-none whitespace-nowrap -mt-12 sm:-mt-24">
+            segura
+          </span>
+</div>
+<!-- 3D Curved Arc Gallery Container -->
+<div class="relative w-full max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12 z-10">
+<!-- Floating Image Left (Secondary Depth Layer) -->
+<div class="hidden lg:block w-72 h-[480px] -rotate-6 translate-y-12 shrink-0 relative group transition-all duration-700 hover:rotate-0 hover:scale-105 hover:z-30">
+<div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent z-10"></div>
+<div class="w-full h-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-brunswick-dark">
+<img alt="Goldtex Fabric Detail Perspective" class="w-full h-full object-cover object-left filter contrast-110 brightness-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxO7LoHU9udi6ZqpB7bSh9CzeP364Da-sXbiO_n8fWHm8xQndRBL4Bny31eVgyDi2ZXXyLoJ1J3qWuuMN8V7bdPaz0eM4U_CQuCcUpCCPx9Hi9nL_o6OSVuxvmM4Uy_fZedTcHhgdraFnpuMpKa_7Y5_JtzEP-26VGbJ66N9pnULW55ndtRqFkjnzlxeIRt9K2fNVwm0AUCQioF3xv-fpnWw_B0dGTbfMfsroflFZFGpxI7bcuTRYZqvdzpUxo47IziwQ"/>
+</div>
+<div class="absolute -bottom-6 left-4 z-20 font-mono text-[10px] text-papaya bg-black/80 px-3 py-1 rounded border border-papaya/30">
+              DEPTH LAYER: -150PX • VUELO TEXTIL
+            </div>
+</div>
+<!-- DOMINANT CENTRAL HERO COMPOSITION: Ballerina Pop-Out Illusion -->
+<div class="relative w-full max-w-xl sm:max-w-2xl h-[680px] sm:h-[780px] shrink-0 mx-auto z-20 group">
+<!-- Outer Glow Rings -->
+<div class="absolute -inset-4 rounded-3xl bg-gradient-to-b from-papaya/20 to-brunswick/50 filter blur-2xl opacity-60 group-hover:opacity-90 transition-opacity"></div>
+<!-- Structural Editorial Frame -->
+<div class="relative w-full h-full rounded-3xl overflow-hidden border-2 border-papaya/60 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] bg-[#041a15]">
+<!-- Background Scene Layer -->
+<img alt="Bailarina Goldtex Key Visual" class="w-full h-full object-cover object-top scale-105 group-hover:scale-110 transition-transform duration-1000 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0wuKcd6qhOZmXzBKx-BGwa6_ZMhDe52K6ccn06FUqpaE2Uj3tXtp0bRQx7VUl2GEuxuQeE8QS8yZLu-G-zgsjpKNHZcEVtovP4zfe8GU9JXOde10sCXBrxcmkcYIORsByfTnSu_-cilRFe2WMKQIXxlOmMsxHqSi-vh9Ib2L52HSc3PbnpkOKYq9GuOTnEEDD8KrCEGJMxlZj2enLBHMdSt_FxAxkKoET4NSfRJyPzuxl87SQurEo_2o-A9M3njqqnBw"/>
+<!-- Editorial Overlay Accents -->
+<div class="absolute inset-0 bg-gradient-to-t from-obsidian/90 via-transparent to-obsidian/30 pointer-events-none"></div>
+<!-- Top Left Haute Badge inside Frame -->
+<div class="absolute top-6 left-6 z-20 flex items-center gap-3 bg-black/60 backdrop-blur-md px-4 py-1.5 rounded-full border border-papaya/40">
+<span class="w-2 h-2 rounded-full bg-papaya"></span>
+<span class="text-[10px] font-mono tracking-widest uppercase text-chalk">CAMPAIGN KEY VISUAL • MASTER SHOT</span>
+</div>
+<!-- Bottom Content inside Frame -->
+<div class="absolute bottom-8 left-8 right-8 z-20 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+<div>
+<span class="text-xs font-mono uppercase text-papaya tracking-widest block mb-1">Campaña Central</span>
+<h3 class="font-serif text-3xl sm:text-4xl font-bold text-chalk leading-none">Donde nace la inspiración</h3>
+<p class="text-xs text-chalk-dim mt-2 max-w-xs font-light">Seda esmeralda brillante con reverso dorado satén en plena suspensión gravitacional.</p>
+</div>
+<div class="font-mono text-xs text-papaya border-b border-papaya pb-1 self-start sm:self-end">
+                  PROYECTO GAMARRA 2024
+                </div>
+</div>
+</div>
+<!-- 3D POP-OUT PROJECTION ELEMENT: Simulated Fabric Spilling Beyond Frame -->
+<div class="absolute -bottom-10 -right-8 w-44 h-44 pointer-events-none z-30 hidden sm:block animate-float-slow">
+<div class="w-full h-full rounded-full border border-papaya/40 bg-gradient-to-tr from-papaya/30 to-transparent backdrop-blur-sm p-4 flex items-center justify-center text-center">
+<span class="font-mono text-[9px] uppercase tracking-widest text-papaya font-semibold leading-tight">
+                  TELA EN MOVIMIENTO<br/>• SALIDA DE PLANO 3D •
+                </span>
+</div>
+</div>
+<!-- Spatial Depth Tag -->
+<div class="absolute -top-5 right-8 z-30 font-mono text-xs text-chalk bg-brunswick px-4 py-1.5 rounded-full border border-papaya/50 shadow-xl">
+              FOCAL DEPTH: 0.00 (CENTRAL HERO)
+            </div>
+</div>
+<!-- Floating Image Right (Secondary Depth Layer) -->
+<div class="hidden lg:block w-72 h-[480px] rotate-6 translate-y-12 shrink-0 relative group transition-all duration-700 hover:rotate-0 hover:scale-105 hover:z-30">
+<div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent z-10"></div>
+<div class="w-full h-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-brunswick-dark">
+<img alt="Goldtex Fabric Detail Perspective" class="w-full h-full object-cover object-right filter contrast-110 brightness-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxO7LoHU9udi6ZqpB7bSh9CzeP364Da-sXbiO_n8fWHm8xQndRBL4Bny31eVgyDi2ZXXyLoJ1J3qWuuMN8V7bdPaz0eM4U_CQuCcUpCCPx9Hi9nL_o6OSVuxvmM4Uy_fZedTcHhgdraFnpuMpKa_7Y5_JtzEP-26VGbJ66N9pnULW55ndtRqFkjnzlxeIRt9K2fNVwm0AUCQioF3xv-fpnWw_B0dGTbfMfsroflFZFGpxI7bcuTRYZqvdzpUxo47IziwQ"/>
+</div>
+<div class="absolute -bottom-6 right-4 z-20 font-mono text-[10px] text-papaya bg-black/80 px-3 py-1 rounded border border-papaya/30">
+              DEPTH LAYER: +150PX • ATELIER VIEW
+            </div>
+</div>
+</div>
+</div>
+<!-- Color Psychology & Typography System Breakdown -->
+<div class="mt-24 grid grid-cols-1 lg:grid-cols-12 gap-10">
+<!-- Color Psychology Card -->
+<div class="lg:col-span-6 bg-white/[0.02] border border-white/10 rounded-3xl p-8 lg:p-12">
+<span class="text-xs font-mono uppercase tracking-[0.3em] text-papaya block mb-2">Psicología Cromática</span>
+<h4 class="font-serif text-3xl font-bold text-chalk mb-8">El Tríptico de Autor</h4>
+<div class="space-y-6">
+<!-- Obsidian -->
+<div class="flex items-center gap-5 p-4 bg-black/40 rounded-2xl border border-white/5">
+<div class="w-14 h-14 rounded-xl bg-[#010806] border border-white/20 shrink-0 shadow-inner"></div>
+<div>
+<div class="flex items-center gap-3">
+<h5 class="font-serif text-lg text-chalk font-semibold">Obsidian Void</h5>
+<span class="font-mono text-xs text-chalk-dim">#010806</span>
+</div>
+<p class="text-xs text-chalk-dim mt-1">
+                  El silencio visual del taller nocturno. Concede el escenario solemne para que el verde y el oro brillen sin competir con ruido blanco.
+                </p>
+</div>
+</div>
+<!-- Brunswick Green -->
+<div class="flex items-center gap-5 p-4 bg-black/40 rounded-2xl border border-white/5">
+<div class="w-14 h-14 rounded-xl bg-[#083E35] border border-papaya/30 shrink-0 shadow-lg"></div>
+<div>
+<div class="flex items-center gap-3">
+<h5 class="font-serif text-lg text-chalk font-semibold">Brunswick Green</h5>
+<span class="font-mono text-xs text-papaya">#083E35</span>
+</div>
+<p class="text-xs text-chalk-dim mt-1">
+                  La estabilidad, la confianza patrimonial y la nobleza del oficio textil. No es un verde común; es un esmeralda profundo de sastrería militar histórica.
+                </p>
+</div>
+</div>
+<!-- Papaya Gold -->
+<div class="flex items-center gap-5 p-4 bg-black/40 rounded-2xl border border-white/5">
+<div class="w-14 h-14 rounded-xl bg-[#F1B734] shrink-0 shadow-[0_0_20px_#F1B734]"></div>
+<div>
+<div class="flex items-center gap-3">
+<h5 class="font-serif text-lg text-papaya font-semibold">Papaya Gold</h5>
+<span class="font-mono text-xs text-chalk">#F1B734</span>
+</div>
+<p class="text-xs text-chalk-dim mt-1">
+                  La cinta métrica, la rentabilidad, el hilo de oro y el brillo del forro sedoso. Utilizado como acento de precisión y lujo editorial.
+                </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Typography & Brand Treatment -->
+<div class="lg:col-span-6 bg-white/[0.02] border border-white/10 rounded-3xl p-8 lg:p-12 flex flex-col justify-between">
+<div>
+<span class="text-xs font-mono uppercase tracking-[0.3em] text-papaya block mb-2">Arquitectura Tipográfica</span>
+<h4 class="font-serif text-3xl font-bold text-chalk mb-8">Tratamiento Editorial de Marca</h4>
+<div class="space-y-6">
+<div class="p-5 bg-black/40 rounded-2xl border border-white/5">
+<span class="text-[10px] font-mono uppercase tracking-widest text-papaya block mb-1">TITULARES MONUMENTALES (CINZEL &amp; PLAYFAIR)</span>
+<span class="font-serif text-3xl text-chalk block mb-2">LA DECISIÓN SEGURA</span>
+<p class="text-xs text-chalk-dim leading-relaxed">
+                  Serifas afiladas de alto contraste que evocan la aguja de coser y las grandes cabeceras de moda internacional (Vogue, Harper’s Bazaar).
+                </p>
+</div>
+<div class="p-5 bg-black/40 rounded-2xl border border-white/5">
+<span class="text-[10px] font-mono uppercase tracking-widest text-chalk-dim block mb-1">CUERPO EDITORIAL (PLUS JAKARTA SANS / CANTARELL)</span>
+<span class="font-sans text-base text-chalk block mb-2">Telas que inspiran confianza industrial y libertad creativa.</span>
+<p class="text-xs text-chalk-dim leading-relaxed">
+                  Tipografía geométrica neutral, limpia, con perfecta legibilidad en fichas técnicas, briefs de compra y navegación digital.
+                </p>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-white/10 flex items-center justify-between text-xs font-mono text-papaya">
+<span>EDITORIAL SYSTEM SPEC: V4.2</span>
+<span>AA+ CONTRAST ACCESSIBILITY</span>
+</div>
+</div>
+</div>
+<!-- Original Sketch vs Final Creative Execution -->
+<div class="mt-20 bg-gradient-to-b from-[#021812] to-obsidian border border-emerald-subtle rounded-3xl p-8 lg:p-14">
+<div class="max-w-2xl mb-10">
+<span class="text-xs font-mono uppercase tracking-[0.3em] text-papaya block mb-2">Génesis del Arte</span>
+<h4 class="font-serif text-3xl lg:text-4xl font-bold text-chalk">Del Boceto Inicial a la Realización Final</h4>
+<p class="text-sm text-chalk-dim mt-2">
+            La conceptualización original nació dibujando la ondulación de una cinta métrica fusionada con el vuelo de un vestido de gala sobre el suelo de concreto de una fábrica.
+          </p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+<!-- The Sketch / Process Concept -->
+<div class="bg-black/60 p-6 rounded-2xl border border-dashed border-white/20">
+<div class="flex items-center justify-between mb-4 font-mono text-xs">
+<span class="text-papaya uppercase tracking-wider">Fase 01 • Boceto Conceptual</span>
+<span class="text-chalk-dim">Tinta sobre papel milimetrado</span>
+</div>
+<div class="aspect-video w-full rounded-xl bg-[#091512] flex flex-col items-center justify-center p-8 text-center border border-white/5 relative overflow-hidden">
+<div class="absolute inset-0 opacity-15">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 100">
+<path d="M0,50 Q25,20 50,50 T100,50" fill="none" stroke="#F1B734" stroke-width="0.5"></path>
+<path d="M0,60 Q25,90 50,60 T100,60" fill="none" stroke="#083E35" stroke-width="0.8"></path>
+</svg>
+</div>
+<span class="font-serif italic text-xl text-papaya mb-2">“La tela no cae; la tela danza.”</span>
+<p class="font-mono text-xs text-chalk-dim max-w-sm">
+                Estudio de vectorización de pliegues: 24 metros de terciopelo verde esmeralda y 18 metros de satén dorado unidos por costura invisible reforzada.
+              </p>
+</div>
+</div>
+<!-- Final Campaign Creative -->
+<div class="bg-black/60 p-6 rounded-2xl border border-papaya/40 relative">
+<div class="flex items-center justify-between mb-4 font-mono text-xs">
+<span class="text-papaya uppercase tracking-wider font-semibold">Fase 02 • Campaña Oficial</span>
+<span class="text-chalk">Master Key Visual 4K</span>
+</div>
+<div class="aspect-video w-full rounded-xl overflow-hidden border border-papaya/20 relative group">
+<img alt="Boceto realizado en Master Creative" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxO7LoHU9udi6ZqpB7bSh9CzeP364Da-sXbiO_n8fWHm8xQndRBL4Bny31eVgyDi2ZXXyLoJ1J3qWuuMN8V7bdPaz0eM4U_CQuCcUpCCPx9Hi9nL_o6OSVuxvmM4Uy_fZedTcHhgdraFnpuMpKa_7Y5_JtzEP-26VGbJ66N9pnULW55ndtRqFkjnzlxeIRt9K2fNVwm0AUCQioF3xv-fpnWw_B0dGTbfMfsroflFZFGpxI7bcuTRYZqvdzpUxo47IziwQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6">
+<div>
+<span class="font-serif text-lg font-bold text-chalk">GOLDTEX • TELAS QUE INSPIRAN</span>
+<p class="font-sans text-xs text-papaya">Una buena tela es el inicio de un gran proyecto.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== SCREEN 5: EVIDENCIA 04: ECOSISTEMA DIGITAL Y EXTERIOR ==================== -->
+<section class="relative py-32 border-t border-white/[0.06] bg-[#010806] overflow-hidden" id="evidencia-04">
+<!-- Chapter Watermark -->
+<div class="absolute top-12 right-6 lg:right-16 text-[180px] font-serif font-black text-white/[0.02] select-none pointer-events-none leading-none">
+      04
+    </div>
+<div class="max-w-[1720px] mx-auto px-8 lg:px-14 relative z-10">
+<!-- Section Header -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end pb-16 border-b border-white/[0.08]">
+<div class="lg:col-span-8">
+<div class="flex items-center gap-3 text-papaya font-mono text-xs uppercase tracking-[0.3em] mb-4">
+<span class="px-2 py-0.5 border border-papaya/40 rounded text-[10px]">CAPÍTULO 04</span>
+<span>• DISPERSIÓN DIGITAL &amp; OOH IMPACT</span>
+</div>
+<h2 class="font-serif text-4xl sm:text-5xl lg:text-7xl font-bold uppercase tracking-tight text-chalk">
+            Ecosistema Digital <br/><span class="text-gold-gradient font-editorial italic lowercase text-5xl sm:text-6xl lg:text-8xl">&amp; Publicidad Exterior</span>
+</h2>
+</div>
+<div class="lg:col-span-4">
+<p class="font-sans text-chalk-dim text-sm sm:text-base leading-relaxed">
+            Del feed vertical de TikTok e Instagram a los monolitos publicitarios de la Vía Expresa de Lima: una experiencia omnicanal sincronizada con la narrativa de campaña.
+          </p>
+</div>
+</div>
+<!-- MOMENT A: Realistic Smartphone Mockup with Layered Campaign Ribbon -->
+<div class="mt-24 relative py-16">
+<div class="text-center max-w-2xl mx-auto mb-14">
+<span class="text-xs font-mono uppercase tracking-[0.3em] text-papaya block mb-2">Despliegue Mobile Social</span>
+<h3 class="font-serif text-3xl sm:text-4xl font-bold text-chalk">TikTok &amp; Instagram Stories Campaign</h3>
+<p class="text-sm text-chalk-dim mt-2">
+            La campaña adaptada al formato 9:16 vertical, conectando con la nueva generación de diseñadores jóvenes e influencers textiles peruanos.
+          </p>
+</div>
+<!-- Ribbon Passing BEHIND & THROUGH the Smartphone Composition -->
+<div class="relative w-full flex items-center justify-center overflow-hidden py-10">
+<!-- The Horizontal Campaign Ribbon (Extending beyond screen) -->
+<div class="absolute w-[160vw] -left-[30vw] h-48 bg-gradient-to-r from-brunswick/40 via-papaya/20 to-brunswick/40 -rotate-3 border-y border-papaya/30 flex items-center gap-6 overflow-hidden pointer-events-none z-0 backdrop-blur-sm opacity-40">
+<div class="flex items-center gap-6 whitespace-nowrap animate-pulse font-serif text-3xl font-black text-chalk/40">
+<span>DONDE NACE LA INSPIRACIÓN</span>
+<span class="text-papaya">•</span>
+<span>DALE VIDA A TUS IDEAS</span>
+<span class="text-papaya">•</span>
+<span>COLECCIÓN ORO REAL</span>
+<span class="text-papaya">•</span>
+<span>LA DECISIÓN SEGURA</span>
+<span class="text-papaya">•</span>
+<span>GOLDTEX GAMARRA 2024</span>
+<span class="text-papaya">•</span>
+<span>DONDE NACE LA INSPIRACIÓN</span>
+</div>
+</div>
+<!-- The Smartphone Hardware Shell (iPhone Pro Aesthetic) -->
+<div class="relative z-10 w-[340px] sm:w-[380px] h-[720px] rounded-[52px] bg-black p-3.5 shadow-[0_35px_80px_rgba(0,0,0,0.95)] border-4 border-[#242b29] glow-gold">
+<!-- Dynamic Island / Speaker notch -->
+<div class="absolute top-7 left-1/2 -translate-x-1/2 w-28 h-7 bg-black rounded-full z-40 flex items-center justify-between px-3">
+<div class="w-2.5 h-2.5 rounded-full bg-[#0a1815]"></div>
+<div class="w-3 h-3 rounded-full bg-[#112420] border border-white/10"></div>
+</div>
+<!-- Screen Glass Inner Frame -->
+<div class="relative w-full h-full rounded-[42px] overflow-hidden bg-obsidian flex flex-col justify-between">
+<!-- TikTok / Reels Video Live Mockup -->
+<div class="absolute inset-0 z-0">
+<img alt="TikTok Goldtex Story" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0wuKcd6qhOZmXzBKx-BGwa6_ZMhDe52K6ccn06FUqpaE2Uj3tXtp0bRQx7VUl2GEuxuQeE8QS8yZLu-G-zgsjpKNHZcEVtovP4zfe8GU9JXOde10sCXBrxcmkcYIORsByfTnSu_-cilRFe2WMKQIXxlOmMsxHqSi-vh9Ib2L52HSc3PbnpkOKYq9GuOTnEEDD8KrCEGJMxlZj2enLBHMdSt_FxAxkKoET4NSfRJyPzuxl87SQurEo_2o-A9M3njqqnBw"/>
+<div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/90"></div>
+</div>
+<!-- Top Status Bar & Platform UI -->
+<div class="relative z-20 pt-10 px-6 flex items-center justify-between text-xs font-mono text-white">
+<span class="font-bold">9:41</span>
+<div class="flex items-center gap-4 text-sm font-sans font-semibold">
+<span class="text-white/60">Siguiendo</span>
+<span class="text-white border-b-2 border-papaya pb-0.5">Para ti</span>
+</div>
+<svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<!-- Right Vertical Action Icons (TikTok Style) -->
+<div class="absolute right-4 bottom-24 z-20 flex flex-col items-center gap-5">
+<div class="flex flex-col items-center">
+<div class="w-11 h-11 rounded-full bg-black/60 backdrop-blur-md border border-papaya/50 flex items-center justify-center text-papaya">
+<svg class="w-6 h-6" fill="currentColor" viewbox="0 0 20 20"><path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"></path></svg>
+</div>
+<span class="text-[10px] font-mono text-chalk mt-1 font-bold">48.2K</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-11 h-11 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-chalk">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" fill-rule="evenodd"></path></svg>
+</div>
+<span class="text-[10px] font-mono text-chalk mt-1">1,208</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-11 h-11 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-chalk">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"><path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z"></path></svg>
+</div>
+<span class="text-[10px] font-mono text-chalk mt-1">8.5K</span>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-papaya p-0.5 animate-spin">
+<div class="w-full h-full rounded-full bg-papaya"></div>
+</div>
+</div>
+<!-- Bottom Video Info & Narrative Copy -->
+<div class="relative z-20 p-6 pb-8">
+<div class="flex items-center gap-2 mb-2">
+<span class="font-serif font-bold text-sm text-chalk">@goldtex.pe</span>
+<span class="text-[10px] px-1.5 py-0.2 bg-papaya text-obsidian rounded font-bold font-mono">OFICIAL</span>
+</div>
+<p class="text-xs text-chalk leading-snug mb-2 font-medium">
+                  Donde nace la inspiración 🧵✨ ¿Sabías que una sola pasada de plancha define la caída de este terciopelo? #LaDecisiónSegura #Gamarra #ModaPeruana
+                </p>
+<div class="flex items-center gap-2 text-[10px] font-mono text-papaya">
+<svg class="w-3 h-3" fill="currentColor" viewbox="0 0 20 20"><path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z"></path></svg>
+<span>Sonido Original - Goldtex Haute Orchestra</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Social Carousel Cards Underneath -->
+<div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+<div class="p-6 bg-white/[0.02] border border-white/10 rounded-2xl">
+<span class="text-xs font-mono text-papaya uppercase tracking-wider block mb-2">TIKTOK CAMPAIGN</span>
+<h5 class="font-serif text-lg font-bold text-chalk mb-2">“Donde nace la inspiración”</h5>
+<p class="text-xs text-chalk-dim leading-relaxed">
+              Videos de corte ASMR táctil con tijeras profesionales y caída libre de tela para generar apetito sensorial en microdiseñadores.
+            </p>
+</div>
+<div class="p-6 bg-white/[0.02] border border-white/10 rounded-2xl">
+<span class="text-xs font-mono text-papaya uppercase tracking-wider block mb-2">INSTAGRAM STORIES</span>
+<h5 class="font-serif text-lg font-bold text-chalk mb-2">“Dale vida a tus ideas”</h5>
+<p class="text-xs text-chalk-dim leading-relaxed">
+              Encuestas interactivas de colorimetría y tutoriales para calcular el rendimiento métrico de cada rollo sin desperdicio.
+            </p>
+</div>
+<div class="p-6 bg-white/[0.02] border border-white/10 rounded-2xl">
+<span class="text-xs font-mono text-papaya uppercase tracking-wider block mb-2">SOCIAL CAROUSEL</span>
+<h5 class="font-serif text-lg font-bold text-chalk mb-2">“Colección Oro Real”</h5>
+<p class="text-xs text-chalk-dim leading-relaxed">
+              Desglose fotográfico macro de las fibras hiladas con doble torsión para certificar cero peeling en uso intensivo.
+            </p>
+</div>
+</div>
+</div>
+<!-- MOMENT B: Panoramic Campaign Transition (Continuous Strip) -->
+<div class="mt-32 border-t border-white/[0.08] pt-24">
+<div class="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
+<div>
+<div class="flex items-center gap-3 text-papaya font-mono text-xs uppercase tracking-[0.3em] mb-3">
+<span class="w-2 h-2 rounded-full bg-papaya"></span>
+<span>NARRATIVA CINEMÁTICA CONTINUA • 1704 × 563 PX</span>
+</div>
+<h3 class="font-serif text-3xl sm:text-5xl font-bold text-chalk uppercase">
+              La Transición Panorámica
+            </h3>
+</div>
+<p class="text-chalk-dim text-sm max-w-md font-sans leading-relaxed">
+            Desde la bailarina en el estudio fotográfico, pasando por los mostradores y mesas de corte de Gamarra, hasta la fachada del edificio comercial. Un único hilo conductor sin rupturas.
+          </p>
+</div>
+<!-- Full-bleed Panoramic Cinema Strip -->
+<div class="relative w-full rounded-3xl overflow-hidden border-2 border-papaya/40 shadow-[0_20px_50px_rgba(0,0,0,0.8)] bg-black group">
+<!-- Continuous panoramic asset -->
+<div class="w-full overflow-x-auto no-scrollbar">
+<div class="min-w-[1200px] lg:min-w-full">
+<img alt="Goldtex Seamless Campaign Panoramic Narrative" class="w-full h-auto object-cover filter contrast-105 group-hover:scale-[1.01] transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArjDVdEi256WGpeK56CE2O9D8MHC9c2XfUKg335iNSxrbJv-yeGTMXZK3merBejU0a8c0HL6_epFu0amqkPKyGsr5Wg9oGHct5odRqLEG7YCG36KPN7gTsJOAdN8kkGs4z5W7C-1_teo4Rlfv6qCsi7sCBTbH5GVPm9lw6p2u_wj5eyHE3JNSZs5eW6CIwM2qaw8YMf_38Cdkjxbf7MqjVjyQEK2vd4hCF3QqpK0O2H0ONwLo5-wlwoAJHNCcEOMANZW4"/>
+</div>
+</div>
+<!-- Subtle narrative step markers overlay at the bottom -->
+<div class="absolute bottom-4 left-6 right-6 hidden md:flex items-center justify-between pointer-events-none font-mono text-[10px] tracking-widest uppercase text-chalk bg-black/60 backdrop-blur-md px-6 py-2.5 rounded-full border border-white/10">
+<span class="text-papaya font-bold">FASE 1: LA INSPIRACIÓN PURA</span>
+<span class="text-white/40">→</span>
+<span>FASE 2: LA ELECCIÓN DEL ROLLO</span>
+<span class="text-white/40">→</span>
+<span>FASE 3: EL CORTE EN EL TALLER</span>
+<span class="text-white/40">→</span>
+<span>FASE 4: LA TRANSACCIÓN SEGURA</span>
+<span class="text-white/40">→</span>
+<span class="text-papaya font-bold">FASE 5: EL EDIFICIO GAMARRA</span>
+</div>
+</div>
+</div>
+<!-- MOMENT C: Dramatic Outdoor Advertising Billboard at Night -->
+<div class="mt-36 border-t border-white/[0.08] pt-24 pb-12">
+<div class="text-center max-w-2xl mx-auto mb-16">
+<span class="text-xs font-mono uppercase tracking-[0.3em] text-papaya block mb-2">Gran Formato OOH • Vía Expresa / Av. Aviación</span>
+<h3 class="font-serif text-3xl sm:text-5xl font-bold text-chalk">La Revelación Monumental Nocturna</h3>
+<p class="text-sm text-chalk-dim mt-2">
+            El impacto a escala urbana que corona la campaña frente a más de 450,000 transeúntes diarios en el distrito textil de Lima.
+          </p>
+</div>
+<!-- Night Billboard Cinematic Scene -->
+<div class="relative w-full max-w-6xl mx-auto rounded-3xl overflow-hidden border border-white/20 bg-gradient-to-b from-[#020d0a] via-obsidian to-black p-6 sm:p-12 shadow-[0_30px_90px_rgba(0,0,0,0.95)]">
+<!-- Spotlights Lighting Effect onto Billboard -->
+<div class="absolute top-0 left-1/4 w-40 h-72 bg-papaya/15 filter blur-3xl rotate-12 pointer-events-none"></div>
+<div class="absolute top-0 right-1/4 w-40 h-72 bg-papaya/15 filter blur-3xl -rotate-12 pointer-events-none"></div>
+<!-- Realistic Steel Truss Frame Structure of Outdoor Billboard -->
+<div class="relative w-full rounded-2xl p-4 sm:p-8 bg-[#040e0b] border-4 border-[#13231e] shadow-2xl">
+<!-- Billboard Top Illumination Lamps -->
+<div class="flex justify-around items-center mb-4 px-8">
+<div class="w-8 h-2.5 bg-papaya/80 rounded-t shadow-[0_0_15px_#F1B734]"></div>
+<div class="w-8 h-2.5 bg-papaya/80 rounded-t shadow-[0_0_15px_#F1B734]"></div>
+<div class="w-8 h-2.5 bg-papaya/80 rounded-t shadow-[0_0_15px_#F1B734]"></div>
+<div class="w-8 h-2.5 bg-papaya/80 rounded-t shadow-[0_0_15px_#F1B734]"></div>
+</div>
+<!-- Billboard Graphic Canvas Area -->
+<div class="relative w-full aspect-[21/9] sm:aspect-[24/9] rounded-xl overflow-hidden border-2 border-papaya/50 bg-[#010806] flex items-center justify-between p-8 sm:p-16">
+<!-- Subtle Background Silk Movement -->
+<div class="absolute inset-0 opacity-40">
+<img alt="Billboard Graphic Silk Texture" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxO7LoHU9udi6ZqpB7bSh9CzeP364Da-sXbiO_n8fWHm8xQndRBL4Bny31eVgyDi2ZXXyLoJ1J3qWuuMN8V7bdPaz0eM4U_CQuCcUpCCPx9Hi9nL_o6OSVuxvmM4Uy_fZedTcHhgdraFnpuMpKa_7Y5_JtzEP-26VGbJ66N9pnULW55ndtRqFkjnzlxeIRt9K2fNVwm0AUCQioF3xv-fpnWw_B0dGTbfMfsroflFZFGpxI7bcuTRYZqvdzpUxo47IziwQ"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/60 to-transparent"></div>
+<!-- Billboard Giant Brand Typography -->
+<div class="relative z-10 max-w-2xl">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-4 h-4 bg-papaya rotate-45"></div>
+<span class="font-serif tracking-[0.4em] text-xl sm:text-2xl font-bold text-chalk">GOLDTEX</span>
+</div>
+<h4 class="font-serif text-3xl sm:text-6xl lg:text-7xl font-black uppercase text-chalk leading-[0.9] tracking-tight">
+                  LA DECISIÓN <br/><span class="text-papaya font-editorial italic lowercase text-4xl sm:text-7xl">segura</span>
+</h4>
+<p class="font-sans font-semibold text-xs sm:text-base text-chalk-dim mt-4 uppercase tracking-widest">
+                  Una buena tela es el inicio de un gran proyecto.
+                </p>
+<div class="mt-6 inline-block font-mono text-[10px] sm:text-xs text-papaya bg-black/60 px-4 py-1.5 rounded-full border border-papaya/40">
+                  ENCUÉNTRANOS EN JR. GAMARRA 1043 • LIMA
+                </div>
+</div>
+<!-- Billboard Right Accent -->
+<div class="relative z-10 hidden md:block text-right font-mono text-xs text-chalk-dim">
+<span class="block text-papaya font-bold text-lg">PROVEEDOR OFICIAL</span>
+<span>DE LA INDUSTRIA DE LA MODA PERUANA</span>
+</div>
+</div>
+<!-- Billboard Support Monolith Columns -->
+<div class="flex justify-center gap-32 mt-6">
+<div class="w-6 h-12 bg-gradient-to-b from-[#13231e] to-black rounded-b"></div>
+<div class="w-6 h-12 bg-gradient-to-b from-[#13231e] to-black rounded-b"></div>
+</div>
+</div>
+<!-- Outdoor Night Lighting Specs -->
+<div class="mt-8 flex flex-wrap items-center justify-between text-xs font-mono text-chalk-dim border-t border-white/10 pt-4">
+<span>FORMATO: VALLA MONUMENTAL 14.40 × 4.80 M</span>
+<span>ILUMINACIÓN: LED CALIBRADO 3000K WARM GOLD</span>
+<span class="text-papaya font-semibold">COBERTURA: 12.8M IMPACTOS MENSUALES</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== GRAND FINALE / EDITORIAL SIGNATURE ==================== -->
+<footer class="relative py-24 border-t border-white/10 bg-gradient-to-b from-obsidian via-[#041a15] to-[#010806] overflow-hidden" id="experiencia-tactil">
+<div class="max-w-[1720px] mx-auto px-8 lg:px-14 relative z-10">
+<!-- Central Brand Seal -->
+<div class="flex flex-col items-center text-center max-w-3xl mx-auto">
+<div class="w-16 h-16 rounded-full border-2 border-papaya flex items-center justify-center mb-8 glow-gold">
+<div class="w-4 h-4 bg-papaya rotate-45"></div>
+</div>
+<span class="font-serif tracking-[0.45em] text-2xl sm:text-3xl font-black text-chalk mb-2">GOLDTEX</span>
+<span class="font-sans text-xs uppercase tracking-[0.4em] text-papaya mb-8">Telas Que Inspiran</span>
+<p class="font-editorial italic text-2xl sm:text-3xl text-chalk leading-snug mb-10">
+          “Porque en cada metro de tela vive el prestigio de quien la corta, la precisión de quien la cose y el orgullo de quien la viste.”
+        </p>
+<!-- Chapter Revisit Grid -->
+<div class="w-full pt-8 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-left font-mono text-xs">
+<a class="p-4 rounded-xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/5 hover:border-papaya/40 transition-colors" href="#evidencia-01">
+<span class="text-papaya block mb-1">01. INVESTIGACIÓN</span>
+<span class="text-chalk-dim">Etnografía Gamarra</span>
+</a>
+<a class="p-4 rounded-xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/5 hover:border-papaya/40 transition-colors" href="#evidencia-02">
+<span class="text-papaya block mb-1">02. ESTRATEGIA</span>
+<span class="text-chalk-dim">Pedro &amp; Los 3 Pilares</span>
+</a>
+<a class="p-4 rounded-xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/5 hover:border-papaya/40 transition-colors" href="#evidencia-03">
+<span class="text-papaya block mb-1">03. KEY VISUAL</span>
+<span class="text-chalk-dim">Galería Tridimensional</span>
+</a>
+<a class="p-4 rounded-xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/5 hover:border-papaya/40 transition-colors" href="#evidencia-04">
+<span class="text-papaya block mb-1">04. ECOSISTEMA</span>
+<span class="text-chalk-dim">Social Media &amp; OOH</span>
+</a>
+</div>
+<!-- Back to Top CTA -->
+<a class="mt-14 inline-flex items-center gap-3 text-xs uppercase font-mono tracking-[0.3em] text-papaya hover:text-white transition-colors border border-papaya/40 hover:border-papaya px-8 py-3.5 rounded-full" href="#hero">
+<span>VOLVER AL COMIENZO DE LA EXPERIENCIA</span>
+<span>↑</span>
+</a>
+</div>
+<!-- Copyright & Credits -->
+<div class="mt-20 pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-chalk-dim/60 gap-4">
+<div>
+          © 2024–2026 GOLDTEX S.A.C. • LA DECISIÓN SEGURA. TODOS LOS DERECHOS RESERVADOS.
+        </div>
+<div>
+          DISEÑADO BAJO CRITERIOS EDITORIALES AWWWARDS • HAUTE TEXTILE ARCHIVE
+        </div>
+</div>
+</div>
+</footer>
+<!-- ==================== HAUTE COUTURE GOLDEN THREAD INTERACTION SCRIPT ==================== -->
+<script>
+    (function initGoldenThread() {
+      // Respect accessibility preferences
+      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (mediaQuery.matches) {
+        document.body.classList.remove('custom-needle-active');
+        return;
+      }
+
+      const canvas = document.getElementById('golden-thread-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let width = (canvas.width = window.innerWidth);
+      let height = (canvas.height = window.innerHeight);
+
+      // Listen to resize
+      window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+
+      // Mouse & Pointer State
+      const mouse = {
+        x: width / 2,
+        y: height / 2,
+        prevX: width / 2,
+        prevY: height / 2,
+        speed: 0,
+        isHoveringInteractive: false,
+        active: false,
+      };
+
+      // Haute Couture Spring-Damped Thread Points (Silk filament physics)
+      const POINT_COUNT = 34;
+      const points = [];
+      for (let i = 0; i < POINT_COUNT; i++) {
+        points.push({
+          x: mouse.x,
+          y: mouse.y,
+          vx: 0,
+          vy: 0,
+        });
+      }
+
+      // Shimmering Golden Dust Particles
+      const particles = [];
+      const MAX_PARTICLES = 65;
+
+      function spawnGoldDust(x, y, count = 2) {
+        for (let i = 0; i < count; i++) {
+          if (particles.length > MAX_PARTICLES) particles.shift();
+          const angle = Math.random() * Math.PI * 2;
+          const speed = Math.random() * 2.4 + 0.6;
+          particles.push({
+            x: x + (Math.random() - 0.5) * 8,
+            y: y + (Math.random() - 0.5) * 8,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed - 0.4,
+            size: Math.random() * 2 + 0.8,
+            alpha: 1,
+            decay: Math.random() * 0.028 + 0.015,
+            rotation: Math.random() * Math.PI,
+            rotSpeed: (Math.random() - 0.5) * 0.2,
+          });
+        }
+      }
+
+      // Track pointer movement
+      window.addEventListener('pointermove', (e) => {
+        mouse.active = true;
+        mouse.prevX = mouse.x;
+        mouse.prevY = mouse.y;
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+
+        const dx = mouse.x - mouse.prevX;
+        const dy = mouse.y - mouse.prevY;
+        mouse.speed = Math.sqrt(dx * dx + dy * dy);
+
+        // Emit micro sparkles when moving quickly or over canvas
+        if (mouse.speed > 5) {
+          spawnGoldDust(mouse.x, mouse.y, Math.min(3, Math.floor(mouse.speed / 8) + 1));
+        }
+      });
+
+      // Interactive hover detection (links, buttons, pills)
+      document.addEventListener('mouseover', (e) => {
+        const target = e.target.closest('a, button, [role="button"], input, select');
+        mouse.isHoveringInteractive = !!target;
+      });
+
+      // Click ripple sparkle burst
+      window.addEventListener('pointerdown', (e) => {
+        spawnGoldDust(e.clientX, e.clientY, 10);
+      });
+
+      let needleAngle = 0;
+
+      // Animation Render Loop
+      function render() {
+        ctx.clearRect(0, 0, width, height);
+
+        if (!mouse.active) {
+          requestAnimationFrame(render);
+          return;
+        }
+
+        // 1. Update Spring-Damped Thread Points (Smooth Silk Wave)
+        let leaderX = mouse.x;
+        let leaderY = mouse.y;
+
+        for (let i = 0; i < POINT_COUNT; i++) {
+          const pt = points[i];
+          // Damping & tension calibrated to mimic soft metallic silk thread
+          const spring = 0.38 - (i / POINT_COUNT) * 0.14;
+          const damping = 0.56;
+
+          const dx = leaderX - pt.x;
+          const dy = leaderY - pt.y;
+
+          pt.vx += dx * spring;
+          pt.vy += dy * spring;
+
+          pt.vx *= damping;
+          pt.vy *= damping;
+
+          pt.x += pt.vx;
+          pt.y += pt.vy;
+
+          leaderX = pt.x;
+          leaderY = pt.y;
+        }
+
+        // 2. Render Outer Glow Trail
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(mouse.x, mouse.y);
+        for (let i = 0; i < POINT_COUNT - 1; i++) {
+          const xc = (points[i].x + points[i + 1].x) / 2;
+          const yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+        }
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.strokeStyle = 'rgba(241, 183, 52, 0.18)';
+        ctx.lineWidth = mouse.isHoveringInteractive ? 8 : 5.5;
+        ctx.shadowColor = '#F1B734';
+        ctx.shadowBlur = 18;
+        ctx.stroke();
+        ctx.restore();
+
+        // 3. Render Fine Metallic Silk Thread (Filamento Dorado)
+        ctx.save();
+        for (let i = 0; i < POINT_COUNT - 1; i++) {
+          const progress = i / POINT_COUNT;
+          const nextProgress = (i + 1) / POINT_COUNT;
+
+          const xc = (points[i].x + points[i + 1].x) / 2;
+          const yc = (points[i].y + points[i + 1].y) / 2;
+
+          ctx.beginPath();
+          if (i === 0) {
+            ctx.moveTo(mouse.x, mouse.y);
+            ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+          } else {
+            const prevXc = (points[i - 1].x + points[i].x) / 2;
+            const prevYc = (points[i - 1].y + points[i].y) / 2;
+            ctx.moveTo(prevXc, prevYc);
+            ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+          }
+
+          // Shading from bright white-gold tip to warm metallic silk tail
+          const alpha = (1 - progress) * (mouse.isHoveringInteractive ? 0.95 : 0.85);
+          ctx.strokeStyle = `rgba(255, 230, 150, ${alpha})`;
+          ctx.lineWidth = Math.max(0.6, (1 - progress) * (mouse.isHoveringInteractive ? 2.6 : 2.0));
+          ctx.lineCap = 'round';
+          ctx.stroke();
+        }
+        ctx.restore();
+
+        // 4. Update & Render Gold Dust Particles (Partículas de Oro)
+        for (let i = particles.length - 1; i >= 0; i--) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.alpha -= p.decay;
+          p.rotation += p.rotSpeed;
+
+          if (p.alpha <= 0) {
+            particles.splice(i, 1);
+            continue;
+          }
+
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rotation);
+          ctx.globalAlpha = p.alpha;
+          ctx.fillStyle = '#FFE599';
+          ctx.shadowColor = '#F1B734';
+          ctx.shadowBlur = 6;
+
+          // Diamond sparkle shape
+          ctx.beginPath();
+          const s = p.size;
+          ctx.moveTo(0, -s * 1.5);
+          ctx.lineTo(s, 0);
+          ctx.lineTo(0, s * 1.5);
+          ctx.lineTo(-s, 0);
+          ctx.closePath();
+          ctx.fill();
+          ctx.restore();
+        }
+
+        // 5. Stylized Haute Couture Needle / Golden Pointer
+        ctx.save();
+        const targetAngle = Math.atan2(mouse.y - points[0].y, mouse.x - points[0].x) + Math.PI / 4;
+        needleAngle += (targetAngle - needleAngle) * 0.18;
+
+        ctx.translate(mouse.x, mouse.y);
+        ctx.rotate(needleAngle);
+
+        // Warm radial aura behind the needle tip
+        const auraRadius = mouse.isHoveringInteractive ? 20 : 13;
+        const auraGrad = ctx.createRadialGradient(0, 0, 1, 0, 0, auraRadius);
+        auraGrad.addColorStop(0, mouse.isHoveringInteractive ? 'rgba(241, 183, 52, 0.45)' : 'rgba(241, 183, 52, 0.3)');
+        auraGrad.addColorStop(1, 'rgba(241, 183, 52, 0)');
+        ctx.fillStyle = auraGrad;
+        ctx.beginPath();
+        ctx.arc(0, 0, auraRadius, 0, Math.PI * 2);
+        ctx.fill();
+
+        // The Golden Needle (Fine Haute Couture Needle Shape)
+        ctx.shadowColor = '#F1B734';
+        ctx.shadowBlur = mouse.isHoveringInteractive ? 14 : 8;
+
+        ctx.beginPath();
+        ctx.moveTo(0, -11); // Needle tip
+        ctx.lineTo(1.8, 9);
+        ctx.lineTo(0, 7.5);
+        ctx.lineTo(-1.8, 9);
+        ctx.closePath();
+        ctx.fillStyle = '#FFF1CE';
+        ctx.fill();
+
+        // Eye of the Needle (Ojo de la aguja dorada con destello)
+        ctx.beginPath();
+        ctx.arc(0, 4.5, 0.9, 0, Math.PI * 2);
+        ctx.fillStyle = '#010806';
+        ctx.fill();
+
+        // Central Needle Jewel Point
+        ctx.beginPath();
+        ctx.arc(0, -2, 1.3, 0, Math.PI * 2);
+        ctx.fillStyle = mouse.isHoveringInteractive ? '#FFE599' : '#F1B734';
+        ctx.fill();
+
+        ctx.restore();
+
+        requestAnimationFrame(render);
+      }
+
+      render();
+    })();
+  </script>
+</body></html>

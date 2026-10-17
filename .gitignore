@@ -39,3 +39,27 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Stage 2 (deferidos): se suben en el pase 2 para no bloquear el deploy
+UNIDOS.mp4
+Tailor_cutting_emerald_green_satin_20261014210733.mp4
+Fabric_rolls_levitating_in_sunlight_20261014210649.mp4
+ev4_fondo.mp4
+assets/evidencias/ev1/
+assets/evidencias/ev3/
+assets/evidencias/ev4/
+
+# --- pase1: medios pesados diferidos (se suben en pase 2) ---
+UNIDOS.mp4
+heroe_video.mp4
+Tailor_cutting_emerald_green_satin_20261014210733.mp4
+Fabric_rolls_levitating_in_sunlight_20261014210649.mp4
+ev4_fondo.mp4
+public/assets/evidencias/ev1/
+public/assets/evidencias/ev3/
+public/assets/evidencias/ev4/
+public/extracted/
+
+# pase1 extra: no son parte del build web
+EVIDENCIA_4.pptx
+shots/
