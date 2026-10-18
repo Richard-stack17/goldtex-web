@@ -40,6 +40,3 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Media generada por subagente no solicitada (sin wirear)
-public/activacion_gamarra_omnichannel.mp4
-public/poster_ev4_omnichannel.jpg

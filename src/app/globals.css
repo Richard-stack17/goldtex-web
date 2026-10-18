@@ -813,6 +813,159 @@
             font-weight: 300;
         }
 
+        /* Adaptación Panorámica 16:9 para Brand Film Master */
+        .video-player-container.is-landscape {
+            aspect-ratio: 16/9;
+        }
+
+        .video-player-container.is-landscape:fullscreen video,
+        .video-player-container.is-landscape:-webkit-full-screen video {
+            width: 100%;
+            height: auto;
+            max-height: 100%;
+        }
+
+        /* Tarjeta Hero Panorámica para el Brand Film Principal */
+        .brand-film-hero-card {
+            max-width: 1100px;
+            margin: 0 auto 3.5rem auto;
+            border-radius: 22px;
+            overflow: hidden;
+            border: 1px solid rgba(241, 183, 52, 0.32);
+            background: linear-gradient(165deg, rgba(8, 62, 53, 0.88) 0%, rgba(2, 26, 19, 0.96) 60%, rgba(1, 12, 9, 0.98) 100%);
+            box-shadow: 0 35px 85px -15px rgba(0, 0, 0, 0.92), 0 0 40px rgba(241, 183, 52, 0.12);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.5s ease;
+        }
+
+        .brand-film-hero-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--gold-caramel);
+            box-shadow: 0 45px 100px -10px rgba(0, 0, 0, 0.98), 0 0 50px rgba(241, 183, 52, 0.28);
+        }
+
+        .brand-film-badge-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.1rem 1.8rem;
+            border-bottom: 1px solid rgba(241, 183, 52, 0.18);
+            background: rgba(0, 0, 0, 0.45);
+        }
+
+        .brand-film-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 0.8rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--gold-caramel);
+        }
+
+        .brand-film-tag-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gold-caramel);
+            box-shadow: 0 0 10px var(--gold-caramel);
+            animation: pulse-dot 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
+        }
+
+        .brand-film-meta {
+            font-size: 0.76rem;
+            color: rgba(242, 235, 221, 0.72);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .brand-film-info {
+            padding: 2.2rem 2.4rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2.5rem;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(2, 26, 19, 0.85) 0%, rgba(1, 8, 6, 0.98) 100%);
+            border-top: 1px solid rgba(198, 163, 74, 0.2);
+        }
+
+        @media (max-width: 820px) {
+            .brand-film-info {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 1.6rem;
+            }
+            .brand-film-badge-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+                padding: 1rem 1.4rem;
+            }
+        }
+
+        .brand-film-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .brand-spec-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 16px;
+            border-radius: 50px;
+            background: rgba(241, 183, 52, 0.08);
+            border: 1px solid rgba(241, 183, 52, 0.22);
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            color: var(--ivory);
+            font-weight: 500;
+        }
+
+        /* Separador Editorial para los Spots Verticales */
+        .vertical-spots-divider {
+            text-align: center;
+            margin: 2rem auto 3rem auto;
+            position: relative;
+            max-width: 1100px;
+        }
+
+        .vertical-spots-divider::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(241, 183, 52, 0.35) 50%, transparent 100%);
+            z-index: 0;
+        }
+
+        .vertical-spots-label {
+            position: relative;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.5rem 1.8rem;
+            background: #021a13;
+            border: 1px solid rgba(241, 183, 52, 0.28);
+            border-radius: 50px;
+            font-size: 0.82rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold-caramel);
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+        }
+
         /* Sección Editorial de Tendencias en Decoración (UI/UX Luxury Magazine Style) */
         .editorial-decor-section {
             position: relative;
@@ -3730,6 +3883,113 @@
             background: var(--gold-caramel);
             box-shadow: 0 0 10px var(--gold-caramel);
             transform: scale(1.2);
+        }
+
+        /* Showcase de Activación Omnicanal (Del Móvil a la Tienda en Gamarra) */
+        .ev4-omnichannel-showcase {
+            max-width: 1150px;
+            margin: 4.5rem auto 3rem auto;
+            border-radius: 22px;
+            overflow: hidden;
+            border: 1px solid rgba(241, 183, 52, 0.32);
+            background: linear-gradient(165deg, rgba(8, 62, 53, 0.88) 0%, rgba(2, 26, 19, 0.96) 60%, rgba(1, 12, 9, 0.98) 100%);
+            box-shadow: 0 35px 85px -15px rgba(0, 0, 0, 0.92), 0 0 40px rgba(241, 183, 52, 0.12);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.5s ease;
+        }
+
+        .ev4-omnichannel-showcase:hover {
+            transform: translateY(-6px);
+            border-color: var(--gold-caramel);
+            box-shadow: 0 45px 100px -10px rgba(0, 0, 0, 0.98), 0 0 50px rgba(241, 183, 52, 0.28);
+        }
+
+        .omnichannel-badge-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.1rem 1.8rem;
+            border-bottom: 1px solid rgba(241, 183, 52, 0.18);
+            background: rgba(0, 0, 0, 0.45);
+        }
+
+        .omnichannel-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 0.8rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--gold-caramel);
+        }
+
+        .omnichannel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4ade80;
+            box-shadow: 0 0 10px #4ade80;
+            animation: pulse-dot 2s infinite ease-in-out;
+        }
+
+        .omnichannel-meta {
+            font-size: 0.76rem;
+            color: rgba(242, 235, 221, 0.72);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .omnichannel-info {
+            padding: 2.2rem 2.4rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2.5rem;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(2, 26, 19, 0.85) 0%, rgba(1, 8, 6, 0.98) 100%);
+            border-top: 1px solid rgba(198, 163, 74, 0.2);
+        }
+
+        @media (max-width: 820px) {
+            .omnichannel-info {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 1.6rem;
+            }
+            .omnichannel-badge-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+                padding: 1rem 1.4rem;
+            }
+        }
+
+        .omnichannel-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.55rem;
+            color: var(--gold-champagne);
+            margin-bottom: 0.6rem;
+            letter-spacing: 0.05em;
+        }
+
+        .omnichannel-desc {
+            font-size: 0.94rem;
+            color: rgba(242, 235, 221, 0.82);
+            line-height: 1.65;
+            font-weight: 300;
+            max-width: 720px;
+        }
+
+        .omnichannel-pills {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+
+        @media (min-width: 821px) {
+            .omnichannel-pills {
+                align-items: flex-end;
+            }
         }
 
         /* Billboard de Publicidad en las Calles */
