@@ -21,6 +21,8 @@ const TIKTOK_SLIDES = [
   },
   {
     src: "/assets/evidencias/ev4/ev4_tiktok_03.png",
+    videoSrc: "/publicidad2.mp4",
+    poster: "/poster_publicidad2.jpg",
     title: "Video Vertical de Producto",
     subtitle: "Texturas y Caída de Tejidos",
     handle: "@Goldtex.Oficial",
@@ -192,12 +194,30 @@ export default function SpatialPhoneBillboard() {
 
             {/* Pantalla del teléfono */}
             <div className="ev4-phone-screen">
-              <img
-                src={currentSlide.src}
-                alt={currentSlide.title}
-                className="ev4-screen-media"
-                key={currentSlide.src}
-              />
+              {(currentSlide as any).videoSrc ? (
+                <video
+                  src={(currentSlide as any).videoSrc}
+                  poster={(currentSlide as any).poster}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    display: "block",
+                    transform: "translateZ(0)",
+                  }}
+                />
+              ) : (
+                <img
+                  src={currentSlide.src}
+                  alt={currentSlide.title}
+                  className="ev4-screen-media"
+                  key={currentSlide.src}
+                />
+              )}
 
               {/* Interfaz nativa superpuesta tipo TikTok / Reel */}
               <div className="ev4-screen-ui">
