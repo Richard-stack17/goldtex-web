@@ -102,6 +102,8 @@ export default function KeyVisualSpatialDiorama() {
                 alt="Goldtex Fabric Detail Perspective — Sillón botánico y vuelo textil"
                 className="layer-img"
               />
+              <div className="layer-gradient-overlay"></div>
+              
               <button
                 type="button"
                 className="layer-lightbox-trigger"
@@ -115,6 +117,7 @@ export default function KeyVisualSpatialDiorama() {
                   });
                 }}
                 title="Ver imagen completa en alta definición"
+                aria-label="Abrir imagen completa"
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <polyline points="15 3 21 3 21 9"></polyline>
@@ -123,9 +126,14 @@ export default function KeyVisualSpatialDiorama() {
                   <line x1="3" y1="21" x2="10" y2="14"></line>
                 </svg>
               </button>
-            </div>
-            <div className="layer-depth-badge badge-left">
-              DEPTH LAYER: -150PX • VUELO TEXTIL
+
+              <div className="layer-depth-badge badge-left">
+                DEPTH LAYER: -150PX • VUELO TEXTIL
+              </div>
+
+              <div className="layer-hover-hint">
+                <span>✦ Vista Atelier</span>
+              </div>
             </div>
           </div>
 
@@ -137,27 +145,41 @@ export default function KeyVisualSpatialDiorama() {
             {/* Anillos de Resplandor Oro y Esmeralda */}
             <div className="hero-glow-aura" aria-hidden="true"></div>
 
-            {/* Marco Estructural Editorial con Aspect Ratio Panorámico 2279:1458 */}
-            <div className="hero-frame">
-              <img
-                src="/ev3_key_visual_master.png"
-                alt="Master Key Visual 4K — La Decisión Segura (Goldtex Telas que Inspiran)"
-                className="hero-main-img"
-              />
+            {/* Escenario Visual Panorámico con Pop-Out Orb controlado */}
+            <div className="hero-visual-stage">
+              {/* Marco Estructural Editorial con Aspect Ratio Panorámico 2279:1458 */}
+              <div className="hero-frame">
+                <img
+                  src="/ev3_key_visual_master.png"
+                  alt="Master Key Visual 4K — La Decisión Segura (Goldtex Telas que Inspiran)"
+                  className="hero-main-img"
+                />
 
-              {/* Badge Superior Izquierdo */}
-              <div className="hero-master-badge">
-                <span className="badge-gold-dot"></span>
-                <span>CAMPAIGN KEY VISUAL • MASTER SHOT</span>
+                {/* Badge Superior Izquierdo */}
+                <div className="hero-master-badge">
+                  <span className="badge-gold-dot"></span>
+                  <span>CAMPAIGN KEY VISUAL • MASTER SHOT</span>
+                </div>
+
+                {/* Badge Superior Derecho: Telemetría Espacial (dentro del frame, nunca recortado) */}
+                <div className="hero-focal-pill">
+                  FOCAL DEPTH: 0.00 • 2279 × 1458 PX
+                </div>
               </div>
 
-              {/* Badge Superior Derecho: Telemetría Espacial */}
-              <div className="hero-focal-pill">
-                FOCAL DEPTH: 0.00 • 2279 × 1458 PX
+              {/* Sello Flotante 3D Pop-Out (anclado a la esquina inferior derecha del marco, sin tapar la placa) */}
+              <div className="hero-popout-orb" aria-hidden="true">
+                <div className="orb-glass-inner">
+                  <span>
+                    TELA EN MOVIMIENTO<br />
+                    • SALIDA DE PLANO 3D •<br />
+                    <small style={{ color: "#ffffff", opacity: 0.85 }}>GAMARRA 2024</small>
+                  </span>
+                </div>
               </div>
             </div>
 
-            {/* Placa Editorial Consola debajo del Marco (No tapa la imagen) */}
+            {/* Placa Editorial Consola debajo del Marco (No tapa la imagen ni se solapa con el orbe) */}
             <div className="hero-editorial-plaque">
               <div className="plaque-col-info">
                 <div className="plaque-tag">
@@ -166,7 +188,7 @@ export default function KeyVisualSpatialDiorama() {
                 </div>
                 <h3 className="plaque-headline">La Decisión Segura</h3>
                 <p className="plaque-narrative">
-                  “Una buena decisión es el inicio de un gran proyecto.” La diseñadora en su taller rodeada de rollos nobles en Verde Institucional (#083E35) y Oro Papaya (#F1B734).
+                  “Una buena decisión es el inicio de un gran proyecto.” La diseñadora en su taller rodeada de rollos nobles en Verde Institucional (<span style={{ color: "#4ade80", fontWeight: 600 }}>#083E35</span>) y Oro Papaya (<span style={{ color: "#F1B734", fontWeight: 600 }}>#F1B734</span>).
                 </p>
               </div>
 
@@ -188,6 +210,7 @@ export default function KeyVisualSpatialDiorama() {
                     });
                   }}
                   title="Ver imagen completa en pantalla completa"
+                  aria-label="Abrir imagen completa en 4K"
                 >
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="15 3 21 3 21 9"></polyline>
@@ -197,17 +220,6 @@ export default function KeyVisualSpatialDiorama() {
                   </svg>
                   <span>Ver Completa (4K)</span>
                 </button>
-              </div>
-            </div>
-
-            {/* Sello Flotante 3D Pop-Out */}
-            <div className="hero-popout-orb" aria-hidden="true">
-              <div className="orb-glass-inner">
-                <span>
-                  TELA EN MOVIMIENTO<br />
-                  • SALIDA DE PLANO 3D •<br />
-                  <small style={{ color: "#ffffff", opacity: 0.75 }}>GAMARRA 2024</small>
-                </span>
               </div>
             </div>
           </div>
@@ -224,6 +236,8 @@ export default function KeyVisualSpatialDiorama() {
                 alt="Showroom Goldtex Key Visual — Atelier View y modelo saltando en traje floral"
                 className="layer-img"
               />
+              <div className="layer-gradient-overlay"></div>
+              
               <button
                 type="button"
                 className="layer-lightbox-trigger"
@@ -237,6 +251,7 @@ export default function KeyVisualSpatialDiorama() {
                   });
                 }}
                 title="Ver imagen completa en alta definición"
+                aria-label="Abrir imagen completa"
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <polyline points="15 3 21 3 21 9"></polyline>
@@ -245,9 +260,14 @@ export default function KeyVisualSpatialDiorama() {
                   <line x1="3" y1="21" x2="10" y2="14"></line>
                 </svg>
               </button>
-            </div>
-            <div className="layer-depth-badge badge-right">
-              DEPTH LAYER: +150PX • ATELIER VIEW
+
+              <div className="layer-depth-badge badge-right">
+                DEPTH LAYER: +150PX • ATELIER VIEW
+              </div>
+
+              <div className="layer-hover-hint">
+                <span>✦ Vista Showroom</span>
+              </div>
             </div>
           </div>
         </div>
