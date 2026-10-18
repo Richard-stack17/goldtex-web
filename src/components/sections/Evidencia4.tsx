@@ -53,6 +53,7 @@ const pillars = [
 ];
 
 import SpatialPhoneBillboard from "@/components/experience/SpatialPhoneBillboard";
+import Evidencia4ComplementoVideo from "@/components/experience/Evidencia4ComplementoVideo";
 
 export default function Evidencia4() {
   return (
@@ -222,6 +223,9 @@ export default function Evidencia4() {
           </article>
         </div>
       </section>
+
+      {/* VIDEO COMPLEMENTARIO: MATERIAL POP, INDUMENTARIA, MERCHANDISING Y PRECINTOS DE SEGURIDAD */}
+      <Evidencia4ComplementoVideo />
 
       {/* EFECTO 3: CELULAR 3D FLOTANTE, CINTA CONTINUA PASANTE Y BILLBOARD CALLEJERO CON LUCES LED */}
       <SpatialPhoneBillboard />
