@@ -30,6 +30,13 @@ const TIKTOK_SLIDES = [
 
 const INSTAGRAM_SLIDES = [
   {
+    src: "/imagen_instagram.png",
+    title: "Post Oficial en Instagram",
+    subtitle: "Publicación de Campaña · 1:1",
+    handle: "@Goldtex_Oficial",
+    desc: "“El color de tus ideas también es una buena tela” — Post de interacción y engagement en la cuenta oficial.",
+  },
+  {
     src: "/assets/evidencias/ev4/ev4_instagram_01.png",
     title: "Feed Oficial en Instagram",
     subtitle: "Curaduría Estética & Grilla",
@@ -52,15 +59,30 @@ const INSTAGRAM_SLIDES = [
   },
 ];
 
+const FACEBOOK_SLIDES = [
+  {
+    src: "/imagen_facebook.png",
+    title: "Fanpage Oficial en Facebook",
+    subtitle: "Comunidad & Catálogo B2B",
+    handle: "Goldtex · Servicios y Distribución de Textiles",
+    desc: "Canal verificado con 254k seguidores y más de 1.2M de alcance publicitario para talleres y confeccionistas en Lima y provincias.",
+  },
+];
+
 export default function SpatialPhoneBillboard() {
-  const [activeTab, setActiveTab] = useState<"tiktok" | "instagram">("tiktok");
+  const [activeTab, setActiveTab] = useState<"tiktok" | "instagram" | "facebook">("tiktok");
   const [slideIndex, setSlideIndex] = useState<number>(0);
   const phoneRef = useRef<HTMLDivElement | null>(null);
   const ribbonRef = useRef<HTMLDivElement | null>(null);
   const billboardRef = useRef<HTMLDivElement | null>(null);
   const [lightsOn, setLightsOn] = useState<boolean>(false);
 
-  const slides = activeTab === "tiktok" ? TIKTOK_SLIDES : INSTAGRAM_SLIDES;
+  const slides =
+    activeTab === "tiktok"
+      ? TIKTOK_SLIDES
+      : activeTab === "instagram"
+      ? INSTAGRAM_SLIDES
+      : FACEBOOK_SLIDES;
   const currentSlide = slides[slideIndex % slides.length];
 
   useEffect(() => {
@@ -157,6 +179,16 @@ export default function SpatialPhoneBillboard() {
           >
             <span className="tab-icon">📷</span> Instagram @goldtex.pe
           </button>
+          <button
+            type="button"
+            className={`platform-tab-btn ${activeTab === "facebook" ? "is-active" : ""}`}
+            onClick={() => {
+              setActiveTab("facebook");
+              setSlideIndex(0);
+            }}
+          >
+            <span className="tab-icon">🌐</span> Facebook @Goldtex
+          </button>
         </div>
       </div>
 
@@ -168,14 +200,18 @@ export default function SpatialPhoneBillboard() {
       >
         {/* Cinta continua pasante detrás del teléfono */}
         <div className="ev4-ribbon-track" ref={ribbonRef} aria-hidden="true">
-          <img src="/AA4.jpg" alt="" className="ev4-ribbon-item" />
-          <img src="/image_4d7087.jpg" alt="" className="ev4-ribbon-item" />
+          <img src="/imagen_facebook.png" alt="Facebook Goldtex" className="ev4-ribbon-item" />
+          <img src="/imagen_mockup.png" alt="Mockup Uniformes Goldtex" className="ev4-ribbon-item" />
+          <img src="/imagen_instagram.png" alt="Post Instagram Goldtex" className="ev4-ribbon-item" />
           <img src="/assets/evidencias/ev4/ev4_calle_02.png" alt="" className="ev4-ribbon-item" />
+          <img src="/image_4d7087.jpg" alt="" className="ev4-ribbon-item" />
           <img src="/assets/evidencias/ev4/ev4_instagram_04.jpeg" alt="" className="ev4-ribbon-item" />
           {/* Duplicado para loop sin saltos */}
-          <img src="/AA4.jpg" alt="" className="ev4-ribbon-item" />
-          <img src="/image_4d7087.jpg" alt="" className="ev4-ribbon-item" />
+          <img src="/imagen_facebook.png" alt="Facebook Goldtex" className="ev4-ribbon-item" />
+          <img src="/imagen_mockup.png" alt="Mockup Uniformes Goldtex" className="ev4-ribbon-item" />
+          <img src="/imagen_instagram.png" alt="Post Instagram Goldtex" className="ev4-ribbon-item" />
           <img src="/assets/evidencias/ev4/ev4_calle_02.png" alt="" className="ev4-ribbon-item" />
+          <img src="/image_4d7087.jpg" alt="" className="ev4-ribbon-item" />
           <img src="/assets/evidencias/ev4/ev4_instagram_04.jpeg" alt="" className="ev4-ribbon-item" />
         </div>
 

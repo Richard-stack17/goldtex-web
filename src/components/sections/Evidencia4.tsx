@@ -41,9 +41,31 @@ function Carousel({ id, label, slides }: { id: string; label: string; slides: Sl
   );
 }
 
-const calle: Slide[] = [
-  { src: `${BASE}/ev4_calle_01.png`, tag: "Vía pública · Pieza 01", title: "Panel Publicitario", text: "Valla de gran formato para el emporio comercial de Gamarra." },
-  { src: `${BASE}/ev4_calle_02.png`, tag: "Vía pública · Pieza 02", title: "Mockup Urbano", text: "Aplicación de la campaña en el entorno urbano para reforzar el reconocimiento de marca." },
+const mockupsYAplicaciones: Slide[] = [
+  {
+    src: "/imagen_mockup.png",
+    tag: "Identidad & Branding · Mockup",
+    title: "Mockup de Indumentaria Corporativa",
+    text: "Uniformes institucionales con polo verde corporativo y logotipo bordado para el equipo de ventas y asesores en tienda Gamarra.",
+  },
+  {
+    src: "/imagen_facebook.png",
+    tag: "Redes Sociales · Fanpage Facebook",
+    title: "Presencia Corporativa en Facebook",
+    text: "Página oficial verificada con 254k seguidores, catálogo de insumos y más de 1.2M de alcance para talleres textiles.",
+  },
+  {
+    src: "/imagen_instagram.png",
+    tag: "Redes Sociales · Campaña Digital",
+    title: "Mockup Post Instagram",
+    text: "“El color de tus ideas también es una buena tela” — Publicación interactiva de campaña oficial en Instagram.",
+  },
+  {
+    src: `${BASE}/ev4_calle_02.png`,
+    tag: "Vía pública · Mockup Urbano",
+    title: "Mockup Publicidad Exterior",
+    text: "Aplicación de la campaña en el entorno urbano y paraderos para reforzar el reconocimiento de marca.",
+  },
 ];
 
 const pillars = [
@@ -226,10 +248,10 @@ export default function Evidencia4() {
       {/* EFECTO 3: CELULAR 3D FLOTANTE, CINTA CONTINUA PASANTE Y BILLBOARD CALLEJERO CON LUCES LED */}
       <SpatialPhoneBillboard />
 
-      <section className="section-block" id="ev4-calle" style={{ marginTop: "4rem" }}>
+      <section className="section-block" id="ev4-mockups" style={{ marginTop: "4rem" }}>
         <p className="section-kicker">Archivo de Campaña</p>
-        <h2 className="section-title-xl">Galería Detallada · Vía Pública</h2>
-        <Carousel id="carousel-ev4-calle" label="Publicidad exterior" slides={calle} />
+        <h2 className="section-title-xl">Galería Detallada · Mockups &amp; Aplicaciones</h2>
+        <Carousel id="carousel-ev4-mockups" label="Mockups y aplicaciones de campaña" slides={mockupsYAplicaciones} />
       </section>
     </section>
   );

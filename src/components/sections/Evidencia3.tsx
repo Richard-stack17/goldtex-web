@@ -329,6 +329,16 @@ export default function Evidencia3() {
                                 <p>Diseño de indumentaria estructurado con tejidos exclusivos de Gamarra para proyectar sofisticación global.</p>
                             </div>
                         </div>
+                        <div className="swiper-slide">
+                            <div className="carousel-img-wrap">
+                                <img src="/imagen_mockup.png" alt="Mockup Indumentaria Institucional Goldtex" />
+                            </div>
+                            <div className="carousel-caption">
+                                <span className="experience-tag">Arte Final · Pieza 05</span>
+                                <h3>Mockup: Indumentaria Corporativa</h3>
+                                <p>Uniformes oficiales con polo verde corporativo y logotipo bordado para el equipo de ventas y asesores en Gamarra.</p>
+                            </div>
+                        </div>
                     </div>
                     {/*  Controles de navegación Swiper 3D  */}
                     <div className="swiper-pagination"></div>
