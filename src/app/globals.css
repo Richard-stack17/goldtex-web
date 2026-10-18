@@ -4012,14 +4012,14 @@
 
         /* Side floating layers in perspective */
         .diorama-side-layer {
-            position: relative;
-            width: 280px;
-            height: 480px;
-            flex-shrink: 0;
-            cursor: pointer;
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            transform-style: preserve-3d;
-        }
+    position: relative;
+    width: 250px;
+    height: auto;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-style: preserve-3d;
+  }
 
         .layer-left {
             transform: rotate(-6deg) translateY(40px);
@@ -4036,27 +4036,36 @@
         }
 
         .layer-frame {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
-            background: #041d19;
-        }
+    position: relative;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 600 / 750;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+    background: #020e0b;
+  }
 
         .layer-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: contrast(1.1) brightness(0.85);
-            transition: filter 0.4s ease;
-        }
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    filter: contrast(1.05) brightness(0.92);
+    transition: filter 0.4s ease;
+  }
 
         .diorama-side-layer:hover .layer-img {
-            filter: contrast(1.15) brightness(1);
-        }
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    filter: contrast(1.05) brightness(0.92);
+    transition: filter 0.4s ease;
+  }
 
         .layer-gradient-overlay {
             position: absolute;
@@ -4085,15 +4094,15 @@
 
         /* CENTRAL HERO CARD */
         .diorama-hero-card {
-            position: relative;
-            z-index: 20;
-            width: 100%;
-            max-width: 580px;
-            height: 720px;
-            flex-shrink: 0;
-            margin: 0 auto;
-            transform-style: preserve-3d;
-        }
+    position: relative;
+    z-index: 20;
+    width: 100%;
+    max-width: 960px;
+    height: auto;
+    flex-shrink: 1;
+    margin: 0 auto;
+    transform-style: preserve-3d;
+  }
 
         .hero-glow-aura {
             position: absolute;
@@ -4127,27 +4136,34 @@
         }
 
         .hero-frame {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            border-radius: 28px;
-            overflow: hidden;
-            border: 2px solid rgba(241, 183, 52, 0.6);
-            box-shadow: 0 35px 80px rgba(0, 0, 0, 0.95);
-            background: #041a15;
-        }
+    position: relative;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2279 / 1458;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid rgba(241, 183, 52, 0.55);
+    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.95);
+    background: #041a15;
+  }
 
         .hero-main-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top center;
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
 
         .diorama-hero-card:hover .hero-main-img {
-            transform: scale(1.05);
-        }
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
 
         .hero-img-overlay {
             position: absolute;
@@ -4540,12 +4556,25 @@
             }
 
             .diorama-side-layer {
-                display: none;
-            }
+    position: relative;
+    width: 250px;
+    height: auto;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-style: preserve-3d;
+  }
 
             .diorama-hero-card {
-                height: 600px;
-            }
+    position: relative;
+    z-index: 20;
+    width: 100%;
+    max-width: 960px;
+    height: auto;
+    flex-shrink: 1;
+    margin: 0 auto;
+    transform-style: preserve-3d;
+  }
 
             .hero-popout-orb {
                 width: 130px;

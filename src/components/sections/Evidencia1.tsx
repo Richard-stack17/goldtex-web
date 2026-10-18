@@ -80,7 +80,7 @@ export default function Evidencia1() {
                 </div>
             </section>
 
-            {/*  Focus Group y Principales Problemas  */}
+            {/*  Focus Group & Principales Problemas (Módulo Interactivo Elevado)  */}
             <section className="section-block" id="focus-group">
                 <p className="section-kicker">Método de Investigación</p>
                 <h2 className="section-title-xl">Focus Group & Principales Problemas</h2>
@@ -237,56 +237,80 @@ export default function Evidencia1() {
             </section>
 
         {/*  ============ HISTORIA GOLDTEX: TIMELINE REAL (2005–2026) ============  */}
-        <section className="section-block" id="historia">
-            <p className="section-kicker">Trayectoria • Gamarra, Lima</p>
-            <h2 className="section-title-xl">Casi dos décadas de textil peruano</h2>
-            <p className="section-lead">
-                Desde su fundación en Gamarra hasta la campaña nacional, Goldtex ha crecido
-                con los confeccionistas y emprendedores del Perú.
-            </p>
+        {/*  ============ HISTORIA GOLDTEX: TRAYECTORIA REAL (2005–2026) ============  */}
+        <section id="historia" className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 z-10 scroll-mt-28 text-left">
+            <div className="mb-10 text-left">
+                <div className="inline-flex items-center gap-2 mb-3 px-3.5 py-1 rounded-full bg-[#F1B734]/10 border border-[#F1B734]/30">
+                    <span className="w-2 h-2 rounded-full bg-[#F1B734]"></span>
+                    <span className="text-[#F1B734] font-semibold text-xs uppercase tracking-[0.22em]">
+                        Trayectoria • Gamarra, Lima
+                    </span>
+                </div>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#F4F3F3] font-bold tracking-tight mb-4">
+                    Casi dos décadas de textil peruano
+                </h2>
+                <p className="text-base sm:text-lg text-[#F4F3F3]/80 font-light max-w-3xl leading-relaxed">
+                    Desde su fundación en Gamarra hasta la campaña nacional, Goldtex ha crecido
+                    con los confeccionistas y emprendedores del Perú.
+                </p>
+            </div>
 
-            <div className="timeline-v2">
-                <div className="tl2-ghost" aria-hidden="true">
-                    <span data-tl-ghost>2005</span>
-                </div>
-                <div className="tl2-rail" aria-hidden="true">
-                    <span className="tl2-rail-fill" data-tl-fill />
-                </div>
-                <div className="tl2-nodes">
-                    {[
-                        ["2005", "Fundación", "Nace Goldtex en Gamarra, Lima, como tienda de telas importadas."],
-                        ["2008", "Importación Global", "Diversificación de la oferta con telas de Asia y Europa."],
-                        ["2010", "Expansión Nacional", "Llegada a provincias clave: Arequipa, Trujillo y Chiclayo."],
-                        ["2015", "Identidad de Marca", "Creación del lema \"Telas Que Inspiran\" y consolidación de la imagen corporativa."],
-                        ["2020", "Transformación Digital", "Implementación de venta por canales digitales y atención personalizada por WhatsApp Business."],
-                        ["2022", "Asesoramiento Técnico", "Consultoría especializada para emprendedores sobre especificaciones de telas y usos."],
-                        ["2024", "Producción Local", "Alianza estratégica con talleres textiles peruanos para producción propia de telas básicas."],
-                        ["2026", "Campaña Nacional", "Iniciativas de Emprendimiento y lanzamiento de la línea exclusiva \"Emprende Fácil\"."],
-                    ].map((entry, i) => (
-                        <article
-                            key={entry[0]}
-                            className="timeline-node-v2"
-                            data-tl-year={entry[0]}
-                            data-tl-i={String(i + 1).padStart(2, "0")}
-                        >
-                            <span className="tl2-dot" aria-hidden="true" />
-                            <div className="tl2-card">
-                                <div className="tl2-head">
-                                    <div className="timeline-year">{entry[0]}</div>
-                                    <span className="tl2-index">{String(i + 1).padStart(2, "0")}</span>
-                                </div>
-                                <div className="timeline-name">{entry[1]}</div>
-                                <p className="timeline-desc">{entry[2]}</p>
-                            </div>
-                        </article>
+            {/* Riel visual de hilo dorado con los 8 puntos de trayectoria */}
+            <div className="relative mb-12 py-4 px-2 hidden sm:block">
+                {/* Línea horizontal continua dorada */}
+                <div className="absolute top-1/2 left-4 right-4 h-[2px] -translate-y-1/2 bg-gradient-to-r from-[#F1B734]/20 via-[#F1B734] to-[#F1B734]/20 shadow-[0_0_12px_rgba(241,183,52,0.5)]"></div>
+                
+                {/* 8 Puntos dorados repartidos a lo largo de la línea */}
+                <div className="relative z-10 flex justify-between items-center">
+                    {["2005", "2008", "2010", "2015", "2020", "2022", "2024", "2026"].map((yr, idx) => (
+                        <div key={yr} className="flex flex-col items-center group cursor-default">
+                            {idx === 0 ? (
+                                <div className="w-5 h-5 rounded-full bg-[#F1B734] border-2 border-[#FFE59A] shadow-[0_0_18px_rgba(241,183,52,0.95)] ring-4 ring-[#F1B734]/30 transition-transform group-hover:scale-125"></div>
+                            ) : (
+                                <div className="w-4 h-4 rounded-full bg-[#00120E] border-2 border-[#F1B734] shadow-[0_0_10px_rgba(241,183,52,0.5)] transition-transform group-hover:scale-125 group-hover:bg-[#F1B734]"></div>
+                            )}
+                            <span className="font-serif text-xs font-bold text-[#F1B734] mt-2.5 tracking-wider drop-shadow-[0_0_6px_rgba(241,183,52,0.3)]">
+                                {yr}
+                            </span>
+                        </div>
                     ))}
                 </div>
-                <div className="tl2-meta" aria-hidden="true">
-                    <span className="tl2-current" data-tl-current>01</span>
-                    <span className="tl2-sep">/</span>
-                    <span className="tl2-total">08</span>
-                    <span className="tl2-track-label">· Trayectoria</span>
-                </div>
+            </div>
+
+            {/* Grid elegante y 100% responsivo con Tailwind */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+                {[
+                    { year: "2005", title: "Fundación", desc: "Nace Goldtex en Gamarra, Lima, como tienda de telas importadas." },
+                    { year: "2008", title: "Importación Global", desc: "Diversificación de la oferta con telas de Asia y Europa." },
+                    { year: "2010", title: "Expansión Nacional", desc: "Llegada a provincias clave: Arequipa, Trujillo y Chiclayo." },
+                    { year: "2015", title: "Identidad de Marca", desc: "Creación del lema \"Telas Que Inspiran\" y consolidación de la imagen corporativa." },
+                    { year: "2020", title: "Transformación Digital", desc: "Implementación de venta por canales digitales y atención personalizada por WhatsApp Business." },
+                    { year: "2022", title: "Asesoramiento Técnico", desc: "Consultoría especializada para emprendedores sobre especificaciones de telas y usos." },
+                    { year: "2024", title: "Producción Local", desc: "Alianza estratégica con talleres textiles peruanos para producción propia de telas básicas." },
+                    { year: "2026", title: "Campaña Nacional", desc: "Iniciativas de Emprendimiento y lanzamiento de la línea exclusiva \"Emprende Fácil\"." },
+                ].map((item, i) => (
+                    <article
+                        key={item.year}
+                        className="group relative p-6 rounded-2xl bg-[#083E35]/40 border border-[#F1B734]/25 hover:border-[#F1B734] hover:bg-[#083E35]/70 transition-all duration-300 backdrop-blur-sm flex flex-col justify-between"
+                    >
+                        <div>
+                            <div className="flex items-center justify-between mb-3 border-b border-white/10 pb-2.5">
+                                <span className="font-serif text-2xl font-bold text-[#F1B734] group-hover:text-[#FFE59A] transition-colors">
+                                    {item.year}
+                                </span>
+                                <span className="text-[11px] font-mono text-[#F1B734]/70 px-2.5 py-0.5 rounded-full bg-[#F1B734]/10 border border-[#F1B734]/20">
+                                    0{i + 1}
+                                </span>
+                            </div>
+                            <h3 className="font-serif text-lg font-semibold text-[#F4F3F3] tracking-wide uppercase mb-2">
+                                {item.title}
+                            </h3>
+                            <p className="text-sm text-[#F4F3F3]/80 font-light leading-relaxed">
+                                {item.desc}
+                            </p>
+                        </div>
+                    </article>
+                ))}
             </div>
         </section>
 
