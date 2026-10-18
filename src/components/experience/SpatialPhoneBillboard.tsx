@@ -334,6 +334,96 @@ export default function SpatialPhoneBillboard() {
         </div>
       </div>
 
+      {/* ================= ACTIVACIÓN OMNICANAL: DEL ENTORNO MÓVIL AL PUNTO DE VENTA ================= */}
+      <div className="ev4-omnichannel-showcase reveal-card" id="activacion-omnicanal">
+        <div className="omnichannel-badge-bar">
+          <div className="omnichannel-tag">
+            <span className="omnichannel-dot"></span>
+            <span>Activación Omnicanal • Retail &amp; Experiencia Digital</span>
+          </div>
+          <div className="omnichannel-meta">
+            Jr. Humboldt &amp; Galería Perla • Tienda Física + Redes
+          </div>
+        </div>
+
+        <div className="video-player-container is-landscape" id="video-container-ev4">
+          <video
+            id="spot-video-ev4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster="/poster_ev4_omnichannel.jpg"
+            data-action="togglePlayVideo('ev4')"
+          >
+            <source src="/activacion_gamarra_omnichannel.mp4" type="video/mp4" />
+            <source src="/gemini_generated_video_957fde8f.mp4" type="video/mp4" />
+            Tu navegador no soporta video.
+          </video>
+          <div className="video-overlay-controls">
+            <div className="video-ctrl-group">
+              <button
+                className="video-ctrl-btn"
+                id="audio-btn-ev4"
+                data-action="toggleAudioVideo('ev4')"
+                title="Activar/Silenciar Sonido"
+              >
+                <span id="audio-icon-ev4" data-ic-muted>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+                </span>
+                <span id="audio-text-ev4">Silenciado</span>
+              </button>
+              <button
+                className="video-ctrl-btn"
+                id="play-btn-ev4"
+                data-action="togglePlayVideo('ev4')"
+                title="Pausar/Reproducir"
+              >
+                <span id="play-icon-ev4" data-ic-pause>
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1.2"/><rect x="14" y="4" width="4" height="16" rx="1.2"/></svg>
+                </span>
+              </button>
+            </div>
+            <div className="video-ctrl-group">
+              <button
+                className="video-ctrl-btn"
+                data-action="toggleFullscreenVideo('ev4')"
+                title="Pantalla Completa"
+              >
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M8 3H3v5"/><path d="M16 3h5v5"/><path d="M8 21H3v-5"/><path d="M16 21h5v-5"/></svg></span>
+                <span>Pantalla Completa</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="omnichannel-info">
+          <div>
+            <h3 className="omnichannel-title">
+              De la Pantalla al Mostrador: Experiencia de Compra en Gamarra
+            </h3>
+            <p className="omnichannel-desc">
+              Film demostrativo del viaje del cliente: el descubrimiento digital a través del celular interactivo conecta directamente con la tienda física de Goldtex. Personal capacitado con uniforme institucional asesora en mostrador, despliega fardos y mide la tela con precisión técnica para cada emprendimiento textil.
+            </p>
+          </div>
+          <div className="omnichannel-pills">
+            <span className="brand-spec-pill">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Jr. Humboldt, Gamarra
+            </span>
+            <span className="brand-spec-pill">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+              Corte &amp; Venta por Metros
+            </span>
+            <span className="brand-spec-pill">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
+              Omnicanalidad Móvil
+            </span>
+          </div>
+        </div>
+      </div>
+
       {/* ================= CIERRE MONUMENTAL: BILLBOARD CALLEJERO CON LUCES LED ================= */}
       <section className="ev4-billboard-section" ref={billboardRef} id="publicidad-calles-billboard">
         <div className="billboard-kicker-wrap">

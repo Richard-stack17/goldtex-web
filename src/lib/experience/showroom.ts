@@ -19,7 +19,7 @@ const _observers = [];
 function _onWindow(type, fn, opts) { window.addEventListener(type, fn, opts); _winListeners.push([type, fn, opts]); }
 function _onDocument(type, fn, opts) { document.addEventListener(type, fn, opts); _docListeners.push([type, fn, opts]); }
 
-export interface ShowroomActions { finishIntroCurtain: () => void; setInteractionMode: (mode: string) => void; scrollToExperience: () => void; switch3DCamera: (mode: string, el?: HTMLElement | null) => void; selectFabricPreset: (key: string, el?: HTMLElement | null) => void; triggerFabricWave: () => void; zoomToMicroFiber: () => void; togglePlayVideo: (id: number) => void; toggleAudioVideo: (id: number) => void; toggleFullscreenVideo: (id: number) => void; }
+export interface ShowroomActions { finishIntroCurtain: () => void; setInteractionMode: (mode: string) => void; scrollToExperience: () => void; switch3DCamera: (mode: string, el?: HTMLElement | null) => void; selectFabricPreset: (key: string, el?: HTMLElement | null) => void; triggerFabricWave: () => void; zoomToMicroFiber: () => void; togglePlayVideo: (id: number | string) => void; toggleAudioVideo: (id: number | string) => void; toggleFullscreenVideo: (id: number | string) => void; }
 export interface ShowroomHandle { dispose(): void; actions: ShowroomActions; }
 
 export function initShowroomExperience(): ShowroomHandle {
@@ -1362,6 +1362,9 @@ export function initShowroomExperience(): ShowroomHandle {
     // ================= PAUSA INTELIGENTE DE VIDEOS (rendimiento a 60fps) =================
     const allObservables = [
         document.getElementById('hero-bg-video'),
+        document.getElementById('spot-video-3'),
+        document.getElementById('spot-video-4'),
+        document.getElementById('spot-video-ev4'),
         document.getElementById('spot-video-1'),
         document.getElementById('spot-video-2'),
         ...document.querySelectorAll('.portal-bg-video')
