@@ -1,8 +1,7 @@
 import puppeteer from 'puppeteer-core';
 
 const CHROME_PATH = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-const OUTPUT_HISTORIA = '/Users/jhon151/.gemini/antigravity-ide/brain/d37e78dc-3d71-489d-927e-e7e9bd37d01b/historia_fixed.png';
-const OUTPUT_BENCHMARKING = '/Users/jhon151/.gemini/antigravity-ide/brain/d37e78dc-3d71-489d-927e-e7e9bd37d01b/benchmarking_fixed.png';
+const OUTPUT = '/Users/jhon151/.gemini/antigravity-ide/brain/d37e78dc-3d71-489d-927e-e7e9bd37d01b/historia_current.png';
 
 async function main() {
   const browser = await puppeteer.launch({
@@ -29,22 +28,16 @@ async function main() {
       target.scrollIntoView({ behavior: 'instant', block: 'start' });
     }
   });
-  await new Promise(r => setTimeout(r, 1200));
+  await new Promise(r => setTimeout(r, 1500));
 
-  await page.screenshot({ path: OUTPUT_HISTORIA });
-  console.log('Saved historia_fixed.png');
-
-  // Now scroll slightly down into benchmarking to verify no overlaps occur
+  // scroll a little bit down to trigger pinning
   await page.evaluate(() => {
-    const bench = document.getElementById('benchmarking');
-    if (bench) {
-      bench.scrollIntoView({ behavior: 'instant', block: 'start' });
-    }
+    window.scrollBy(0, 400);
   });
   await new Promise(r => setTimeout(r, 1000));
-  await page.screenshot({ path: OUTPUT_BENCHMARKING });
-  console.log('Saved benchmarking_fixed.png');
 
+  await page.screenshot({ path: OUTPUT });
+  console.log('Saved historia_current.png');
   await browser.close();
 }
 

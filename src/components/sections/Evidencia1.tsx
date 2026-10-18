@@ -1,6 +1,4 @@
 /* Generado desde index.html — contenido íntegro preservado (conversión mecánica HTML→JSX). */
-import TimelineSection from "./TimelineSection";
-
 export default function Evidencia1() {
   return (
     <>
@@ -239,7 +237,58 @@ export default function Evidencia1() {
             </section>
 
         {/*  ============ HISTORIA GOLDTEX: TIMELINE REAL (2005–2026) ============  */}
-        <TimelineSection />
+        <section className="section-block" id="historia">
+            <p className="section-kicker">Trayectoria • Gamarra, Lima</p>
+            <h2 className="section-title-xl">Casi dos décadas de textil peruano</h2>
+            <p className="section-lead">
+                Desde su fundación en Gamarra hasta la campaña nacional, Goldtex ha crecido
+                con los confeccionistas y emprendedores del Perú.
+            </p>
+
+            <div className="timeline-v2">
+                <div className="tl2-ghost" aria-hidden="true">
+                    <span data-tl-ghost>2005</span>
+                </div>
+                <div className="tl2-rail" aria-hidden="true">
+                    <span className="tl2-rail-fill" data-tl-fill />
+                </div>
+                <div className="tl2-nodes">
+                    {[
+                        ["2005", "Fundación", "Nace Goldtex en Gamarra, Lima, como tienda de telas importadas."],
+                        ["2008", "Importación Global", "Diversificación de la oferta con telas de Asia y Europa."],
+                        ["2010", "Expansión Nacional", "Llegada a provincias clave: Arequipa, Trujillo y Chiclayo."],
+                        ["2015", "Identidad de Marca", "Creación del lema \"Telas Que Inspiran\" y consolidación de la imagen corporativa."],
+                        ["2020", "Transformación Digital", "Implementación de venta por canales digitales y atención personalizada por WhatsApp Business."],
+                        ["2022", "Asesoramiento Técnico", "Consultoría especializada para emprendedores sobre especificaciones de telas y usos."],
+                        ["2024", "Producción Local", "Alianza estratégica con talleres textiles peruanos para producción propia de telas básicas."],
+                        ["2026", "Campaña Nacional", "Iniciativas de Emprendimiento y lanzamiento de la línea exclusiva \"Emprende Fácil\"."],
+                    ].map((entry, i) => (
+                        <article
+                            key={entry[0]}
+                            className="timeline-node-v2"
+                            data-tl-year={entry[0]}
+                            data-tl-i={String(i + 1).padStart(2, "0")}
+                        >
+                            <span className="tl2-dot" aria-hidden="true" />
+                            <div className="tl2-card">
+                                <div className="tl2-head">
+                                    <div className="timeline-year">{entry[0]}</div>
+                                    <span className="tl2-index">{String(i + 1).padStart(2, "0")}</span>
+                                </div>
+                                <div className="timeline-name">{entry[1]}</div>
+                                <p className="timeline-desc">{entry[2]}</p>
+                            </div>
+                        </article>
+                    ))}
+                </div>
+                <div className="tl2-meta" aria-hidden="true">
+                    <span className="tl2-current" data-tl-current>01</span>
+                    <span className="tl2-sep">/</span>
+                    <span className="tl2-total">08</span>
+                    <span className="tl2-track-label">· Trayectoria</span>
+                </div>
+            </div>
+        </section>
 
         {/*  Benchmarking Cromático: El radar de competencia de Gamarra  */}
         <section className="benchmarking-section" id="benchmarking">
