@@ -1363,6 +1363,7 @@ export function initShowroomExperience(): ShowroomHandle {
     const allObservables = [
         document.getElementById('hero-bg-video'),
         document.getElementById('spot-video-3'),
+        document.getElementById('spot-video-4'),
         document.getElementById('spot-video-ev4'),
         document.getElementById('spot-video-1'),
         document.getElementById('spot-video-2'),
